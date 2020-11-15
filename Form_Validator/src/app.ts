@@ -8,8 +8,19 @@ const elements = {
 };
 
 // Functions
+const checkField = (
+  field: 'userName' | 'email' | 'password' | 'confirmPassword'
+) => {
+  //
+};
+
 const validateForm = (e: Event) => {
   e.preventDefault();
+
+  // check username
+  // check email
+  // check password
+  // check confirm password
 };
 
 // Event listeners
