@@ -18,5 +18,6 @@ const checkField = (field) => {
 };
 const validateForm = (e) => {
     e.preventDefault();
+    checkField('userName');
 };
 elements.form.addEventListener('submit', validateForm);
