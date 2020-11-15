@@ -1,14 +1,16 @@
 // DOM Elements
 const elements = {
-  form: document.querySelector('#form'),
-  username: document.querySelector('#username'),
-  email: document.querySelector('#email'),
-  password: document.querySelector('#password'),
-  password2: document.querySelector('#password2'),
+  form: document.querySelector('#form') as HTMLFormElement,
+  username: document.querySelector('#username') as HTMLInputElement,
+  email: document.querySelector('#email') as HTMLInputElement,
+  password: document.querySelector('#password') as HTMLInputElement,
+  password2: document.querySelector('#password2') as HTMLInputElement,
 };
 
-const form = document.getElementById('form');
-const username = document.getElementById('username');
-const email = document.getElementById('email');
-const password = document.getElementById('password');
-const password2 = document.getElementById('password2');
+// Functions
+const validateForm = (e: Event) => {
+  e.preventDefault();
+};
+
+// Event listeners
+elements.form.addEventListener('submit', validateForm);
