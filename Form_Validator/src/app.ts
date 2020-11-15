@@ -9,9 +9,9 @@ const elements = {
 
 // Functions
 const checkField = (
-  field: 'userName' | 'email' | 'password' | 'confirmPassword'
+  field: 'username' | 'email' | 'password' | 'confirmPassword'
 ) => {
-  if (field === 'userName') {
+  if (field === 'username') {
     if (elements.username.value.length > 2) return true;
     return false;
     //   'Username should be greater than 3 characters';
@@ -33,20 +33,51 @@ const checkField = (
   return;
 };
 
+const updateField = (
+  field: 'username' | 'email' | 'password' | 'confirmPassword',
+  isPassed: boolean
+) => {
+  if (field === 'username') {
+    const target = document.querySelector('#username ~ small')!;
+
+    isPassed
+      ? (target.textContent = 'ok')
+      : (target.textContent = 'Username should be greater than 3 characters');
+  } else if (field === 'email') {
+    const target = document.querySelector('#email ~ small')!;
+
+    isPassed
+      ? (target.textContent = 'ok')
+      : (target.textContent = 'Username should be greater than 3 characters');
+  } else if (field === 'password') {
+    const target = document.querySelector('#password ~ small')!;
+
+    isPassed
+      ? (target.textContent = 'ok')
+      : (target.textContent = 'Username should be greater than 3 characters');
+  } else if (field === 'confirmPassword') {
+    const target = document.querySelector('#password2 ~ small')!;
+
+    isPassed
+      ? (target.textContent = 'ok')
+      : (target.textContent = 'Username should be greater than 3 characters');
+  }
+};
+
 const validateForm = (e: Event) => {
   e.preventDefault();
 
   // check username
-  console.log(checkField('userName'));
+  const isUsername: boolean = checkField('username') as boolean;
 
   // check email
-  checkField('email');
+  const isEmail: boolean = checkField('email') as boolean;
 
   // check password
-  checkField('password');
+  const isPassword: boolean = checkField('password') as boolean;
 
   // check confirm password
-  checkField('confirmPassword');
+  const isConfirmPassword: boolean = checkField('confirmPassword') as boolean;
 };
 
 // Event listeners
