@@ -69,16 +69,16 @@ const validateForm = (e: Event) => {
 
   // check username
   const isUsername: boolean = checkField('username') as boolean;
-
   updateField('username', isUsername);
+
   // check email
   const isEmail: boolean = checkField('email') as boolean;
-
   updateField('email', isEmail);
+
   // check password
   const isPassword: boolean = checkField('password') as boolean;
-
   updateField('password', isPassword);
+
   // check confirm password
   const isConfirmPassword: boolean = checkField('confirmPassword') as boolean;
   updateField('confirmPassword', isConfirmPassword);
