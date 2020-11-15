@@ -11,7 +11,11 @@ const elements = {
 const checkField = (
   field: 'userName' | 'email' | 'password' | 'confirmPassword'
 ) => {
-  //
+  if (field === 'userName') {
+  } else if (field === 'email') {
+  } else if (field === 'password') {
+  } else if (field === 'confirmPassword') {
+  }
 };
 
 const validateForm = (e: Event) => {

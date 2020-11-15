@@ -6,7 +6,15 @@ const elements = {
     password: document.querySelector('#password'),
     password2: document.querySelector('#password2'),
 };
-const checkField = () => {
+const checkField = (field) => {
+    if (field === 'userName') {
+    }
+    else if (field === 'email') {
+    }
+    else if (field === 'password') {
+    }
+    else if (field === 'confirmPassword') {
+    }
 };
 const validateForm = (e) => {
     e.preventDefault();
