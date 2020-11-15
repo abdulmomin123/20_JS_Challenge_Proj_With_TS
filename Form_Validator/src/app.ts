@@ -41,26 +41,26 @@ const updateField = (
     const target = document.querySelector('#username ~ small')!;
 
     isPassed
-      ? (target.textContent = 'ok')
+      ? (elements.username.classList.add('success'), (target.textContent = ''))
       : (target.textContent = 'Username should be greater than 3 characters');
   } else if (field === 'email') {
     const target = document.querySelector('#email ~ small')!;
 
     isPassed
-      ? (target.textContent = 'ok')
-      : (target.textContent = 'Username should be greater than 3 characters');
+      ? (elements.email.classList.add('success'), (target.textContent = ''))
+      : (target.textContent = 'Invalid Email');
   } else if (field === 'password') {
     const target = document.querySelector('#password ~ small')!;
 
     isPassed
-      ? (target.textContent = 'ok')
-      : (target.textContent = 'Username should be greater than 3 characters');
+      ? (elements.password.classList.add('success'), (target.textContent = ''))
+      : (target.textContent = 'Password should be greater than 5 characters');
   } else if (field === 'confirmPassword') {
     const target = document.querySelector('#password2 ~ small')!;
 
     isPassed
-      ? (target.textContent = 'ok')
-      : (target.textContent = 'Username should be greater than 3 characters');
+      ? (elements.password2.classList.add('success'), (target.textContent = ''))
+      : (target.textContent = "Passwords doesn't match");
   }
 };
 
@@ -70,14 +70,18 @@ const validateForm = (e: Event) => {
   // check username
   const isUsername: boolean = checkField('username') as boolean;
 
+  updateField('username', isUsername);
   // check email
   const isEmail: boolean = checkField('email') as boolean;
 
+  updateField('email', isEmail);
   // check password
   const isPassword: boolean = checkField('password') as boolean;
 
+  updateField('password', isPassword);
   // check confirm password
   const isConfirmPassword: boolean = checkField('confirmPassword') as boolean;
+  updateField('confirmPassword', isConfirmPassword);
 };
 
 // Event listeners
