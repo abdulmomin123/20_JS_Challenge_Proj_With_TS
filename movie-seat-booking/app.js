@@ -7,7 +7,11 @@ var elements = {
     movieSelect: document.getElementById('movie'),
 };
 var pricePerTicket = +elements.movieSelect.value;
-var seatsBooked = 0;
+var seatsBooked = +localStorage.getItem('seatsBooked') || 0;
+var updateTicketPrice = function () {
+    pricePerTicket = +elements.movieSelect.value;
+    updateStats();
+};
 var updateStats = function () {
     elements.count.textContent = "" + seatsBooked;
     elements.total.textContent = "" + seatsBooked * pricePerTicket;
@@ -21,14 +25,15 @@ var toggleSeat = function (e) {
         seatsBooked++;
     else
         seatsBooked--;
+    saveData();
 };
 var bookMovie = function (e) {
     toggleSeat(e);
     updateStats();
 };
-var updateTicketPrice = function () {
-    pricePerTicket = +elements.movieSelect.value;
-    updateStats();
+var saveData = function () {
+    localStorage.setItem('seatsBooked', "" + seatsBooked);
 };
+updateStats();
 elements.movieSelect.addEventListener('change', updateTicketPrice);
 elements.container.addEventListener('click', bookMovie);

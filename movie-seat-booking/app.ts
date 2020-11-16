@@ -7,9 +7,14 @@ const elements = {
 };
 
 let pricePerTicket: number = +elements.movieSelect.value;
-let seatsBooked: number = 0;
+let seatsBooked: number = +localStorage.getItem('seatsBooked')! || 0;
 
 // functions
+const updateTicketPrice = () => {
+  pricePerTicket = +elements.movieSelect.value;
+  updateStats();
+};
+
 const updateStats = () => {
   elements.count.textContent = `${seatsBooked}`;
   elements.total.textContent = `${seatsBooked * pricePerTicket}`;
@@ -24,6 +29,8 @@ const toggleSeat = (e: Event) => {
 
   if (target.classList.contains('selected')) seatsBooked++;
   else seatsBooked--;
+
+  saveData();
 };
 
 const bookMovie = (e: Event) => {
@@ -31,10 +38,11 @@ const bookMovie = (e: Event) => {
   updateStats();
 };
 
-const updateTicketPrice = () => {
-  pricePerTicket = +elements.movieSelect.value;
-  updateStats();
+const saveData = () => {
+  localStorage.setItem('seatsBooked', `${seatsBooked}`);
 };
+
+updateStats();
 
 // evnent listeners
 elements.movieSelect.addEventListener('change', updateTicketPrice);
