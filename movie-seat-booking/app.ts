@@ -1,5 +1,7 @@
-const container = document.querySelector('.container');
-const seats = document.querySelectorAll('.row .seat:not(.occupied)');
-const count = document.getElementById('count');
-const total = document.getElementById('total');
-const movieSelect = document.getElementById('movie');
+const elements = {
+  container: document.querySelector('.container'),
+  seats: document.querySelectorAll('.row .seat:not(.occupied)'),
+  count: document.getElementById('count'),
+  total: document.getElementById('total'),
+  movieSelect: document.getElementById('movie'),
+};
