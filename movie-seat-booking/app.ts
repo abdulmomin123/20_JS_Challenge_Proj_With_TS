@@ -6,12 +6,13 @@ const elements = {
   movieSelect: document.getElementById('movie') as HTMLSelectElement,
 };
 
-let pricePerTicket: number;
+let pricePerTicket: number = +elements.movieSelect.value;
 let seatsBooked: number = 0;
 
 // functions
-const calculatePrice = () => {
-  return pricePerTicket * seatsBooked;
+const updateStats = () => {
+  elements.count.textContent = `${seatsBooked}`;
+  elements.total.textContent = `${seatsBooked * pricePerTicket}`;
 };
 
 const toggleSeat = (e: Event) => {
@@ -25,11 +26,17 @@ const toggleSeat = (e: Event) => {
   else seatsBooked--;
 };
 
+const bookMovie = (e: Event) => {
+  toggleSeat(e);
+  updateStats();
+};
+
 const updateTicketPrice = () => {
   pricePerTicket = +elements.movieSelect.value;
+  updateStats();
 };
 
 // evnent listeners
 elements.movieSelect.addEventListener('change', updateTicketPrice);
 
-elements.container.addEventListener('click', toggleSeat);
+elements.container.addEventListener('click', bookMovie);
