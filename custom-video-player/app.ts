@@ -25,7 +25,7 @@ const stopPlayback = () => {
 };
 
 const changeCurrentTime = () => {
-  console.log('hi');
+  elements.video.currentTime = +elements.progress.value;
 };
 
 const progressVideo = () => {

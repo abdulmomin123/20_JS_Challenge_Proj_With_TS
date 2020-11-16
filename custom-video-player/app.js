@@ -24,7 +24,7 @@ const stopPlayback = () => {
     (_a = document.querySelector('i')) === null || _a === void 0 ? void 0 : _a.classList.replace('fa-pause', 'fa-play');
 };
 const changeCurrentTime = () => {
-    console.log('hi');
+    elements.video.currentTime = +elements.progress.value;
 };
 const progressVideo = () => {
 };
