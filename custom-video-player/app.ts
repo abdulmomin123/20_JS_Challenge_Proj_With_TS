@@ -7,8 +7,6 @@ const elements = {
   timestamp: document.getElementById('timestamp') as HTMLSpanElement,
 };
 
-let isMouseDown: boolean = false;
-
 // Functions
 const togglePlayback = () => {
   if (elements.video.paused) {
@@ -27,11 +25,10 @@ const stopPlayback = () => {
 };
 
 const moveSlider = () => {
-  //
+  console.log('hi');
 };
 
 // Event listeners
 elements.playBtns.forEach(btn => btn.addEventListener('click', togglePlayback));
 elements.stopVideo.addEventListener('click', stopPlayback);
-elements.progress.addEventListener('click', moveSlider);
-elements.progress.addEventListener('mousemove', moveSlider);
+elements.progress.addEventListener('input', moveSlider);
