@@ -35,6 +35,11 @@ var bookMovie = function (e) {
     toggleSeat(e);
     updateStats();
 };
-updateStats();
+var init = function () {
+    if (localStorage.getItem('seatsBookedHtml'))
+        elements.container.innerHTML = localStorage.getItem('seatsBookedHtml');
+    updateStats();
+};
+init();
 elements.movieSelect.addEventListener('change', updateTicketPrice);
 elements.container.addEventListener('click', bookMovie);

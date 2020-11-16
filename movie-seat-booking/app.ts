@@ -43,7 +43,14 @@ const bookMovie = (e: Event) => {
   updateStats();
 };
 
-updateStats();
+const init = () => {
+  if (localStorage.getItem('seatsBookedHtml'))
+    elements.container.innerHTML = localStorage.getItem('seatsBookedHtml')!;
+  updateStats();
+};
+
+// pull data form the localStorage
+init();
 
 // evnent listeners
 elements.movieSelect.addEventListener('change', updateTicketPrice);
