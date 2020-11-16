@@ -10,6 +10,11 @@ let pricePerTicket: number = +elements.movieSelect.value;
 let seatsBooked: number = +localStorage.getItem('seatsBooked')! || 0;
 
 // functions
+const saveData = () => {
+  localStorage.setItem('seatsBooked', `${seatsBooked}`);
+  localStorage.setItem('seatsBookedHtml', elements.container.innerHTML);
+};
+
 const updateTicketPrice = () => {
   pricePerTicket = +elements.movieSelect.value;
   updateStats();
@@ -36,10 +41,6 @@ const toggleSeat = (e: Event) => {
 const bookMovie = (e: Event) => {
   toggleSeat(e);
   updateStats();
-};
-
-const saveData = () => {
-  localStorage.setItem('seatsBooked', `${seatsBooked}`);
 };
 
 updateStats();
