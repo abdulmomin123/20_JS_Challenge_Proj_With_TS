@@ -10,9 +10,22 @@ let pricePerTicket: number;
 let seatsBooked: number = 0;
 
 // functions
-const bookMovie = () => {
-  pricePerTicket = +elements.movieSelect.value;
+const calculatePrice = () => {
+  return pricePerTicket * seatsBooked;
+};
+
+const bookMovie = (e: Event) => {
+  const target = e.target as HTMLElement;
+
+  if (!target.classList.contains('seat')) return;
+
+  console.log(e);
 };
 
 // evnent listeners
-elements.movieSelect.addEventListener('change', bookMovie);
+elements.movieSelect.addEventListener(
+  'change',
+  () => (pricePerTicket = +elements.movieSelect.value)
+);
+
+elements.container.addEventListener('click', bookMovie);

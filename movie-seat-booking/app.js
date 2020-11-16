@@ -8,7 +8,14 @@ var elements = {
 };
 var pricePerTicket;
 var seatsBooked = 0;
-var bookMovie = function () {
-    pricePerTicket = +elements.movieSelect.value;
+var calculatePrice = function () {
+    return pricePerTicket * seatsBooked;
 };
-elements.movieSelect.addEventListener('change', bookMovie);
+var bookMovie = function (e) {
+    var target = e.target;
+    if (!target.classList.contains('seat'))
+        return;
+    console.log(e);
+};
+elements.movieSelect.addEventListener('change', function () { return (pricePerTicket = +elements.movieSelect.value); });
+elements.container.addEventListener('click', bookMovie);
