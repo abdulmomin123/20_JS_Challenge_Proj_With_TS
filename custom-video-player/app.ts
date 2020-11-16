@@ -7,9 +7,17 @@ const elements = {
   timestamp: document.getElementById('timestamp') as HTMLSpanElement,
 };
 
+console.dir(elements.video);
+
 // Functions
 const togglePlayback = () => {
-  //
+  if (elements.video.paused) {
+    elements.video.play();
+    document.querySelector('i')?.classList.replace('fa-play', 'fa-pause');
+  } else {
+    elements.video.pause();
+    document.querySelector('i')?.classList.replace('fa-pause', 'fa-play');
+  }
 };
 
 const stopPlayback = () => {
