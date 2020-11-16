@@ -24,11 +24,15 @@ const stopPlayback = () => {
   document.querySelector('i')?.classList.replace('fa-pause', 'fa-play');
 };
 
-const moveSlider = () => {
+const changeCurrentTime = () => {
   console.log('hi');
+};
+
+const progressVideo = () => {
+  //
 };
 
 // Event listeners
 elements.playBtns.forEach(btn => btn.addEventListener('click', togglePlayback));
 elements.stopVideo.addEventListener('click', stopPlayback);
-elements.progress.addEventListener('input', moveSlider);
+elements.progress.addEventListener('input', changeCurrentTime);
