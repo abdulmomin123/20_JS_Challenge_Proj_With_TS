@@ -1,6 +1,8 @@
 "use strict";
-const video = document.getElementById('video');
-const playVideo = document.getElementById('play');
-const stopVideo = document.getElementById('stop');
-const progress = document.getElementById('progress');
-const timestamp = document.getElementById('timestamp');
+const elements = {
+    video: document.getElementById('video'),
+    playVideo: document.getElementById('play'),
+    stopVideo: document.getElementById('stop'),
+    progress: document.getElementById('progress'),
+    timestamp: document.getElementById('timestamp'),
+};
