@@ -20,8 +20,9 @@ const togglePlayback = () => {
 };
 const stopPlayback = () => {
     var _a;
-    (_a = document.querySelector('i')) === null || _a === void 0 ? void 0 : _a.classList.replace('fa-pause', 'fa-play');
+    elements.video.currentTime = 0;
     elements.video.pause();
+    (_a = document.querySelector('i')) === null || _a === void 0 ? void 0 : _a.classList.replace('fa-pause', 'fa-play');
 };
 const progressVideo = () => {
 };

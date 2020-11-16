@@ -21,8 +21,9 @@ const togglePlayback = () => {
 };
 
 const stopPlayback = () => {
-  document.querySelector('i')?.classList.replace('fa-pause', 'fa-play');
+  elements.video.currentTime = 0;
   elements.video.pause();
+  document.querySelector('i')?.classList.replace('fa-pause', 'fa-play');
 };
 
 const progressVideo = () => {
