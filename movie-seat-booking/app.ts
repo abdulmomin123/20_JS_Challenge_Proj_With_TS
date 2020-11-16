@@ -6,6 +6,13 @@ const elements = {
   movieSelect: document.getElementById('movie') as HTMLSelectElement,
 };
 
+let pricePerTicket: number;
+let seatsBooked: number = 0;
+
 // functions
+const bookMovie = () => {
+  pricePerTicket = +elements.movieSelect.value;
+};
 
 // evnent listeners
+elements.movieSelect.addEventListener('change', bookMovie);
