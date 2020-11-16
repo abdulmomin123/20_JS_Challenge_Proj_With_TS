@@ -11,11 +11,18 @@ var seatsBooked = 0;
 var calculatePrice = function () {
     return pricePerTicket * seatsBooked;
 };
-var bookMovie = function (e) {
+var toggleSeat = function (e) {
     var target = e.target;
     if (!target.classList.contains('seat'))
         return;
-    console.log(e);
+    target.classList.toggle('selected');
+    if (target.classList.contains('selected'))
+        seatsBooked++;
+    else
+        seatsBooked--;
 };
-elements.movieSelect.addEventListener('change', function () { return (pricePerTicket = +elements.movieSelect.value); });
-elements.container.addEventListener('click', bookMovie);
+var updateTicketPrice = function () {
+    pricePerTicket = +elements.movieSelect.value;
+};
+elements.movieSelect.addEventListener('change', updateTicketPrice);
+elements.container.addEventListener('click', toggleSeat);

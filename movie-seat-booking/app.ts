@@ -14,18 +14,22 @@ const calculatePrice = () => {
   return pricePerTicket * seatsBooked;
 };
 
-const bookMovie = (e: Event) => {
+const toggleSeat = (e: Event) => {
   const target = e.target as HTMLElement;
 
   if (!target.classList.contains('seat')) return;
 
-  console.log(e);
+  target.classList.toggle('selected');
+
+  if (target.classList.contains('selected')) seatsBooked++;
+  else seatsBooked--;
+};
+
+const updateTicketPrice = () => {
+  pricePerTicket = +elements.movieSelect.value;
 };
 
 // evnent listeners
-elements.movieSelect.addEventListener(
-  'change',
-  () => (pricePerTicket = +elements.movieSelect.value)
-);
+elements.movieSelect.addEventListener('change', updateTicketPrice);
 
-elements.container.addEventListener('click', bookMovie);
+elements.container.addEventListener('click', toggleSeat);
