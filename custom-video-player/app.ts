@@ -1,13 +1,13 @@
 // dom elements
 const elements = {
   video: document.getElementById('video') as HTMLVideoElement,
-  playVideo: document.getElementById('play') as HTMLButtonElement,
+  playBtns: document.querySelectorAll('#video, #play'),
   stopVideo: document.getElementById('stop') as HTMLButtonElement,
   progress: document.getElementById('progress') as HTMLInputElement,
   timestamp: document.getElementById('timestamp') as HTMLSpanElement,
 };
 
-console.dir(elements.video);
+let isMouseDown: boolean = false;
 
 // Functions
 const togglePlayback = () => {
@@ -26,12 +26,12 @@ const stopPlayback = () => {
   document.querySelector('i')?.classList.replace('fa-pause', 'fa-play');
 };
 
-const progressVideo = () => {
+const moveSlider = () => {
   //
 };
 
 // Event listeners
-elements.video.addEventListener('click', togglePlayback);
-elements.playVideo.addEventListener('click', togglePlayback);
+elements.playBtns.forEach(btn => btn.addEventListener('click', togglePlayback));
 elements.stopVideo.addEventListener('click', stopPlayback);
-elements.progress.addEventListener('click', progressVideo);
+elements.progress.addEventListener('click', moveSlider);
+elements.progress.addEventListener('mousemove', moveSlider);

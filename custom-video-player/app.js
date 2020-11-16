@@ -1,12 +1,12 @@
 "use strict";
 const elements = {
     video: document.getElementById('video'),
-    playVideo: document.getElementById('play'),
+    playBtns: document.querySelectorAll('#video, #play'),
     stopVideo: document.getElementById('stop'),
     progress: document.getElementById('progress'),
     timestamp: document.getElementById('timestamp'),
 };
-console.dir(elements.video);
+let isMouseDown = false;
 const togglePlayback = () => {
     var _a, _b;
     if (elements.video.paused) {
@@ -24,9 +24,9 @@ const stopPlayback = () => {
     elements.video.pause();
     (_a = document.querySelector('i')) === null || _a === void 0 ? void 0 : _a.classList.replace('fa-pause', 'fa-play');
 };
-const progressVideo = () => {
+const moveSlider = () => {
 };
-elements.video.addEventListener('click', togglePlayback);
-elements.playVideo.addEventListener('click', togglePlayback);
+elements.playBtns.forEach(btn => btn.addEventListener('click', togglePlayback));
 elements.stopVideo.addEventListener('click', stopPlayback);
-elements.progress.addEventListener('click', progressVideo);
+elements.progress.addEventListener('click', moveSlider);
+elements.progress.addEventListener('mousemove', moveSlider);
