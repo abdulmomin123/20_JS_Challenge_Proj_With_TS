@@ -14,18 +14,10 @@ const elements = {
 let selectedCurrency: string = 'USD';
 
 // functions
-const getRates = async () => {
-  updateCurrency();
-
-  const response = await (
-    await fetch(
-      `https://v6.exchangerate-api.com/v6/b3e9568b251b29fd43e5e545/latest/${selectedCurrency}`
-    )
-  ).json();
-
-  if (!response.conversion_rates) return;
-
-  console.log(response);
+const updateCurrency = () => {
+  selectedCurrency = (elements.currencyOne.children[
+    elements.currencyOne.selectedIndex
+  ] as HTMLOptionElement).value;
 };
 
 const swapCurrencies = () => {
@@ -34,24 +26,41 @@ const swapCurrencies = () => {
   elements.currencyOne.selectedIndex = selectedCurrencyTwo;
   elements.currencyTwo.selectedIndex = selectedCurrencyOne;
 
-  getRates();
+  calculateRate();
 };
 
-const updateCurrency = () => {
-  selectedCurrency = (elements.currencyOne.children[
-    elements.currencyOne.selectedIndex
-  ] as HTMLOptionElement).value;
+const getRates = async () => {
+  const response = await (
+    await fetch(
+      `https://v6.exchangerate-api.com/v6/b3e9568b251b29fd43e5e545/latest/${selectedCurrency}`
+    )
+  ).json();
 
-  console.log(selectedCurrency);
+  if (!response.conversion_rates) return;
+
+  return response.conversion_rates;
+};
+
+const calculateRate = async () => {
+  updateCurrency();
+
+  const exchangeRates = await getRates();
+
+  updateUI();
+
+  console.log(exchangeRates);
 };
 
 const updateUI = () => {
   //
 };
 
+// initial state of the app
+calculateRate();
+
 // event listeners
 // selecting currencies
-elements.currencyOne.addEventListener('input', getRates);
+elements.currencyOne.addEventListener('input', calculateRate);
 elements.currencyTwo.addEventListener('input', updateUI);
 
 // swapping currencies

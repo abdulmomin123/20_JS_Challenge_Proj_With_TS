@@ -17,27 +17,32 @@ const elements = {
     rate: document.getElementById('rate'),
 };
 let selectedCurrency = 'USD';
-const getRates = () => __awaiter(void 0, void 0, void 0, function* () {
-    updateCurrency();
-    const response = yield (yield fetch(`https://v6.exchangerate-api.com/v6/b3e9568b251b29fd43e5e545/latest/${selectedCurrency}`)).json();
-    if (!response.conversion_rates)
-        return;
-    console.log(response);
-});
+const updateCurrency = () => {
+    selectedCurrency = elements.currencyOne.children[elements.currencyOne.selectedIndex].value;
+};
 const swapCurrencies = () => {
     const selectedCurrencyOne = elements.currencyOne.selectedIndex;
     const selectedCurrencyTwo = elements.currencyTwo.selectedIndex;
     elements.currencyOne.selectedIndex = selectedCurrencyTwo;
     elements.currencyTwo.selectedIndex = selectedCurrencyOne;
-    getRates();
+    calculateRate();
 };
-const updateCurrency = () => {
-    selectedCurrency = elements.currencyOne.children[elements.currencyOne.selectedIndex].value;
-    console.log(selectedCurrency);
-};
+const getRates = () => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield (yield fetch(`https://v6.exchangerate-api.com/v6/b3e9568b251b29fd43e5e545/latest/${selectedCurrency}`)).json();
+    if (!response.conversion_rates)
+        return;
+    return response.conversion_rates;
+});
+const calculateRate = () => __awaiter(void 0, void 0, void 0, function* () {
+    updateCurrency();
+    const exchangeRates = yield getRates();
+    updateUI();
+    console.log(exchangeRates);
+});
 const updateUI = () => {
 };
-elements.currencyOne.addEventListener('input', getRates);
+calculateRate();
+elements.currencyOne.addEventListener('input', calculateRate);
 elements.currencyTwo.addEventListener('input', updateUI);
 elements.swap.addEventListener('click', swapCurrencies);
 elements.amountOne.addEventListener('input', updateUI);
