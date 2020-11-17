@@ -28,20 +28,24 @@ const changeCurrentTime = () => {
   elements.video.currentTime = +elements.progress.value;
 };
 
-const progressVideo = () => {
-  let timeId: number;
+const debounce = (fn: () => any, delay: number = 1000) => {
+  let timeoutId: number;
 
   return () => {
-    if (timeId) clearInterval(timeId);
+    if (timeoutId) clearTimeout(timeoutId);
 
-    timeId = setTimeout(() => {
-      console.log('hi');
-    }, 1000);
+    timeoutId = setTimeout(() => {
+      fn();
+    }, delay);
   };
+};
+
+const progressVideo = () => {
+  console.log('hi');
 };
 
 // Event listeners
 elements.playBtns.forEach(btn => btn.addEventListener('click', togglePlayback));
 elements.stopVideo.addEventListener('click', stopPlayback);
 elements.progress.addEventListener('input', changeCurrentTime);
-elements.video.addEventListener('timeupdate', progressVideo());
+elements.video.addEventListener('timeupdate', debounce(progressVideo));
