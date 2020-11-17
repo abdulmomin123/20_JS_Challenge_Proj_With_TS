@@ -20,7 +20,21 @@ const getRates = () => {
 };
 
 const swapCurrencies = () => {
-  //
+  const currencyOne = elements.currencies[0] as HTMLSelectElement;
+  const currencyTwo = elements.currencies[1] as HTMLSelectElement;
+  let selectedCurrencyOne = currencyOne.selectedIndex;
+  let selectedCurrencyTwo = currencyTwo.selectedIndex;
+
+  console.log(selectedCurrencyOne, selectedCurrencyTwo);
+
+  // selectedCurrencyOne.removeAttribute('selected');
+  // selectedCurrencyTwo.removeAttribute('selected');
+
+  // console.log(
+  //   [...currencyOne.children].findIndex(
+  //     el => (el as HTMLOptionElement).selected
+  //   )
+  // );
 };
 
 const updateUI = () => {
