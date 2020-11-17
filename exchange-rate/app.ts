@@ -1,3 +1,5 @@
+// b3e9568b251b29fd43e5e545
+
 // dom elements
 const elements = {
   // currencyOne: document.getElementById('currency-one'),
@@ -12,13 +14,7 @@ const elements = {
   rate: document.getElementById('rate') as HTMLDivElement,
 };
 
-// b3e9568b251b29fd43e5e545
-
 // functions
-const test = () => {
-  console.log('hi');
-};
-
 const getRates = () => {
   //
 };

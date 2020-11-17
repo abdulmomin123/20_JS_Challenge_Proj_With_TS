@@ -6,9 +6,6 @@ const elements = {
     swap: document.getElementById('swap'),
     rate: document.getElementById('rate'),
 };
-const test = () => {
-    console.log('hi');
-};
 const getRates = () => {
 };
 const swapCurrencies = () => {
