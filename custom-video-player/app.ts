@@ -32,10 +32,10 @@ const changeCurrentTime = () => {
     (+elements.progress.value * elements.video.duration) / 100;
 };
 
-const updateTime = () => {
+const updateTime = (time: number) => {
   if (elements.video.currentTime < passedSeconds) return;
 
-  passedSeconds++;
+  passedSeconds = time || passedSeconds + 1;
   timestamp.setSeconds(passedSeconds);
 
   elements.timestamp.textContent = timestamp.toISOString().substr(11, 8);
@@ -46,12 +46,15 @@ const progressVideo = () => {
     (elements.video.currentTime / elements.video.duration) * 100
   }`;
 
-  updateTime();
+  updateTime(0);
 };
 
 // Event listeners
+// play pause & stop
 elements.playBtns.forEach(btn => btn.addEventListener('click', togglePlayback));
 elements.stopVideo.addEventListener('click', stopPlayback);
+elements.video.addEventListener('ended', stopPlayback);
+
+// slider and time
 elements.progress.addEventListener('input', changeCurrentTime);
 elements.video.addEventListener('timeupdate', progressVideo);
-elements.video.addEventListener('ended', stopPlayback);

@@ -29,19 +29,19 @@ const changeCurrentTime = () => {
     elements.video.currentTime =
         (+elements.progress.value * elements.video.duration) / 100;
 };
-const updateTime = () => {
+const updateTime = (time) => {
     if (elements.video.currentTime < passedSeconds)
         return;
-    passedSeconds++;
+    passedSeconds = time || passedSeconds + 1;
     timestamp.setSeconds(passedSeconds);
     elements.timestamp.textContent = timestamp.toISOString().substr(11, 8);
 };
 const progressVideo = () => {
     elements.progress.value = `${(elements.video.currentTime / elements.video.duration) * 100}`;
-    updateTime();
+    updateTime(0);
 };
 elements.playBtns.forEach(btn => btn.addEventListener('click', togglePlayback));
 elements.stopVideo.addEventListener('click', stopPlayback);
+elements.video.addEventListener('ended', stopPlayback);
 elements.progress.addEventListener('input', changeCurrentTime);
 elements.video.addEventListener('timeupdate', progressVideo);
-elements.video.addEventListener('ended', stopPlayback);
