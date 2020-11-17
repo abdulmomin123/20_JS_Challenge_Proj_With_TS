@@ -16,21 +16,22 @@ const elements = {
 
 // functions
 const getRates = () => {
-  //
+  console.log('hji');
 };
 
 const swapCurrencies = () => {
-  const currencyOne = elements.currencies[0] as HTMLSelectElement;
-  const currencyTwo = elements.currencies[1] as HTMLSelectElement;
-  const selectedCurrencyOne: number = currencyOne.selectedIndex;
-  const selectedCurrencyTwo: number = currencyTwo.selectedIndex;
-
-  currencyOne.selectedIndex = selectedCurrencyTwo;
-  currencyTwo.selectedIndex = selectedCurrencyOne;
+  const selectedCurrencyOne: number = (elements
+    .currencies[0] as HTMLSelectElement).selectedIndex;
+  const selectedCurrencyTwo: number = (elements
+    .currencies[1] as HTMLSelectElement).selectedIndex;
+  (elements
+    .currencies[0] as HTMLSelectElement).selectedIndex = selectedCurrencyTwo;
+  (elements
+    .currencies[1] as HTMLSelectElement).selectedIndex = selectedCurrencyOne;
 };
 
 const updateUI = () => {
-  //
+  console.log('hji');
 };
 
 // event listeners

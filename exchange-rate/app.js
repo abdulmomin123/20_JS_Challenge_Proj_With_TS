@@ -7,16 +7,20 @@ const elements = {
     rate: document.getElementById('rate'),
 };
 const getRates = () => {
+    console.log('hji');
 };
 const swapCurrencies = () => {
-    const currencyOne = elements.currencies[0];
-    const currencyTwo = elements.currencies[1];
-    const selectedCurrencyOne = currencyOne.selectedIndex;
-    const selectedCurrencyTwo = currencyTwo.selectedIndex;
-    currencyOne.selectedIndex = selectedCurrencyTwo;
-    currencyTwo.selectedIndex = selectedCurrencyOne;
+    const selectedCurrencyOne = elements
+        .currencies[0].selectedIndex;
+    const selectedCurrencyTwo = elements
+        .currencies[1].selectedIndex;
+    elements
+        .currencies[0].selectedIndex = selectedCurrencyTwo;
+    elements
+        .currencies[1].selectedIndex = selectedCurrencyOne;
 };
 const updateUI = () => {
+    console.log('hji');
 };
 elements.currencies.forEach(currency => currency.addEventListener('input', getRates));
 elements.swap.addEventListener('click', swapCurrencies);
