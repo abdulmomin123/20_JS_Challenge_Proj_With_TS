@@ -41,11 +41,14 @@ const debounce = (fn: () => any, delay: number = 1000) => {
 };
 
 const progressVideo = () => {
-  console.log('hi');
+  elements.progress.value = `${
+    (elements.video.currentTime / elements.video.duration) * 100
+  }`;
 };
 
 // Event listeners
 elements.playBtns.forEach(btn => btn.addEventListener('click', togglePlayback));
 elements.stopVideo.addEventListener('click', stopPlayback);
 elements.progress.addEventListener('input', changeCurrentTime);
-elements.video.addEventListener('timeupdate', debounce(progressVideo));
+elements.video.addEventListener('timeupdate', progressVideo);
+elements.video.addEventListener('ended', stopPlayback);
