@@ -11,33 +11,47 @@ let passedSeconds: number = 0;
 let timestamp: Date = new Date(0);
 
 // Functions
+const playVideo = () => {
+  elements.video.play();
+  document.querySelector('i')?.classList.replace('fa-play', 'fa-pause');
+};
+
+const pauseVideo = () => {
+  elements.video.pause();
+  document.querySelector('i')?.classList.replace('fa-pause', 'fa-play');
+};
+
 const togglePlayback = () => {
-  if (elements.video.paused) {
-    elements.video.play();
-    document.querySelector('i')?.classList.replace('fa-play', 'fa-pause');
-  } else {
-    elements.video.pause();
-    document.querySelector('i')?.classList.replace('fa-pause', 'fa-play');
-  }
+  if (elements.video.paused) playVideo();
+  else pauseVideo();
 };
 
 const stopPlayback = () => {
+  passedSeconds = 0;
+  timestamp = new Date(0);
   elements.video.currentTime = 0;
-  elements.video.pause();
-  document.querySelector('i')?.classList.replace('fa-pause', 'fa-play');
+
+  pauseVideo();
 };
 
 const changeCurrentTime = () => {
   elements.video.currentTime =
     (+elements.progress.value * elements.video.duration) / 100;
-};
 
-const updateTime = (time: number) => {
-  if (elements.video.currentTime < passedSeconds) return;
-
-  passedSeconds = time || passedSeconds + 1;
+  passedSeconds = (+elements.progress.value * elements.video.duration) / 100;
   timestamp.setSeconds(passedSeconds);
 
+  displayTime();
+};
+
+const advanceTime = () => {
+  if (elements.video.currentTime <= passedSeconds) return;
+
+  passedSeconds++;
+  timestamp.setSeconds(passedSeconds);
+};
+
+const displayTime = () => {
   elements.timestamp.textContent = timestamp.toISOString().substr(11, 8);
 };
 
@@ -46,7 +60,9 @@ const progressVideo = () => {
     (elements.video.currentTime / elements.video.duration) * 100
   }`;
 
-  updateTime(0);
+  advanceTime();
+
+  displayTime();
 };
 
 // Event listeners
