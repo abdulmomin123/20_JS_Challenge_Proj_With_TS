@@ -11,9 +11,10 @@ const getRates = () => {
 const swapCurrencies = () => {
     const currencyOne = elements.currencies[0];
     const currencyTwo = elements.currencies[1];
-    let selectedCurrencyOne = currencyOne.selectedIndex;
-    let selectedCurrencyTwo = currencyTwo.selectedIndex;
-    console.log(selectedCurrencyOne, selectedCurrencyTwo);
+    const selectedCurrencyOne = currencyOne.selectedIndex;
+    const selectedCurrencyTwo = currencyTwo.selectedIndex;
+    currencyOne.selectedIndex = selectedCurrencyTwo;
+    currencyTwo.selectedIndex = selectedCurrencyOne;
 };
 const updateUI = () => {
 };

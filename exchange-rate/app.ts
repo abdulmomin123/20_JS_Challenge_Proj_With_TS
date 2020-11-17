@@ -22,19 +22,11 @@ const getRates = () => {
 const swapCurrencies = () => {
   const currencyOne = elements.currencies[0] as HTMLSelectElement;
   const currencyTwo = elements.currencies[1] as HTMLSelectElement;
-  let selectedCurrencyOne = currencyOne.selectedIndex;
-  let selectedCurrencyTwo = currencyTwo.selectedIndex;
+  const selectedCurrencyOne: number = currencyOne.selectedIndex;
+  const selectedCurrencyTwo: number = currencyTwo.selectedIndex;
 
-  console.log(selectedCurrencyOne, selectedCurrencyTwo);
-
-  // selectedCurrencyOne.removeAttribute('selected');
-  // selectedCurrencyTwo.removeAttribute('selected');
-
-  // console.log(
-  //   [...currencyOne.children].findIndex(
-  //     el => (el as HTMLOptionElement).selected
-  //   )
-  // );
+  currencyOne.selectedIndex = selectedCurrencyTwo;
+  currencyTwo.selectedIndex = selectedCurrencyOne;
 };
 
 const updateUI = () => {
