@@ -1,7 +1,9 @@
 "use strict";
-const currencyEl_one = document.getElementById('currency-one');
-const amountEl_one = document.getElementById('amount-one');
-const currencyEl_two = document.getElementById('currency-two');
-const amountEl_two = document.getElementById('amount-two');
-const rateEl = document.getElementById('rate');
-const swap = document.getElementById('swap');
+const elements = {
+    currencyEl_one: document.getElementById('currency-one'),
+    amountEl_one: document.getElementById('amount-one'),
+    currencyEl_two: document.getElementById('currency-two'),
+    amountEl_two: document.getElementById('amount-two'),
+    rateEl: document.getElementById('rate'),
+    swap: document.getElementById('swap'),
+};
