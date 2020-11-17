@@ -7,6 +7,9 @@ const elements = {
   timestamp: document.getElementById('timestamp') as HTMLSpanElement,
 };
 
+let passedSeconds: number = 0;
+let timestamp: Date = new Date(0);
+
 // Functions
 const togglePlayback = () => {
   if (elements.video.paused) {
@@ -30,7 +33,12 @@ const changeCurrentTime = () => {
 };
 
 const updateTime = () => {
-  console.log('hji');
+  if (elements.video.currentTime < passedSeconds) return;
+
+  passedSeconds++;
+  timestamp.setSeconds(passedSeconds);
+
+  elements.timestamp.textContent = timestamp.toISOString().substr(11, 8);
 };
 
 const progressVideo = () => {

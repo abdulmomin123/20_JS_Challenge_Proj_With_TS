@@ -6,6 +6,8 @@ const elements = {
     progress: document.getElementById('progress'),
     timestamp: document.getElementById('timestamp'),
 };
+let passedSeconds = 0;
+let timestamp = new Date(0);
 const togglePlayback = () => {
     var _a, _b;
     if (elements.video.paused) {
@@ -28,7 +30,11 @@ const changeCurrentTime = () => {
         (+elements.progress.value * elements.video.duration) / 100;
 };
 const updateTime = () => {
-    console.log('hji');
+    if (elements.video.currentTime < passedSeconds)
+        return;
+    passedSeconds++;
+    timestamp.setSeconds(passedSeconds);
+    elements.timestamp.textContent = timestamp.toISOString().substr(11, 8);
 };
 const progressVideo = () => {
     elements.progress.value = `${(elements.video.currentTime / elements.video.duration) * 100}`;
