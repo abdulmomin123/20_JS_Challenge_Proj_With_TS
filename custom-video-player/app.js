@@ -27,7 +27,16 @@ const changeCurrentTime = () => {
     elements.video.currentTime = +elements.progress.value;
 };
 const progressVideo = () => {
+    let timeId;
+    return () => {
+        if (timeId)
+            clearInterval(timeId);
+        timeId = setTimeout(() => {
+            console.log('hi');
+        }, 1000);
+    };
 };
 elements.playBtns.forEach(btn => btn.addEventListener('click', togglePlayback));
 elements.stopVideo.addEventListener('click', stopPlayback);
 elements.progress.addEventListener('input', changeCurrentTime);
+elements.video.addEventListener('timeupdate', progressVideo());
