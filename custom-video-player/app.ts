@@ -25,25 +25,20 @@ const stopPlayback = () => {
 };
 
 const changeCurrentTime = () => {
-  elements.video.currentTime = +elements.progress.value;
+  elements.video.currentTime =
+    (+elements.progress.value * elements.video.duration) / 100;
 };
 
-const debounce = (fn: () => any, delay: number = 1000) => {
-  let timeoutId: number;
-
-  return () => {
-    if (timeoutId) clearTimeout(timeoutId);
-
-    timeoutId = setTimeout(() => {
-      fn();
-    }, delay);
-  };
+const updateTime = () => {
+  console.log('hji');
 };
 
 const progressVideo = () => {
   elements.progress.value = `${
     (elements.video.currentTime / elements.video.duration) * 100
   }`;
+
+  updateTime();
 };
 
 // Event listeners

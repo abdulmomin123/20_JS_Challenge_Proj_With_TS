@@ -24,20 +24,15 @@ const stopPlayback = () => {
     (_a = document.querySelector('i')) === null || _a === void 0 ? void 0 : _a.classList.replace('fa-pause', 'fa-play');
 };
 const changeCurrentTime = () => {
-    elements.video.currentTime = +elements.progress.value;
+    elements.video.currentTime =
+        (+elements.progress.value * elements.video.duration) / 100;
 };
-const debounce = (fn, delay = 1000) => {
-    let timeoutId;
-    return () => {
-        if (timeoutId)
-            clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-            fn();
-        }, delay);
-    };
+const updateTime = () => {
+    console.log('hji');
 };
 const progressVideo = () => {
     elements.progress.value = `${(elements.video.currentTime / elements.video.duration) * 100}`;
+    updateTime();
 };
 elements.playBtns.forEach(btn => btn.addEventListener('click', togglePlayback));
 elements.stopVideo.addEventListener('click', stopPlayback);
