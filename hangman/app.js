@@ -25,6 +25,7 @@ const alreadyPressed = () => {
 };
 const correctWord = () => {
     console.log('the word is ...');
+    hasWin();
 };
 const wrongWord = (word) => {
     const el = document.createElement('span');
@@ -32,7 +33,12 @@ const wrongWord = (word) => {
     elements.wrongLettersEl.append(el);
     elements.figureParts[elements.figureParts.length - livesLeft].classList.add('hang');
     livesLeft--;
+    hasLost();
     console.log(`${livesLeft} lives left`);
+};
+const hasWin = () => {
+};
+const hasLost = () => {
 };
 selectRandomWord();
 document.addEventListener('keypress', e => {

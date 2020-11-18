@@ -33,6 +33,8 @@ const alreadyPressed = () => {
 
 const correctWord = () => {
   console.log('the word is ...');
+
+  hasWin();
 };
 
 const wrongWord = (word: string) => {
@@ -49,7 +51,16 @@ const wrongWord = (word: string) => {
   // decrease one life
   livesLeft--;
 
+  hasLost();
   console.log(`${livesLeft} lives left`);
+};
+
+const hasWin = () => {
+  //
+};
+
+const hasLost = () => {
+  //
 };
 
 selectRandomWord();
