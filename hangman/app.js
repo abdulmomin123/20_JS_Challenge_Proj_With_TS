@@ -10,17 +10,34 @@ const elements = {
     figureParts: document.querySelectorAll('.figure-part'),
 };
 const words = ['application', 'programming', 'interface', 'wizard'];
+let randomWord;
 const pressedKeys = [];
+let livesLeft = 6;
+const selectRandomWord = () => {
+    randomWord = words[Math.floor(Math.random() * words.length)];
+    console.log(randomWord);
+};
 const alreadyPressed = () => {
     elements.notification.classList.add('show');
     setTimeout(() => {
         elements.notification.classList.remove('show');
     }, 1500);
 };
+const correctWord = () => {
+    console.log('the word is ...');
+};
+const wrongWord = () => {
+    console.log('you r going down boi!');
+};
+selectRandomWord();
 document.addEventListener('keypress', e => {
     const pressedKey = e.key;
     if (pressedKeys.indexOf(pressedKey) !== -1)
         return alreadyPressed();
     pressedKeys.push(e.key.toLowerCase());
+    if (randomWord.includes(pressedKey))
+        correctWord();
+    else
+        wrongWord();
     console.log(pressedKeys, pressedKey);
 });

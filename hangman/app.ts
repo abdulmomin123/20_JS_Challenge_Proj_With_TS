@@ -12,9 +12,17 @@ const elements = {
 };
 
 const words = ['application', 'programming', 'interface', 'wizard'];
+let randomWord: string;
 const pressedKeys: string[] = [];
+let livesLeft: number = 6;
 
 // functions
+const selectRandomWord = () => {
+  randomWord = words[Math.floor(Math.random() * words.length)];
+
+  console.log(randomWord);
+};
+
 const alreadyPressed = () => {
   elements.notification.classList.add('show');
 
@@ -23,13 +31,31 @@ const alreadyPressed = () => {
   }, 1500);
 };
 
+const correctWord = () => {
+  console.log('the word is ...');
+};
+
+const wrongWord = () => {
+  console.log('you r going down boi!');
+};
+
+selectRandomWord();
+
 // event listeners
 document.addEventListener('keypress', e => {
+  // check if the user has already pressed the key
   const pressedKey = e.key;
 
   if (pressedKeys.indexOf(pressedKey) !== -1) return alreadyPressed();
 
+  // if not then add the key to presskeys
   pressedKeys.push(e.key.toLowerCase());
+
+  // check if the pressed key is in the word
+  // if yes reveal the word in the dom
+  if (randomWord.includes(pressedKey)) correctWord();
+  // if no then start hanging the man
+  else wrongWord();
 
   console.log(pressedKeys, pressedKey);
 });
