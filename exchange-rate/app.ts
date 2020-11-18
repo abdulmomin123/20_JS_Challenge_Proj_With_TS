@@ -11,13 +11,20 @@ const elements = {
   rate: document.getElementById('rate') as HTMLDivElement,
 };
 
-let selectedCurrency: string = 'USD';
-let exchangeRates: {};
+let primaryCurrency: string = 'USD';
+let secondaryCurrency: string = 'EUR';
+let exchangeRates: {
+  [prop: string]: string;
+};
 
 // functions
 const updateCurrency = () => {
-  selectedCurrency = (elements.currencyOne.children[
+  primaryCurrency = (elements.currencyOne.children[
     elements.currencyOne.selectedIndex
+  ] as HTMLOptionElement).value;
+
+  secondaryCurrency = (elements.currencyTwo.children[
+    elements.currencyTwo.selectedIndex
   ] as HTMLOptionElement).value;
 };
 
@@ -33,7 +40,7 @@ const swapCurrencies = () => {
 const getRates = async () => {
   const response = await (
     await fetch(
-      `https://v6.exchangerate-api.com/v6/b3e9568b251b29fd43e5e545/latest/${selectedCurrency}`
+      `https://v6.exchangerate-api.com/v6/b3e9568b251b29fd43e5e545/latest/${primaryCurrency}`
     )
   ).json();
 
@@ -51,7 +58,9 @@ const calculateRate = async () => {
 };
 
 const updateUI = () => {
-  console.log(exchangeRates);
+  updateCurrency();
+
+  elements.rate.textContent = `1 ${primaryCurrency} = ${exchangeRates[secondaryCurrency]} ${secondaryCurrency}`;
 };
 
 // initial state of the app
