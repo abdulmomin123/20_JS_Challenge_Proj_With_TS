@@ -12,6 +12,7 @@ const elements = {
 const words = ['application', 'programming', 'interface', 'wizard'];
 let randomWord;
 let pressedKeys = [];
+const correctWords = [];
 let livesLeft = 6;
 const selectRandomWord = () => {
     randomWord = words[Math.floor(Math.random() * words.length)];
@@ -25,6 +26,7 @@ const alreadyPressed = () => {
 };
 const correctWord = (word) => {
     [...randomWord].forEach((randWord, i) => randWord === word ? (elements.wordEl.children[i].textContent = word) : null);
+    correctWords.push(word);
     hasWin();
     console.log('correct');
 };
@@ -38,7 +40,7 @@ const wrongWord = (word) => {
     console.log(`${livesLeft} lives left`);
 };
 const hasWin = () => {
-    if (true) {
+    if (false) {
         elements.finalMessage.textContent = 'Congratulations! You won! 😃';
         document.removeEventListener('keypress', startGame);
     }
