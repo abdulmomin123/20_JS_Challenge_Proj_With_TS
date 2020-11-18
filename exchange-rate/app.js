@@ -17,6 +17,7 @@ const elements = {
     rate: document.getElementById('rate'),
 };
 let selectedCurrency = 'USD';
+let exchangeRates;
 const updateCurrency = () => {
     selectedCurrency = elements.currencyOne.children[elements.currencyOne.selectedIndex].value;
 };
@@ -31,15 +32,15 @@ const getRates = () => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield (yield fetch(`https://v6.exchangerate-api.com/v6/b3e9568b251b29fd43e5e545/latest/${selectedCurrency}`)).json();
     if (!response.conversion_rates)
         return;
-    return response.conversion_rates;
+    exchangeRates = response.conversion_rates;
 });
 const calculateRate = () => __awaiter(void 0, void 0, void 0, function* () {
     updateCurrency();
-    const exchangeRates = yield getRates();
+    yield getRates();
     updateUI();
-    console.log(exchangeRates);
 });
 const updateUI = () => {
+    console.log(exchangeRates);
 };
 calculateRate();
 elements.currencyOne.addEventListener('input', calculateRate);

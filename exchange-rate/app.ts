@@ -12,6 +12,7 @@ const elements = {
 };
 
 let selectedCurrency: string = 'USD';
+let exchangeRates: {};
 
 // functions
 const updateCurrency = () => {
@@ -38,21 +39,19 @@ const getRates = async () => {
 
   if (!response.conversion_rates) return;
 
-  return response.conversion_rates;
+  exchangeRates = response.conversion_rates;
 };
 
 const calculateRate = async () => {
   updateCurrency();
 
-  const exchangeRates = await getRates();
+  await getRates();
 
   updateUI();
-
-  console.log(exchangeRates);
 };
 
 const updateUI = () => {
-  //
+  console.log(exchangeRates);
 };
 
 // initial state of the app
