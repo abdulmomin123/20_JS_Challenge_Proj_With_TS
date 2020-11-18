@@ -11,7 +11,16 @@ const elements = {
 };
 const words = ['application', 'programming', 'interface', 'wizard'];
 const pressedKeys = [];
+const alreadyPressed = () => {
+    elements.notification.classList.add('show');
+    setTimeout(() => {
+        elements.notification.classList.remove('show');
+    }, 1500);
+};
 document.addEventListener('keypress', e => {
+    const pressedKey = e.key;
+    if (pressedKeys.indexOf(pressedKey) !== -1)
+        return alreadyPressed();
     pressedKeys.push(e.key.toLowerCase());
-    console.log(pressedKeys);
+    console.log(pressedKeys, pressedKey);
 });
