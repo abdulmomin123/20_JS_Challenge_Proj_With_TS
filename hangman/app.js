@@ -25,7 +25,7 @@ const alreadyPressed = () => {
 };
 const correctWord = () => {
     hasWin();
-    console.log('the word is ...');
+    console.log('correct');
 };
 const wrongWord = (word) => {
     const el = document.createElement('span');
@@ -37,8 +37,14 @@ const wrongWord = (word) => {
     console.log(`${livesLeft} lives left`);
 };
 const hasWin = () => {
+    resetGame();
 };
 const hasLost = () => {
+    if (!livesLeft)
+        console.log('lost the game');
+    resetGame();
+};
+const resetGame = () => {
 };
 selectRandomWord();
 document.addEventListener('keypress', e => {

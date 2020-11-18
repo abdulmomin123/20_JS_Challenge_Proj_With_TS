@@ -37,7 +37,7 @@ const correctWord = () => {
   // check if the user has won
   hasWin();
 
-  console.log('the word is ...');
+  console.log('correct');
 };
 
 const wrongWord = (word: string) => {
@@ -63,11 +63,19 @@ const wrongWord = (word: string) => {
 const hasWin = () => {
   // display win msg
   // reset the game
+  resetGame();
 };
 
 const hasLost = () => {
   // display lose msg
+  if (!livesLeft) console.log('lost the game');
+
   // reset the game
+  resetGame();
+};
+
+const resetGame = () => {
+  //
 };
 
 selectRandomWord();
