@@ -32,9 +32,12 @@ const alreadyPressed = () => {
 };
 
 const correctWord = () => {
-  console.log('the word is ...');
+  // display the word(s) in the correct place
 
+  // check if the user has won
   hasWin();
+
+  console.log('the word is ...');
 };
 
 const wrongWord = (word: string) => {
@@ -51,7 +54,9 @@ const wrongWord = (word: string) => {
   // decrease one life
   livesLeft--;
 
+  // check if the user has lost
   hasLost();
+
   console.log(`${livesLeft} lives left`);
 };
 

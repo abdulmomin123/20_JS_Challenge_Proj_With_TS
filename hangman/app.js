@@ -24,8 +24,8 @@ const alreadyPressed = () => {
     }, 1500);
 };
 const correctWord = () => {
-    console.log('the word is ...');
     hasWin();
+    console.log('the word is ...');
 };
 const wrongWord = (word) => {
     const el = document.createElement('span');
