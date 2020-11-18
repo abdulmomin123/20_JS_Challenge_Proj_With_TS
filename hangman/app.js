@@ -10,3 +10,8 @@ const elements = {
     figureParts: document.querySelectorAll('.figure-part'),
 };
 const words = ['application', 'programming', 'interface', 'wizard'];
+const pressedKeys = [];
+document.addEventListener('keypress', e => {
+    pressedKeys.push(e.key.toLowerCase());
+    console.log(pressedKeys);
+});

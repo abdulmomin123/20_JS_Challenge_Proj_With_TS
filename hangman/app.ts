@@ -12,7 +12,13 @@ const elements = {
 };
 
 const words = ['application', 'programming', 'interface', 'wizard'];
+const pressedKeys: string[] = [];
 
 // functions
 
 // event listeners
+document.addEventListener('keypress', e => {
+  pressedKeys.push(e.key.toLowerCase());
+
+  console.log(pressedKeys);
+});
