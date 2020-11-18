@@ -61,11 +61,13 @@ const wrongWord = (word: string) => {
 };
 
 const hasWin = () => {
-  //
+  // display win msg
+  // reset the game
 };
 
 const hasLost = () => {
-  //
+  // display lose msg
+  // reset the game
 };
 
 selectRandomWord();
