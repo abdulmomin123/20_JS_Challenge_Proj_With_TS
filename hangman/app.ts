@@ -36,11 +36,21 @@ const correctWord = () => {
 };
 
 const wrongWord = (word: string) => {
+  // display the wrong word
   const el = document.createElement('span');
-  el.textContent = word.toUpperCase();
-
+  el.textContent = `${word.toUpperCase()} `;
   elements.wrongLettersEl.append(el);
-  console.log('you r going down boi!');
+
+  // hang the man
+  // elements.figureParts[0].classList.add('hang');
+  elements.figureParts[elements.figureParts.length - livesLeft].classList.add(
+    'hang'
+  );
+
+  // decrease one life
+  livesLeft--;
+
+  console.log(`${livesLeft} lives left`);
 };
 
 selectRandomWord();
@@ -60,6 +70,4 @@ document.addEventListener('keypress', e => {
   if (randomWord.includes(pressedKey)) correctWord();
   // if no then start hanging the man
   else wrongWord(pressedKey);
-
-  console.log(pressedKeys, pressedKey);
 });

@@ -37,6 +37,10 @@ h1 {
   display: none;
 }
 
+.hang {
+  display: initial;
+}
+
 .wrong-letters-container {
   position: absolute;
   top: 20px;
