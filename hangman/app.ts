@@ -1,3 +1,4 @@
+// dom elements
 const elements = {
   wordEl: document.getElementById('word'),
   wrongLettersEl: document.getElementById('wrong-letters'),
@@ -11,3 +12,7 @@ const elements = {
 };
 
 const words = ['application', 'programming', 'interface', 'wizard'];
+
+// functions
+
+// event listeners
