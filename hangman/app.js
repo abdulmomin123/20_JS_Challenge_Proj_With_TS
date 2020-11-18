@@ -25,6 +25,7 @@ const alreadyPressed = () => {
 };
 const correctWord = (word) => {
     [...randomWord].forEach((randWord, i) => randWord === word ? (elements.wordEl.children[i].textContent = word) : null);
+    hasWin();
     console.log('correct');
 };
 const wrongWord = (word) => {
@@ -37,8 +38,10 @@ const wrongWord = (word) => {
     console.log(`${livesLeft} lives left`);
 };
 const hasWin = () => {
-    elements.finalMessage.textContent = 'Congratulations! You won! 😃';
-    document.removeEventListener('keypress', startGame);
+    if (true) {
+        elements.finalMessage.textContent = 'Congratulations! You won! 😃';
+        document.removeEventListener('keypress', startGame);
+    }
 };
 const hasLost = () => {
     if (!livesLeft) {

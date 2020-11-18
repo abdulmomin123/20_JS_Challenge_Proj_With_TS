@@ -38,7 +38,7 @@ const correctWord = (word: string) => {
   );
 
   // check if the user has won
-  // hasWin();
+  hasWin();
 
   console.log('correct');
 };
@@ -65,9 +65,11 @@ const wrongWord = (word: string) => {
 
 const hasWin = () => {
   // display win msg
-  elements.finalMessage.textContent = 'Congratulations! You won! 😃';
+  if (true) {
+    elements.finalMessage.textContent = 'Congratulations! You won! 😃';
 
-  document.removeEventListener('keypress', startGame);
+    document.removeEventListener('keypress', startGame);
+  }
 };
 
 const hasLost = () => {
