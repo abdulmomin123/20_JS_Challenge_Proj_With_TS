@@ -61,6 +61,10 @@ const updateUI = () => {
   updateCurrency();
 
   elements.rate.textContent = `1 ${primaryCurrency} = ${exchangeRates[secondaryCurrency]} ${secondaryCurrency}`;
+
+  elements.amountTwo.value = (
+    +elements.amountOne.value * +exchangeRates[secondaryCurrency]
+  ).toFixed(2);
 };
 
 // initial state of the app
