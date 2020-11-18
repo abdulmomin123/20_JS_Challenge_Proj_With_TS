@@ -35,7 +35,11 @@ const correctWord = () => {
   console.log('the word is ...');
 };
 
-const wrongWord = () => {
+const wrongWord = (word: string) => {
+  const el = document.createElement('span');
+  el.textContent = word.toUpperCase();
+
+  elements.wrongLettersEl.append(el);
   console.log('you r going down boi!');
 };
 
@@ -55,7 +59,7 @@ document.addEventListener('keypress', e => {
   // if yes reveal the word in the dom
   if (randomWord.includes(pressedKey)) correctWord();
   // if no then start hanging the man
-  else wrongWord();
+  else wrongWord(pressedKey);
 
   console.log(pressedKeys, pressedKey);
 });

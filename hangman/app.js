@@ -26,7 +26,10 @@ const alreadyPressed = () => {
 const correctWord = () => {
     console.log('the word is ...');
 };
-const wrongWord = () => {
+const wrongWord = (word) => {
+    const el = document.createElement('span');
+    el.textContent = word.toUpperCase();
+    elements.wrongLettersEl.append(el);
     console.log('you r going down boi!');
 };
 selectRandomWord();
@@ -38,6 +41,6 @@ document.addEventListener('keypress', e => {
     if (randomWord.includes(pressedKey))
         correctWord();
     else
-        wrongWord();
+        wrongWord(pressedKey);
     console.log(pressedKeys, pressedKey);
 });
