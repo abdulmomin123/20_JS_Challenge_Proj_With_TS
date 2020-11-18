@@ -13,7 +13,7 @@ const elements = {
 
 const words = ['application', 'programming', 'interface', 'wizard'];
 let randomWord: string;
-const pressedKeys: string[] = [];
+let pressedKeys: string[] = [];
 let livesLeft: number = 6;
 
 // functions
@@ -35,7 +35,7 @@ const correctWord = () => {
   // display the word(s) in the correct place
 
   // check if the user has won
-  hasWin();
+  // hasWin();
 
   console.log('correct');
 };
@@ -62,26 +62,38 @@ const wrongWord = (word: string) => {
 
 const hasWin = () => {
   // display win msg
-  // reset the game
-  resetGame();
+  elements.finalMessage.textContent = 'Congratulations! You won! 😃';
+
+  document.removeEventListener('keypress', startGame);
 };
 
 const hasLost = () => {
   // display lose msg
-  if (!livesLeft) console.log('lost the game');
+  if (!livesLeft) {
+    elements.popup.classList.add('popup-active');
 
-  // reset the game
-  resetGame();
+    elements.finalMessage.textContent = 'Unfortunately you lost! 😕';
+
+    document.removeEventListener('keypress', startGame);
+  }
 };
 
 const resetGame = () => {
-  //
+  pressedKeys = [];
+  livesLeft = 6;
+
+  selectRandomWord();
+
+  elements.popup.classList.remove('popup-active');
+
+  elements.wrongLettersEl.innerHTML = '<p>Wrong Letters</p>';
+
+  elements.figureParts.forEach(part => part.classList.remove('hang'));
+
+  document.addEventListener('keypress', startGame);
 };
 
-selectRandomWord();
-
-// event listeners
-document.addEventListener('keypress', e => {
+const startGame = (e: KeyboardEvent) => {
   // check if the user has already pressed the key
   const pressedKey = e.key;
 
@@ -95,4 +107,10 @@ document.addEventListener('keypress', e => {
   if (randomWord.includes(pressedKey)) correctWord();
   // if no then start hanging the man
   else wrongWord(pressedKey);
-});
+};
+
+selectRandomWord();
+
+// event listeners
+document.addEventListener('keypress', startGame);
+elements.playAgainBtn.addEventListener('click', resetGame);

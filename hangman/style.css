@@ -90,6 +90,10 @@ h1 {
   justify-content: center;
 }
 
+.popup-active {
+  display: flex !important;
+}
+
 .popup {
   background: #2980b9;
   border-radius: 5px;

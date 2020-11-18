@@ -11,7 +11,7 @@ const elements = {
 };
 const words = ['application', 'programming', 'interface', 'wizard'];
 let randomWord;
-const pressedKeys = [];
+let pressedKeys = [];
 let livesLeft = 6;
 const selectRandomWord = () => {
     randomWord = words[Math.floor(Math.random() * words.length)];
@@ -24,7 +24,6 @@ const alreadyPressed = () => {
     }, 1500);
 };
 const correctWord = () => {
-    hasWin();
     console.log('correct');
 };
 const wrongWord = (word) => {
@@ -37,17 +36,26 @@ const wrongWord = (word) => {
     console.log(`${livesLeft} lives left`);
 };
 const hasWin = () => {
-    resetGame();
+    elements.finalMessage.textContent = 'Congratulations! You won! 😃';
+    document.removeEventListener('keypress', startGame);
 };
 const hasLost = () => {
-    if (!livesLeft)
-        console.log('lost the game');
-    resetGame();
+    if (!livesLeft) {
+        elements.popup.classList.add('popup-active');
+        elements.finalMessage.textContent = 'Unfortunately you lost! 😕';
+        document.removeEventListener('keypress', startGame);
+    }
 };
 const resetGame = () => {
+    pressedKeys = [];
+    livesLeft = 6;
+    selectRandomWord();
+    elements.popup.classList.remove('popup-active');
+    elements.wrongLettersEl.innerHTML = '<p>Wrong Letters</p>';
+    elements.figureParts.forEach(part => part.classList.remove('hang'));
+    document.addEventListener('keypress', startGame);
 };
-selectRandomWord();
-document.addEventListener('keypress', e => {
+const startGame = (e) => {
     const pressedKey = e.key;
     if (pressedKeys.indexOf(pressedKey) !== -1)
         return alreadyPressed();
@@ -56,4 +64,7 @@ document.addEventListener('keypress', e => {
         correctWord();
     else
         wrongWord(pressedKey);
-});
+};
+selectRandomWord();
+document.addEventListener('keypress', startGame);
+elements.playAgainBtn.addEventListener('click', resetGame);
