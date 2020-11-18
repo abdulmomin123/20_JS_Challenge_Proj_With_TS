@@ -42,7 +42,6 @@ const wrongWord = (word: string) => {
   elements.wrongLettersEl.append(el);
 
   // hang the man
-  // elements.figureParts[0].classList.add('hang');
   elements.figureParts[elements.figureParts.length - livesLeft].classList.add(
     'hang'
   );
