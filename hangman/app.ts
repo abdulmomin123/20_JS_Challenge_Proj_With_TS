@@ -68,7 +68,7 @@ const wrongWord = (word: string) => {
 
 const hasWin = () => {
   // display win msg
-  if (randomWord.localeCompare(correctWords)) {
+  if ([...randomWord].sort((a, b) => a - b)) {
     elements.finalMessage.textContent = 'Congratulations! You won! 😃';
 
     document.removeEventListener('keypress', startGame);
