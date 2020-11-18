@@ -31,8 +31,11 @@ const alreadyPressed = () => {
   }, 1500);
 };
 
-const correctWord = () => {
+const correctWord = (word: string) => {
   // display the word(s) in the correct place
+  [...randomWord].forEach((randWord, i) =>
+    randWord === word ? (elements.wordEl.children[i].textContent = word) : null
+  );
 
   // check if the user has won
   // hasWin();
@@ -93,6 +96,14 @@ const resetGame = () => {
   document.addEventListener('keypress', startGame);
 };
 
+const createPlaceholder = () => {
+  const markup = '<span class="letter"></span>';
+
+  [...randomWord].forEach(_word =>
+    elements.wordEl.insertAdjacentHTML('beforeend', markup)
+  );
+};
+
 const startGame = (e: KeyboardEvent) => {
   // check if the user has already pressed the key
   const pressedKey = e.key;
@@ -104,12 +115,13 @@ const startGame = (e: KeyboardEvent) => {
 
   // check if the pressed key is in the word
   // if yes reveal the word in the dom
-  if (randomWord.includes(pressedKey)) correctWord();
+  if (randomWord.includes(pressedKey)) correctWord(pressedKey);
   // if no then start hanging the man
   else wrongWord(pressedKey);
 };
 
 selectRandomWord();
+createPlaceholder();
 
 // event listeners
 document.addEventListener('keypress', startGame);

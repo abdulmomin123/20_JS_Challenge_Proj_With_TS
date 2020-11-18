@@ -23,7 +23,8 @@ const alreadyPressed = () => {
         elements.notification.classList.remove('show');
     }, 1500);
 };
-const correctWord = () => {
+const correctWord = (word) => {
+    [...randomWord].forEach((randWord, i) => randWord === word ? (elements.wordEl.children[i].textContent = word) : null);
     console.log('correct');
 };
 const wrongWord = (word) => {
@@ -55,16 +56,21 @@ const resetGame = () => {
     elements.figureParts.forEach(part => part.classList.remove('hang'));
     document.addEventListener('keypress', startGame);
 };
+const createPlaceholder = () => {
+    const markup = '<span class="letter"></span>';
+    [...randomWord].forEach(_word => elements.wordEl.insertAdjacentHTML('beforeend', markup));
+};
 const startGame = (e) => {
     const pressedKey = e.key;
     if (pressedKeys.indexOf(pressedKey) !== -1)
         return alreadyPressed();
     pressedKeys.push(e.key.toLowerCase());
     if (randomWord.includes(pressedKey))
-        correctWord();
+        correctWord(pressedKey);
     else
         wrongWord(pressedKey);
 };
 selectRandomWord();
+createPlaceholder();
 document.addEventListener('keypress', startGame);
 elements.playAgainBtn.addEventListener('click', resetGame);
