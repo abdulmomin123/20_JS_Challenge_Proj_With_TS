@@ -20,8 +20,6 @@ let livesLeft: number = 6;
 // functions
 const selectRandomWord = () => {
   randomWord = words[Math.floor(Math.random() * words.length)];
-
-  console.log(randomWord);
 };
 
 const alreadyPressed = () => {
@@ -42,8 +40,6 @@ const correctWord = (word: string) => {
 
   // check if the user has won
   hasWin();
-
-  console.log('correct');
 };
 
 const wrongWord = (word: string) => {
@@ -62,8 +58,6 @@ const wrongWord = (word: string) => {
 
   // check if the user has lost
   hasLost();
-
-  console.log(`${livesLeft} lives left`);
 };
 
 const hasWin = () => {

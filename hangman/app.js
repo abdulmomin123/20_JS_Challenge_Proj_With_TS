@@ -16,7 +16,6 @@ let correctWords = [];
 let livesLeft = 6;
 const selectRandomWord = () => {
     randomWord = words[Math.floor(Math.random() * words.length)];
-    console.log(randomWord);
 };
 const alreadyPressed = () => {
     elements.notification.classList.add('show');
@@ -28,7 +27,6 @@ const correctWord = (word) => {
     [...randomWord].forEach((randWord, i) => randWord === word ? (elements.wordEl.children[i].textContent = word) : null);
     correctWords.push(word);
     hasWin();
-    console.log('correct');
 };
 const wrongWord = (word) => {
     const el = document.createElement('span');
@@ -37,7 +35,6 @@ const wrongWord = (word) => {
     elements.figureParts[elements.figureParts.length - livesLeft].classList.add('hang');
     livesLeft--;
     hasLost();
-    console.log(`${livesLeft} lives left`);
 };
 const hasWin = () => {
     if (elements.wordEl.textContent === randomWord) {
