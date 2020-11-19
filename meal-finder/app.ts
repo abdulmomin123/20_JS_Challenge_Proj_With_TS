@@ -9,13 +9,11 @@ const elements = {
 };
 
 // functions
-const getFoods = async (e: Event) => {
-  e.preventDefault();
-
+const getFoods = async (searchTerm: string) => {
   try {
     const data = await (
       await fetch(
-        `https://www.themealdb.com/api/json/v1/1/search.php?s=${elements.search.value}`
+        `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`
       )
     ).json();
 
@@ -25,10 +23,22 @@ const getFoods = async (e: Event) => {
   }
 };
 
-const getRandomFood = async (id: string) => {
+const getFood = async (id: string) => {
   try {
     const data = await (
       await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+    ).json();
+
+    return data;
+  } catch (err) {
+    alert('Something went wrong. Please try again : (');
+  }
+};
+
+const getRandomFood = async () => {
+  try {
+    const data = await (
+      await fetch('https://www.themealdb.com/api/json/v1/1/random.php')
     ).json();
 
     return data;
@@ -57,9 +67,19 @@ const displayFood = (_isRandom: boolean = false) => {
   //
 };
 
+const findMeals = (e: Event) => {
+  e.preventDefault();
+
+  getFoods(elements.search.value);
+};
+
+const findRandomMeal = () => {
+  //
+};
+
 // event listeners
 // the search handler
-elements.submit.addEventListener('submit', getFoods);
+elements.submit.addEventListener('submit', findMeals);
 
 // random meal handler
-elements.random.addEventListener('click', getFoods);
+elements.random.addEventListener('click', findRandomMeal);

@@ -16,19 +16,27 @@ const elements = {
     resultHeading: document.getElementById('result-heading'),
     single_mealEl: document.getElementById('single-meal'),
 };
-const getFoods = (e) => __awaiter(void 0, void 0, void 0, function* () {
-    e.preventDefault();
+const getFoods = (searchTerm) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const data = yield (yield fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${elements.search.value}`)).json();
+        const data = yield (yield fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`)).json();
         return data;
     }
     catch (err) {
         alert('Something went wrong. Please try again : (');
     }
 });
-const getRandomFood = (id) => __awaiter(void 0, void 0, void 0, function* () {
+const getFood = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = yield (yield fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)).json();
+        return data;
+    }
+    catch (err) {
+        alert('Something went wrong. Please try again : (');
+    }
+});
+const getRandomFood = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const data = yield (yield fetch('https://www.themealdb.com/api/json/v1/1/random.php')).json();
         return data;
     }
     catch (err) {
@@ -46,5 +54,11 @@ const displayFoods = () => {
 };
 const displayFood = (_isRandom = false) => {
 };
-elements.submit.addEventListener('submit', getFoods);
-elements.random.addEventListener('click', getFoods);
+const findMeals = (e) => {
+    e.preventDefault();
+    getFoods(elements.search.value);
+};
+const findRandomMeal = () => {
+};
+elements.submit.addEventListener('submit', findMeals);
+elements.random.addEventListener('click', findRandomMeal);
