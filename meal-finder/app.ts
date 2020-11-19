@@ -70,11 +70,11 @@ const displayFood = (isRandom: boolean = false) => {
 const findMeals = async (e: Event) => {
   e.preventDefault();
 
+  const foods = await getFoods(elements.search.value);
+
   displaySearchTerm(elements.search.value);
 
   clearInput();
-
-  const foods = await getFoods(elements.search.value);
 
   displayFoods();
 
