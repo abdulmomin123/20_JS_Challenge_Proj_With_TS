@@ -9,23 +9,57 @@ const elements = {
 };
 
 // functions
-const test = (e: Event) => {
+const getFoods = async (e: Event) => {
   e.preventDefault();
 
-  console.log('hi');
+  try {
+    const data = await (
+      await fetch(
+        `https://www.themealdb.com/api/json/v1/1/search.php?s=${elements.search.value}`
+      )
+    ).json();
+
+    return data;
+  } catch (err) {
+    alert('Something went wrong. Please try again : (');
+  }
+};
+
+const getRandomFood = async (id: string) => {
+  try {
+    const data = await (
+      await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+    ).json();
+
+    return data;
+  } catch (err) {
+    alert('Something went wrong. Please try again : (');
+  }
 };
 
 const clearInput = () => {
   elements.search.value = '';
 };
 
+const clearSearchTerm = () => {
+  //
+};
+
 const displaySearchTerm = () => {
+  //
+};
+
+const displayFoods = () => {
+  //
+};
+
+const displayFood = (_isRandom: boolean = false) => {
   //
 };
 
 // event listeners
 // the search handler
-elements.submit.addEventListener('submit', test);
+elements.submit.addEventListener('submit', getFoods);
 
 // random meal handler
-elements.random.addEventListener('click', test);
+elements.random.addEventListener('click', getFoods);
