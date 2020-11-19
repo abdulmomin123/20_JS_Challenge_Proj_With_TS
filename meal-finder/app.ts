@@ -9,6 +9,18 @@ const elements = {
 };
 
 // functions
+const clearInput = () => {
+  elements.search.value = '';
+};
+
+const displaySearchTerm = (_searchTerm: string) => {
+  //
+};
+
+const clearSearchTerm = () => {
+  //
+};
+
 const getFoods = async (searchTerm: string) => {
   try {
     const data = await (
@@ -47,39 +59,46 @@ const getRandomFood = async () => {
   }
 };
 
-const clearInput = () => {
-  elements.search.value = '';
-};
-
-const clearSearchTerm = () => {
-  //
-};
-
-const displaySearchTerm = () => {
-  //
-};
-
 const displayFoods = () => {
   //
 };
 
-const displayFood = (_isRandom: boolean = false) => {
-  //
+const displayFood = (isRandom: boolean = false) => {
+  console.log(isRandom);
 };
 
-const findMeals = (e: Event) => {
+const findMeals = async (e: Event) => {
   e.preventDefault();
 
-  getFoods(elements.search.value);
+  clearSearchTerm();
+
+  displaySearchTerm('hi');
+
+  const foods = await getFoods(elements.search.value);
+
+  displayFoods();
+
+  console.log(foods);
 };
 
-const findRandomMeal = () => {
+const findClickedMeal = () => {
   //
+};
+
+const findRandomMeal = async () => {
+  const randomFood = await getRandomFood();
+
+  displayFood(true);
+
+  console.log(randomFood);
 };
 
 // event listeners
 // the search handler
 elements.submit.addEventListener('submit', findMeals);
+
+// food click handler
+elements.mealsEl.addEventListener('click', findClickedMeal);
 
 // random meal handler
 elements.random.addEventListener('click', findRandomMeal);

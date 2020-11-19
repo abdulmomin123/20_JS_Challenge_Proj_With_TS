@@ -16,6 +16,13 @@ const elements = {
     resultHeading: document.getElementById('result-heading'),
     single_mealEl: document.getElementById('single-meal'),
 };
+const clearInput = () => {
+    elements.search.value = '';
+};
+const displaySearchTerm = (_searchTerm) => {
+};
+const clearSearchTerm = () => {
+};
 const getFoods = (searchTerm) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = yield (yield fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`)).json();
@@ -43,22 +50,26 @@ const getRandomFood = () => __awaiter(void 0, void 0, void 0, function* () {
         alert('Something went wrong. Please try again : (');
     }
 });
-const clearInput = () => {
-    elements.search.value = '';
-};
-const clearSearchTerm = () => {
-};
-const displaySearchTerm = () => {
-};
 const displayFoods = () => {
 };
-const displayFood = (_isRandom = false) => {
+const displayFood = (isRandom = false) => {
+    console.log(isRandom);
 };
-const findMeals = (e) => {
+const findMeals = (e) => __awaiter(void 0, void 0, void 0, function* () {
     e.preventDefault();
-    getFoods(elements.search.value);
+    clearSearchTerm();
+    displaySearchTerm('hi');
+    const foods = yield getFoods(elements.search.value);
+    displayFoods();
+    console.log(foods);
+});
+const findClickedMeal = () => {
 };
-const findRandomMeal = () => {
-};
+const findRandomMeal = () => __awaiter(void 0, void 0, void 0, function* () {
+    const randomFood = yield getRandomFood();
+    displayFood(true);
+    console.log(randomFood);
+});
 elements.submit.addEventListener('submit', findMeals);
+elements.mealsEl.addEventListener('click', findClickedMeal);
 elements.random.addEventListener('click', findRandomMeal);
