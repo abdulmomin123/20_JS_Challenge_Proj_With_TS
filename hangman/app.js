@@ -12,7 +12,7 @@ const elements = {
 const words = ['application', 'programming', 'interface', 'wizard'];
 let randomWord;
 let pressedKeys = [];
-const correctWords = [];
+let correctWords = [];
 let livesLeft = 6;
 const selectRandomWord = () => {
     randomWord = words[Math.floor(Math.random() * words.length)];
@@ -40,7 +40,8 @@ const wrongWord = (word) => {
     console.log(`${livesLeft} lives left`);
 };
 const hasWin = () => {
-    if (false) {
+    if (elements.wordEl.textContent === randomWord) {
+        elements.popup.classList.add('popup-active');
         elements.finalMessage.textContent = 'Congratulations! You won! 😃';
         document.removeEventListener('keypress', startGame);
     }
@@ -54,8 +55,11 @@ const hasLost = () => {
 };
 const resetGame = () => {
     pressedKeys = [];
+    correctWords = [];
     livesLeft = 6;
     selectRandomWord();
+    elements.wordEl.innerHTML = '';
+    createPlaceholder();
     elements.popup.classList.remove('popup-active');
     elements.wrongLettersEl.innerHTML = '<p>Wrong Letters</p>';
     elements.figureParts.forEach(part => part.classList.remove('hang'));

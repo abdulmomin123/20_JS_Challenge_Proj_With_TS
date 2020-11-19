@@ -14,7 +14,7 @@ const elements = {
 const words = ['application', 'programming', 'interface', 'wizard'];
 let randomWord: string;
 let pressedKeys: string[] = [];
-const correctWords: string[] = [];
+let correctWords: string[] = [];
 let livesLeft: number = 6;
 
 // functions
@@ -68,7 +68,9 @@ const wrongWord = (word: string) => {
 
 const hasWin = () => {
   // display win msg
-  if ([...randomWord].sort((a, b) => a - b)) {
+  if (elements.wordEl.textContent === randomWord) {
+    elements.popup.classList.add('popup-active');
+
     elements.finalMessage.textContent = 'Congratulations! You won! 😃';
 
     document.removeEventListener('keypress', startGame);
@@ -88,9 +90,14 @@ const hasLost = () => {
 
 const resetGame = () => {
   pressedKeys = [];
+  correctWords = [];
   livesLeft = 6;
 
   selectRandomWord();
+
+  elements.wordEl.innerHTML = '';
+
+  createPlaceholder();
 
   elements.popup.classList.remove('popup-active');
 
