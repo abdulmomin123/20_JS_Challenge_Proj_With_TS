@@ -19,9 +19,11 @@ const elements = {
 const clearInput = () => {
     elements.search.value = '';
 };
-const displaySearchTerm = (_searchTerm) => {
+const displaySearchTerm = (searchTerm) => {
+    elements.resultHeading.innerHTML = `<h2>Search results for '${searchTerm}':</h2>`;
 };
 const clearSearchTerm = () => {
+    elements.resultHeading.innerHTML = '';
 };
 const getFoods = (searchTerm) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -57,7 +59,7 @@ const displayFood = (isRandom = false) => {
 };
 const findMeals = (e) => __awaiter(void 0, void 0, void 0, function* () {
     e.preventDefault();
-    clearSearchTerm();
+    clearInput();
     displaySearchTerm('hi');
     const foods = yield getFoods(elements.search.value);
     displayFoods();
@@ -66,6 +68,7 @@ const findMeals = (e) => __awaiter(void 0, void 0, void 0, function* () {
 const findClickedMeal = () => {
 };
 const findRandomMeal = () => __awaiter(void 0, void 0, void 0, function* () {
+    clearSearchTerm();
     const randomFood = yield getRandomFood();
     displayFood(true);
     console.log(randomFood);

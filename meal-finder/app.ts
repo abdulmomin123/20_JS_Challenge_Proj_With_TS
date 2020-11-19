@@ -13,12 +13,12 @@ const clearInput = () => {
   elements.search.value = '';
 };
 
-const displaySearchTerm = (_searchTerm: string) => {
-  //
+const displaySearchTerm = (searchTerm: string) => {
+  elements.resultHeading.innerHTML = `<h2>Search results for '${searchTerm}':</h2>`;
 };
 
 const clearSearchTerm = () => {
-  //
+  elements.resultHeading.innerHTML = '';
 };
 
 const getFoods = async (searchTerm: string) => {
@@ -70,7 +70,7 @@ const displayFood = (isRandom: boolean = false) => {
 const findMeals = async (e: Event) => {
   e.preventDefault();
 
-  clearSearchTerm();
+  clearInput();
 
   displaySearchTerm('hi');
 
@@ -86,6 +86,8 @@ const findClickedMeal = () => {
 };
 
 const findRandomMeal = async () => {
+  clearSearchTerm();
+
   const randomFood = await getRandomFood();
 
   displayFood(true);
