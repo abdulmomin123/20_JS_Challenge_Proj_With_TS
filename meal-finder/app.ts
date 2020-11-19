@@ -70,9 +70,9 @@ const displayFood = (isRandom: boolean = false) => {
 const findMeals = async (e: Event) => {
   e.preventDefault();
 
-  clearInput();
+  displaySearchTerm(elements.search.value);
 
-  displaySearchTerm('hi');
+  clearInput();
 
   const foods = await getFoods(elements.search.value);
 
@@ -87,6 +87,8 @@ const findClickedMeal = () => {
 
 const findRandomMeal = async () => {
   clearSearchTerm();
+
+  clearInput();
 
   const randomFood = await getRandomFood();
 

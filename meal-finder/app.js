@@ -59,8 +59,8 @@ const displayFood = (isRandom = false) => {
 };
 const findMeals = (e) => __awaiter(void 0, void 0, void 0, function* () {
     e.preventDefault();
+    displaySearchTerm(elements.search.value);
     clearInput();
-    displaySearchTerm('hi');
     const foods = yield getFoods(elements.search.value);
     displayFoods();
     console.log(foods);
@@ -69,6 +69,7 @@ const findClickedMeal = () => {
 };
 const findRandomMeal = () => __awaiter(void 0, void 0, void 0, function* () {
     clearSearchTerm();
+    clearInput();
     const randomFood = yield getRandomFood();
     displayFood(true);
     console.log(randomFood);
