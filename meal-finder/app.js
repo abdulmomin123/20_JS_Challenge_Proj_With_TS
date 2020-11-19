@@ -7,3 +7,6 @@ const elements = {
     resultHeading: document.getElementById('result-heading'),
     single_mealEl: document.getElementById('single-meal'),
 };
+const test = () => {
+};
+elements.submit.addEventListener('submit', test);
