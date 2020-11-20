@@ -12,22 +12,30 @@ const elements = {
 };
 let nowPlaying = 'ukulele';
 const songs = ['summer', 'ukulele', 'hey'];
+const play = () => {
+    elements.audio.play();
+};
+const pause = () => {
+    elements.audio.pause();
+};
 const togglePlayback = () => {
     elements.musicContainer.classList.toggle('play');
     if (elements.audio.paused)
-        elements.audio.play();
+        play();
     else
-        elements.audio.pause();
+        pause();
 };
 const previousSong = () => {
+    pause();
     elements.audio.src = `music/${songs[songs.indexOf(nowPlaying) - 1]}.mp3`;
+    play();
 };
 const nextSong = () => {
+    pause();
     elements.audio.src = `music/${songs[songs.indexOf(nowPlaying) + 1]}.mp3`;
+    play();
 };
 const skip = () => {
-};
-const test = () => {
 };
 elements.playBtn.addEventListener('click', togglePlayback);
 elements.prevBtn.addEventListener('click', previousSong);
