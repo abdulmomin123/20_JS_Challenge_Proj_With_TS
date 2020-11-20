@@ -73,8 +73,8 @@ const nextSong = () => {
 
 const progressSong = () => {
   elements.progress.style.width = `${
-    (elements.audio.duration * elements.audio.currentTime) / 100
-  }px`;
+    (100 * elements.audio.currentTime) / elements.audio.duration
+  }%`;
 };
 
 // event handlers

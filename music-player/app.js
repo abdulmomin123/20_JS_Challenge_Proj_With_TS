@@ -58,7 +58,7 @@ const nextSong = () => {
     play();
 };
 const progressSong = () => {
-    elements.progress.style.width = `${(elements.audio.duration * elements.audio.currentTime) / 100}px`;
+    elements.progress.style.width = `${(100 * elements.audio.currentTime) / elements.audio.duration}%`;
 };
 elements.playBtn.addEventListener('click', togglePlayback);
 elements.prevBtn.addEventListener('click', previousSong);
