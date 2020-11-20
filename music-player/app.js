@@ -15,20 +15,12 @@ const songs = ['summer', 'ukulele', 'hey'];
 const play = () => {
     elements.audio.play();
     elements.musicContainer.classList.add('play');
-    if (elements.audio.paused) {
-        document
-            .querySelector('.fa-play')
-            .classList.replace('fa-play', 'fa-pause');
-    }
+    document.querySelector('.fa-play').classList.replace('fa-play', 'fa-pause');
 };
 const pause = () => {
     elements.audio.pause();
     elements.musicContainer.classList.remove('play');
-    if (!elements.audio.paused) {
-        document
-            .querySelector('.fa-pause')
-            .classList.replace('fa-pause', 'fa-play');
-    }
+    document.querySelector('.fa-pause').classList.replace('fa-pause', 'fa-play');
 };
 const displaySongInfo = () => {
     elements.cover.src = `images/${nowPlaying}.jpg`;
@@ -75,8 +67,8 @@ elements.playBtn.addEventListener('click', togglePlayback);
 elements.prevBtn.addEventListener('click', previousSong);
 elements.nextBtn.addEventListener('click', nextSong);
 elements.progressContainer.addEventListener('click', e => {
-    const time = (e.offsetX * 100) / elements.audio.duration;
-    console.log(elements.audio.duration, time);
+    const time = (e.offsetX * elements.audio.duration) /
+        elements.progressContainer.offsetWidth;
     skipTime(time);
 });
 elements.audio.addEventListener('timeupdate', progressSong);

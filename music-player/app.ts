@@ -23,11 +23,7 @@ const play = () => {
 
   elements.musicContainer.classList.add('play');
 
-  if (elements.audio.paused) {
-    document
-      .querySelector('.fa-play')!
-      .classList.replace('fa-play', 'fa-pause');
-  }
+  document.querySelector('.fa-play')!.classList.replace('fa-play', 'fa-pause');
 };
 
 const pause = () => {
@@ -35,11 +31,7 @@ const pause = () => {
 
   elements.musicContainer.classList.remove('play');
 
-  if (!elements.audio.paused) {
-    document
-      .querySelector('.fa-pause')!
-      .classList.replace('fa-pause', 'fa-play');
-  }
+  document.querySelector('.fa-pause')!.classList.replace('fa-pause', 'fa-play');
 };
 
 const displaySongInfo = () => {
@@ -103,8 +95,10 @@ elements.nextBtn.addEventListener('click', nextSong);
 
 // skip
 elements.progressContainer.addEventListener('click', e => {
-  const time = (e.offsetX * 100) / elements.audio.duration;
-  console.log(elements.audio.duration, time);
+  const time =
+    (e.offsetX * elements.audio.duration) /
+    elements.progressContainer.offsetWidth;
+
   skipTime(time);
 });
 
