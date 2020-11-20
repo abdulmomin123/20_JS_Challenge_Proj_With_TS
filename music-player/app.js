@@ -23,8 +23,11 @@ const pause = () => {
     document.querySelector('.fa-pause').classList.replace('fa-pause', 'fa-play');
 };
 const displaySongInfo = () => {
+    elements.cover.src = `images/${nowPlaying}.jpg`;
+    elements.title.textContent = `${nowPlaying.toUpperCase()}`;
 };
 const togglePlayback = () => {
+    displaySongInfo();
     if (elements.audio.paused) {
         play();
     }
@@ -40,6 +43,7 @@ const previousSong = () => {
     else
         nowPlaying = songs[songs.indexOf(nowPlaying) - 1];
     elements.audio.src = `music/${nowPlaying}.mp3`;
+    displaySongInfo();
     play();
 };
 const nextSong = () => {
@@ -50,6 +54,7 @@ const nextSong = () => {
     else
         nowPlaying = songs[songs.indexOf(nowPlaying) + 1];
     elements.audio.src = `music/${nowPlaying}.mp3`;
+    displaySongInfo();
     play();
 };
 const skip = () => {

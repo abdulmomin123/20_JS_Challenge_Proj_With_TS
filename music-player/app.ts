@@ -33,10 +33,13 @@ const pause = () => {
 };
 
 const displaySongInfo = () => {
-  //
+  elements.cover.src = `images/${nowPlaying}.jpg`;
+  elements.title.textContent = `${nowPlaying.toUpperCase()}`;
 };
 
 const togglePlayback = () => {
+  displaySongInfo();
+
   if (elements.audio.paused) {
     play();
   } else {
@@ -51,6 +54,7 @@ const previousSong = () => {
   else nowPlaying = songs[songs.indexOf(nowPlaying) - 1];
 
   elements.audio.src = `music/${nowPlaying}.mp3`;
+  displaySongInfo();
 
   play();
 };
@@ -62,6 +66,7 @@ const nextSong = () => {
   else nowPlaying = songs[songs.indexOf(nowPlaying) + 1];
 
   elements.audio.src = `music/${nowPlaying}.mp3`;
+  displaySongInfo();
 
   play();
 };
