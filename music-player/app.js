@@ -60,9 +60,17 @@ const nextSong = () => {
 const progressSong = () => {
     elements.progress.style.width = `${(100 * elements.audio.currentTime) / elements.audio.duration}%`;
 };
+const skipTime = (time) => {
+    console.log();
+    console.log(time);
+};
 elements.playBtn.addEventListener('click', togglePlayback);
 elements.prevBtn.addEventListener('click', previousSong);
 elements.nextBtn.addEventListener('click', nextSong);
-elements.progress.addEventListener('click', () => { });
+elements.progressContainer.addEventListener('click', e => {
+    const time = e.offsetX;
+    skipTime(time);
+    console.log(e.offsetX);
+});
 elements.audio.addEventListener('timeupdate', progressSong);
 elements.audio.addEventListener('ended', nextSong);

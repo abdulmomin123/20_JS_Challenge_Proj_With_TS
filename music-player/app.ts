@@ -77,6 +77,11 @@ const progressSong = () => {
   }%`;
 };
 
+const skipTime = (time: number) => {
+  console.log();
+  console.log(time);
+};
+
 // event handlers
 // play
 elements.playBtn.addEventListener('click', togglePlayback);
@@ -88,7 +93,11 @@ elements.prevBtn.addEventListener('click', previousSong);
 elements.nextBtn.addEventListener('click', nextSong);
 
 // skip
-elements.progress.addEventListener('click', () => {});
+elements.progressContainer.addEventListener('click', e => {
+  const time = e.offsetX;
+  skipTime(time);
+  console.log(e.offsetX);
+});
 
 // progress through
 elements.audio.addEventListener('timeupdate', progressSong);
