@@ -14,37 +14,43 @@ let nowPlaying = 'ukulele';
 const songs = ['summer', 'ukulele', 'hey'];
 const play = () => {
     elements.audio.play();
+    document.querySelector('.fa-play').classList.replace('fa-play', 'fa-pause');
 };
 const pause = () => {
     elements.audio.pause();
+    document.querySelector('.fa-pause').classList.replace('fa-pause', 'fa-play');
 };
 const displaySongInfo = () => {
 };
 const togglePlayback = () => {
     if (elements.audio.paused) {
         play();
-        document
-            .querySelector('.fa-play')
-            .classList.replace('fa-play', 'fa-pause');
     }
     else {
         pause();
-        document
-            .querySelector('.fa-pause')
-            .classList.replace('fa-pause', 'fa-play');
     }
 };
 const previousSong = () => {
-    pause();
-    elements.audio.src = `music/${songs[songs.indexOf(nowPlaying) - 1]}.mp3`;
+    if (!elements.audio.paused)
+        pause();
+    if (songs.indexOf(nowPlaying) === 0)
+        nowPlaying = songs[songs.length - 1];
+    else
+        nowPlaying = songs[songs.indexOf(nowPlaying) - 1];
+    elements.audio.src = `music/${nowPlaying}.mp3`;
     play();
-    nowPlaying = songs[songs.indexOf(nowPlaying) - 1];
+    console.log(nowPlaying);
 };
 const nextSong = () => {
-    pause();
-    elements.audio.src = `music/${songs[songs.indexOf(nowPlaying) + 1]}.mp3`;
+    if (!elements.audio.paused)
+        pause();
+    if (songs.indexOf(nowPlaying) === songs.length - 1)
+        nowPlaying = songs[0];
+    else
+        nowPlaying = songs[songs.indexOf(nowPlaying) + 1];
+    elements.audio.src = `music/${nowPlaying}.mp3`;
     play();
-    nowPlaying = songs[songs.indexOf(nowPlaying) + 1];
+    console.log(nowPlaying);
 };
 const skip = () => {
 };
