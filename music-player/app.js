@@ -15,7 +15,11 @@ const songs = ['summer', 'ukulele', 'hey'];
 const play = () => {
     elements.audio.play();
     elements.musicContainer.classList.add('play');
-    document.querySelector('.fa-play').classList.replace('fa-play', 'fa-pause');
+    if (elements.audio.paused) {
+        document
+            .querySelector('.fa-play')
+            .classList.replace('fa-play', 'fa-pause');
+    }
 };
 const pause = () => {
     elements.audio.pause();
@@ -61,16 +65,15 @@ const progressSong = () => {
     elements.progress.style.width = `${(100 * elements.audio.currentTime) / elements.audio.duration}%`;
 };
 const skipTime = (time) => {
-    console.log();
-    console.log(time);
+    elements.audio.currentTime = time;
 };
 elements.playBtn.addEventListener('click', togglePlayback);
 elements.prevBtn.addEventListener('click', previousSong);
 elements.nextBtn.addEventListener('click', nextSong);
 elements.progressContainer.addEventListener('click', e => {
-    const time = e.offsetX;
+    const time = (e.offsetX * 100) / elements.audio.duration;
     skipTime(time);
-    console.log(e.offsetX);
+    console.log(time);
 });
 elements.audio.addEventListener('timeupdate', progressSong);
 elements.audio.addEventListener('ended', nextSong);
