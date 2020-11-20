@@ -20,11 +20,15 @@ const songs = ['summer', 'ukulele', 'hey'];
 // functions
 const play = () => {
   elements.audio.play();
+
+  elements.musicContainer.classList.add('play');
   document.querySelector('.fa-play')!.classList.replace('fa-play', 'fa-pause');
 };
 
 const pause = () => {
   elements.audio.pause();
+
+  elements.musicContainer.classList.remove('play');
   document.querySelector('.fa-pause')!.classList.replace('fa-pause', 'fa-play');
 };
 
@@ -49,7 +53,6 @@ const previousSong = () => {
   elements.audio.src = `music/${nowPlaying}.mp3`;
 
   play();
-  console.log(nowPlaying);
 };
 
 const nextSong = () => {
@@ -61,7 +64,6 @@ const nextSong = () => {
   elements.audio.src = `music/${nowPlaying}.mp3`;
 
   play();
-  console.log(nowPlaying);
 };
 
 const skip = () => {

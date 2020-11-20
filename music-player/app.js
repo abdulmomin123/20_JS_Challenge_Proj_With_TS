@@ -14,10 +14,12 @@ let nowPlaying = 'ukulele';
 const songs = ['summer', 'ukulele', 'hey'];
 const play = () => {
     elements.audio.play();
+    elements.musicContainer.classList.add('play');
     document.querySelector('.fa-play').classList.replace('fa-play', 'fa-pause');
 };
 const pause = () => {
     elements.audio.pause();
+    elements.musicContainer.classList.remove('play');
     document.querySelector('.fa-pause').classList.replace('fa-pause', 'fa-play');
 };
 const displaySongInfo = () => {
@@ -39,7 +41,6 @@ const previousSong = () => {
         nowPlaying = songs[songs.indexOf(nowPlaying) - 1];
     elements.audio.src = `music/${nowPlaying}.mp3`;
     play();
-    console.log(nowPlaying);
 };
 const nextSong = () => {
     if (!elements.audio.paused)
@@ -50,7 +51,6 @@ const nextSong = () => {
         nowPlaying = songs[songs.indexOf(nowPlaying) + 1];
     elements.audio.src = `music/${nowPlaying}.mp3`;
     play();
-    console.log(nowPlaying);
 };
 const skip = () => {
 };
