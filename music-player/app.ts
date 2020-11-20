@@ -26,11 +26,22 @@ const pause = () => {
   elements.audio.pause();
 };
 
-const togglePlayback = () => {
-  elements.musicContainer.classList.toggle('play');
+const displaySongInfo = () => {
+  //
+};
 
-  if (elements.audio.paused) play();
-  else pause();
+const togglePlayback = () => {
+  if (elements.audio.paused) {
+    play();
+    document
+      .querySelector('.fa-play')!
+      .classList.replace('fa-play', 'fa-pause');
+  } else {
+    pause();
+    document
+      .querySelector('.fa-pause')!
+      .classList.replace('fa-pause', 'fa-play');
+  }
 };
 
 const previousSong = () => {
@@ -39,6 +50,8 @@ const previousSong = () => {
   elements.audio.src = `music/${songs[songs.indexOf(nowPlaying) - 1]}.mp3`;
 
   play();
+
+  nowPlaying = songs[songs.indexOf(nowPlaying) - 1];
 };
 
 const nextSong = () => {
@@ -47,6 +60,8 @@ const nextSong = () => {
   elements.audio.src = `music/${songs[songs.indexOf(nowPlaying) + 1]}.mp3`;
 
   play();
+
+  nowPlaying = songs[songs.indexOf(nowPlaying) + 1];
 };
 
 const skip = () => {

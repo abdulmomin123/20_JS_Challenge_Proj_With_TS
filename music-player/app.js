@@ -18,22 +18,33 @@ const play = () => {
 const pause = () => {
     elements.audio.pause();
 };
+const displaySongInfo = () => {
+};
 const togglePlayback = () => {
-    elements.musicContainer.classList.toggle('play');
-    if (elements.audio.paused)
+    if (elements.audio.paused) {
         play();
-    else
+        document
+            .querySelector('.fa-play')
+            .classList.replace('fa-play', 'fa-pause');
+    }
+    else {
         pause();
+        document
+            .querySelector('.fa-pause')
+            .classList.replace('fa-pause', 'fa-play');
+    }
 };
 const previousSong = () => {
     pause();
     elements.audio.src = `music/${songs[songs.indexOf(nowPlaying) - 1]}.mp3`;
     play();
+    nowPlaying = songs[songs.indexOf(nowPlaying) - 1];
 };
 const nextSong = () => {
     pause();
     elements.audio.src = `music/${songs[songs.indexOf(nowPlaying) + 1]}.mp3`;
     play();
+    nowPlaying = songs[songs.indexOf(nowPlaying) + 1];
 };
 const skip = () => {
 };
