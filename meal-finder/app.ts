@@ -64,7 +64,25 @@ const displayFoods = () => {
 };
 
 const displayFood = (isRandom: boolean = false) => {
-  console.log(isRandom);
+  if (isRandom) {
+    const markup = `
+    <div class="single-meal">
+    <h1></h1>
+    <img src="" alt="">
+    <div class="single-meal-info">
+      <p></p>
+      <p></p>
+    </div>
+    <div class="main">
+      <p></p>
+      <h2>Ingredients</h2>
+      <ul>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+    `;
+  }
 };
 
 const findMeals = async (e: Event) => {
