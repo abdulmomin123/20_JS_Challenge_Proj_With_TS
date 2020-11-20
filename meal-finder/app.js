@@ -25,6 +25,32 @@ const displaySearchTerm = (searchTerm) => {
 const clearSearchTerm = () => {
     elements.resultHeading.innerHTML = '';
 };
+const foodTemplate = (meal) => {
+    const ingredients = [];
+    for (let i = 1; i < 21; i++) {
+        if (meal[`strIngredient${i}`]) {
+            ingredients.push(`<li>${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}</li>`);
+        }
+    }
+    const markup = `
+    <div class="single-meal">
+    <h1>${meal.strMeal}</h1>
+    <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+    <div class="single-meal-info">
+      <p>${meal.strArea}</p>
+      <p>${meal.strCategory}</p>
+    </div>
+    <div class="main">
+      <p>${meal.strInstructions}</p>
+      <h2>Ingredients</h2>
+      <ul>
+        ${ingredients.join(' ')}
+      </ul>
+    </div>
+  </div>
+    `;
+    return markup;
+};
 const getFoods = (searchTerm) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = yield (yield fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`)).json();
@@ -71,29 +97,7 @@ const displayFood = ({ meals }, isRandom = false) => {
     const [meal] = meals;
     if (isRandom) {
         elements.mealsEl.innerHTML = '';
-        const ingredients = [];
-        for (let i = 1; i < 21; i++) {
-            if (meal[`strIngredient${i}`]) {
-                ingredients.push(`<li>${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}</li>`);
-            }
-        }
-        const markup = `
-      <div class="single-meal">
-      <h1>${meal.strMeal}</h1>
-      <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-      <div class="single-meal-info">
-        <p>${meal.strArea}</p>
-        <p>${meal.strCategory}</p>
-      </div>
-      <div class="main">
-        <p>${meal.strInstructions}</p>
-        <h2>Ingredients</h2>
-        <ul>
-          ${ingredients.join(' ')}
-        </ul>
-      </div>
-    </div>
-      `;
+        const markup = foodTemplate(meal);
         elements.single_mealEl.innerHTML = markup;
     }
 };
@@ -104,8 +108,13 @@ const findMeals = (e) => __awaiter(void 0, void 0, void 0, function* () {
     clearInput();
     displayFoods(foods);
 });
-const findClickedMeal = () => {
-};
+const findClickedMeal = (e) => __awaiter(void 0, void 0, void 0, function* () {
+    const meal = e.target.closest('.meal-info');
+    if (!meal)
+        return;
+    const food = yield getFood(meal.dataset.mealid);
+    console.log(food);
+});
 const findRandomMeal = () => __awaiter(void 0, void 0, void 0, function* () {
     clearSearchTerm();
     clearInput();

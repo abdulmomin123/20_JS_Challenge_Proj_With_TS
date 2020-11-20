@@ -21,6 +21,38 @@ const clearSearchTerm = () => {
   elements.resultHeading.innerHTML = '';
 };
 
+const foodTemplate = (meal: { [prop: string]: string }) => {
+  const ingredients: string[] = [];
+
+  for (let i = 1; i < 21; i++) {
+    if (meal[`strIngredient${i}`]) {
+      ingredients.push(
+        `<li>${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}</li>`
+      );
+    }
+  }
+
+  const markup = `
+    <div class="single-meal">
+    <h1>${meal.strMeal}</h1>
+    <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+    <div class="single-meal-info">
+      <p>${meal.strArea}</p>
+      <p>${meal.strCategory}</p>
+    </div>
+    <div class="main">
+      <p>${meal.strInstructions}</p>
+      <h2>Ingredients</h2>
+      <ul>
+        ${ingredients.join(' ')}
+      </ul>
+    </div>
+  </div>
+    `;
+
+  return markup;
+};
+
 const getFoods = async (searchTerm: string) => {
   try {
     const data = await (
@@ -83,33 +115,7 @@ const displayFood = ({ meals }: any, isRandom: boolean = false) => {
   if (isRandom) {
     elements.mealsEl.innerHTML = '';
 
-    const ingredients: string[] = [];
-
-    for (let i = 1; i < 21; i++) {
-      if (meal[`strIngredient${i}`]) {
-        ingredients.push(
-          `<li>${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}</li>`
-        );
-      }
-    }
-
-    const markup = `
-      <div class="single-meal">
-      <h1>${meal.strMeal}</h1>
-      <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-      <div class="single-meal-info">
-        <p>${meal.strArea}</p>
-        <p>${meal.strCategory}</p>
-      </div>
-      <div class="main">
-        <p>${meal.strInstructions}</p>
-        <h2>Ingredients</h2>
-        <ul>
-          ${ingredients.join(' ')}
-        </ul>
-      </div>
-    </div>
-      `;
+    const markup = foodTemplate(meal);
 
     elements.single_mealEl.innerHTML = markup;
   }
@@ -127,8 +133,16 @@ const findMeals = async (e: Event) => {
   displayFoods(foods);
 };
 
-const findClickedMeal = () => {
-  //
+const findClickedMeal = async (e: Event) => {
+  const meal = (e.target as HTMLDivElement).closest(
+    '.meal-info'
+  ) as HTMLDivElement;
+
+  if (!meal) return;
+
+  const food = await getFood(meal.dataset.mealid!);
+
+  console.log(food);
 };
 
 const findRandomMeal = async () => {
