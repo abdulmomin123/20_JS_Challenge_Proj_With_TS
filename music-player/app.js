@@ -10,3 +10,9 @@ const elements = {
     title: document.getElementById('title'),
     cover: document.getElementById('cover'),
 };
+const test = () => {
+};
+elements.playBtn.addEventListener('click', test);
+elements.prevBtn.addEventListener('click', test);
+elements.nextBtn.addEventListener('click', test);
+elements.progress.addEventListener('click', test);

@@ -15,5 +15,19 @@ const elements = {
 };
 
 // functions
+const test = () => {
+  //
+};
 
 // event handlers
+// play
+elements.playBtn.addEventListener('click', test);
+
+// previous
+elements.prevBtn.addEventListener('click', test);
+
+// next
+elements.nextBtn.addEventListener('click', test);
+
+// skip
+elements.progress.addEventListener('click', test);
