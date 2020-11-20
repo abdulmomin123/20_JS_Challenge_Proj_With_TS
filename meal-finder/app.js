@@ -53,6 +53,8 @@ const getRandomFood = () => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 const displayFoods = ({ meals }) => {
+    elements.mealsEl.innerHTML = '';
+    elements.single_mealEl.innerHTML = '';
     meals.forEach((meal) => {
         const markup = `
     <div class="meal">
@@ -68,6 +70,7 @@ const displayFoods = ({ meals }) => {
 const displayFood = ({ meals }, isRandom = false) => {
     const [meal] = meals;
     if (isRandom) {
+        elements.mealsEl.innerHTML = '';
         const ingredients = [];
         for (let i = 1; i < 21; i++) {
             if (meal[`strIngredient${i}`]) {

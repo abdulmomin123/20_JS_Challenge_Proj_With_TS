@@ -60,6 +60,9 @@ const getRandomFood = async () => {
 };
 
 const displayFoods = ({ meals }: any) => {
+  elements.mealsEl.innerHTML = '';
+  elements.single_mealEl.innerHTML = '';
+
   meals.forEach((meal: { [popo: string]: string }) => {
     const markup = `
     <div class="meal">
@@ -78,6 +81,8 @@ const displayFood = ({ meals }: any, isRandom: boolean = false) => {
   const [meal] = meals;
 
   if (isRandom) {
+    elements.mealsEl.innerHTML = '';
+
     const ingredients: string[] = [];
 
     for (let i = 1; i < 21; i++) {
