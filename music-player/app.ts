@@ -72,7 +72,9 @@ const nextSong = () => {
 };
 
 const progressSong = () => {
-  elements.progress.style.width = '20%';
+  elements.progress.style.width = `${
+    (elements.audio.duration * elements.audio.currentTime) / 100
+  }px`;
 };
 
 // event handlers
@@ -86,7 +88,7 @@ elements.prevBtn.addEventListener('click', previousSong);
 elements.nextBtn.addEventListener('click', nextSong);
 
 // skip
-elements.progress.addEventListener('click', progressSong);
+elements.progress.addEventListener('click', () => {});
 
 // progress through
 elements.audio.addEventListener('timeupdate', progressSong);

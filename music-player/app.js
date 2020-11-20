@@ -58,11 +58,11 @@ const nextSong = () => {
     play();
 };
 const progressSong = () => {
-    elements.progress.style.width = '20%';
+    elements.progress.style.width = `${(elements.audio.duration * elements.audio.currentTime) / 100}px`;
 };
 elements.playBtn.addEventListener('click', togglePlayback);
 elements.prevBtn.addEventListener('click', previousSong);
 elements.nextBtn.addEventListener('click', nextSong);
-elements.progress.addEventListener('click', progressSong);
+elements.progress.addEventListener('click', () => { });
 elements.audio.addEventListener('timeupdate', progressSong);
 elements.audio.addEventListener('ended', nextSong);
