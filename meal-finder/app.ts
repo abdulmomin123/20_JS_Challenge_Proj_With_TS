@@ -59,8 +59,19 @@ const getRandomFood = async () => {
   }
 };
 
-const displayFoods = () => {
-  //
+const displayFoods = ({ meals }: any) => {
+  meals.forEach((meal: { [popo: string]: string }) => {
+    const markup = `
+    <div class="meal">
+      <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+      <div class="meal-info" data-mealid="${meal.idMeal}">
+        <h3>${meal.strMeal}</h3>
+      </div>
+    </div>
+    `;
+
+    elements.mealsEl.insertAdjacentHTML('beforeend', markup);
+  });
 };
 
 const displayFood = ({ meals }: any, isRandom: boolean = false) => {
@@ -108,9 +119,7 @@ const findMeals = async (e: Event) => {
 
   clearInput();
 
-  displayFoods();
-
-  console.log(foods);
+  displayFoods(foods);
 };
 
 const findClickedMeal = () => {
@@ -125,8 +134,6 @@ const findRandomMeal = async () => {
   const randomFood = await getRandomFood();
 
   displayFood(randomFood, true);
-
-  console.log(randomFood);
 };
 
 // event listeners
