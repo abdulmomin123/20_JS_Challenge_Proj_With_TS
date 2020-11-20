@@ -118,6 +118,10 @@ const displayFood = ({ meals }: any, isRandom: boolean = false) => {
     const markup = foodTemplate(meal);
 
     elements.single_mealEl.innerHTML = markup;
+  } else {
+    const markup = foodTemplate(meal);
+
+    elements.single_mealEl.innerHTML = markup;
   }
 };
 
@@ -134,15 +138,17 @@ const findMeals = async (e: Event) => {
 };
 
 const findClickedMeal = async (e: Event) => {
-  const meal = (e.target as HTMLDivElement).closest(
+  const target = (e.target as HTMLDivElement).closest(
     '.meal-info'
   ) as HTMLDivElement;
 
-  if (!meal) return;
+  if (!target) return;
 
-  const food = await getFood(meal.dataset.mealid!);
+  const food = await getFood(target.dataset.mealid!);
 
-  console.log(food);
+  displayFood(food, false);
+
+  // console.log(food);
 };
 
 const findRandomMeal = async () => {

@@ -100,6 +100,10 @@ const displayFood = ({ meals }, isRandom = false) => {
         const markup = foodTemplate(meal);
         elements.single_mealEl.innerHTML = markup;
     }
+    else {
+        const markup = foodTemplate(meal);
+        elements.single_mealEl.innerHTML = markup;
+    }
 };
 const findMeals = (e) => __awaiter(void 0, void 0, void 0, function* () {
     e.preventDefault();
@@ -109,11 +113,11 @@ const findMeals = (e) => __awaiter(void 0, void 0, void 0, function* () {
     displayFoods(foods);
 });
 const findClickedMeal = (e) => __awaiter(void 0, void 0, void 0, function* () {
-    const meal = e.target.closest('.meal-info');
-    if (!meal)
+    const target = e.target.closest('.meal-info');
+    if (!target)
         return;
-    const food = yield getFood(meal.dataset.mealid);
-    console.log(food);
+    const food = yield getFood(target.dataset.mealid);
+    displayFood(food, false);
 });
 const findRandomMeal = () => __awaiter(void 0, void 0, void 0, function* () {
     clearSearchTerm();
