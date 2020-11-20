@@ -24,7 +24,11 @@ const play = () => {
 const pause = () => {
     elements.audio.pause();
     elements.musicContainer.classList.remove('play');
-    document.querySelector('.fa-pause').classList.replace('fa-pause', 'fa-play');
+    if (!elements.audio.paused) {
+        document
+            .querySelector('.fa-pause')
+            .classList.replace('fa-pause', 'fa-play');
+    }
 };
 const displaySongInfo = () => {
     elements.cover.src = `images/${nowPlaying}.jpg`;
