@@ -63,7 +63,10 @@ const displayFoods = () => {
   //
 };
 
-const displayFood = (isRandom: boolean = false) => {
+const displayFood = (
+  { meals }: { meals: object[] },
+  isRandom: boolean = false
+) => {
   if (isRandom) {
     const markup = `
     <div class="single-meal">
@@ -110,7 +113,7 @@ const findRandomMeal = async () => {
 
   const randomFood = await getRandomFood();
 
-  displayFood(true);
+  displayFood(randomFood, true);
 
   console.log(randomFood);
 };
