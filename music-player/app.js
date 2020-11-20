@@ -10,6 +10,8 @@ const elements = {
     title: document.getElementById('title'),
     cover: document.getElementById('cover'),
 };
+const nowPlaying = 'hey';
+const songs = ['hey', 'summer', 'ukulele'];
 const togglePlayback = () => {
     elements.musicContainer.classList.toggle('play');
     if (elements.audio.paused)

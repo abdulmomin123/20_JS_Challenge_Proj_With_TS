@@ -14,6 +14,9 @@ const elements = {
   cover: document.getElementById('cover') as HTMLImageElement,
 };
 
+const nowPlaying = 'hey';
+const songs = ['hey', 'summer', 'ukulele'];
+
 // functions
 const togglePlayback = () => {
   elements.musicContainer.classList.toggle('play');
