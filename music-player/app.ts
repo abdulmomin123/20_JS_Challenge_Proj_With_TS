@@ -14,8 +14,8 @@ const elements = {
   cover: document.getElementById('cover') as HTMLImageElement,
 };
 
-const nowPlaying = 'hey';
-const songs = ['hey', 'summer', 'ukulele'];
+let nowPlaying = 'ukulele';
+const songs = ['summer', 'ukulele', 'hey'];
 
 // functions
 const togglePlayback = () => {
@@ -26,11 +26,11 @@ const togglePlayback = () => {
 };
 
 const previousSong = () => {
-  //
+  elements.audio.src = `music/${songs[songs.indexOf(nowPlaying) - 1]}.mp3`;
 };
 
 const nextSong = () => {
-  //
+  elements.audio.src = `music/${songs[songs.indexOf(nowPlaying) + 1]}.mp3`;
 };
 
 const skip = () => {

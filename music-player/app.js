@@ -10,8 +10,8 @@ const elements = {
     title: document.getElementById('title'),
     cover: document.getElementById('cover'),
 };
-const nowPlaying = 'hey';
-const songs = ['hey', 'summer', 'ukulele'];
+let nowPlaying = 'ukulele';
+const songs = ['summer', 'ukulele', 'hey'];
 const togglePlayback = () => {
     elements.musicContainer.classList.toggle('play');
     if (elements.audio.paused)
@@ -20,8 +20,10 @@ const togglePlayback = () => {
         elements.audio.pause();
 };
 const previousSong = () => {
+    elements.audio.src = `music/${songs[songs.indexOf(nowPlaying) - 1]}.mp3`;
 };
 const nextSong = () => {
+    elements.audio.src = `music/${songs[songs.indexOf(nowPlaying) + 1]}.mp3`;
 };
 const skip = () => {
 };
