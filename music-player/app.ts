@@ -23,7 +23,11 @@ const play = () => {
 
   elements.musicContainer.classList.add('play');
 
-  document.querySelector('.fa-play')!.classList.replace('fa-play', 'fa-pause');
+  if (document.querySelector('.fa-play')) {
+    document
+      .querySelector('.fa-play')!
+      .classList.replace('fa-play', 'fa-pause');
+  }
 };
 
 const pause = () => {
@@ -31,7 +35,11 @@ const pause = () => {
 
   elements.musicContainer.classList.remove('play');
 
-  document.querySelector('.fa-pause')!.classList.replace('fa-pause', 'fa-play');
+  if (document.querySelector('.fa-pause')) {
+    document
+      .querySelector('.fa-pause')!
+      .classList.replace('fa-pause', 'fa-play');
+  }
 };
 
 const displaySongInfo = () => {
