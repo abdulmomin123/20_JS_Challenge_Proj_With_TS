@@ -76,8 +76,8 @@ elements.prevBtn.addEventListener('click', previousSong);
 elements.nextBtn.addEventListener('click', nextSong);
 elements.progressContainer.addEventListener('click', e => {
     const time = (e.offsetX * 100) / elements.audio.duration;
+    console.log(elements.audio.duration, time);
     skipTime(time);
-    console.log(time);
 });
 elements.audio.addEventListener('timeupdate', progressSong);
 elements.audio.addEventListener('ended', nextSong);

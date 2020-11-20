@@ -104,8 +104,8 @@ elements.nextBtn.addEventListener('click', nextSong);
 // skip
 elements.progressContainer.addEventListener('click', e => {
   const time = (e.offsetX * 100) / elements.audio.duration;
+  console.log(elements.audio.duration, time);
   skipTime(time);
-  console.log(time);
 });
 
 // progress through
