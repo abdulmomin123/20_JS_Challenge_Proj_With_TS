@@ -15,6 +15,22 @@ const elements = {
 };
 
 // functions
+const togglePlayback = () => {
+  //
+};
+
+const previousSong = () => {
+  //
+};
+
+const nextSong = () => {
+  //
+};
+
+const skip = () => {
+  //
+};
+
 const test = () => {
   //
 };

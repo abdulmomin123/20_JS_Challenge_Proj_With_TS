@@ -10,6 +10,14 @@ const elements = {
     title: document.getElementById('title'),
     cover: document.getElementById('cover'),
 };
+const togglePlayback = () => {
+};
+const previousSong = () => {
+};
+const nextSong = () => {
+};
+const skip = () => {
+};
 const test = () => {
 };
 elements.playBtn.addEventListener('click', test);
