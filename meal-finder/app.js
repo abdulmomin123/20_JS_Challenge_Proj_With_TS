@@ -54,8 +54,34 @@ const getRandomFood = () => __awaiter(void 0, void 0, void 0, function* () {
 });
 const displayFoods = () => {
 };
-const displayFood = (isRandom = false) => {
-    console.log(isRandom);
+const displayFood = ({ meals }, isRandom = false) => {
+    const [meal] = meals;
+    if (isRandom) {
+        const ingredients = [];
+        for (let i = 1; i < 21; i++) {
+            if (meal[`strIngredient${i}`]) {
+                ingredients.push(`<li>${meal[`strIngredient${i}`]} - ${meal[`strMeasure${i}`]}</li>`);
+            }
+        }
+        const markup = `
+      <div class="single-meal">
+      <h1>${meal.strMeal}</h1>
+      <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+      <div class="single-meal-info">
+        <p>${meal.strArea}</p>
+        <p>${meal.strCategory}</p>
+      </div>
+      <div class="main">
+        <p>${meal.strInstructions}</p>
+        <h2>Ingredients</h2>
+        <ul>
+          ${ingredients.join(' ')}
+        </ul>
+      </div>
+    </div>
+      `;
+        elements.single_mealEl.innerHTML = markup;
+    }
 };
 const findMeals = (e) => __awaiter(void 0, void 0, void 0, function* () {
     e.preventDefault();
@@ -71,7 +97,7 @@ const findRandomMeal = () => __awaiter(void 0, void 0, void 0, function* () {
     clearSearchTerm();
     clearInput();
     const randomFood = yield getRandomFood();
-    displayFood(true);
+    displayFood(randomFood, true);
     console.log(randomFood);
 });
 elements.submit.addEventListener('submit', findMeals);
