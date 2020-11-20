@@ -16,7 +16,10 @@ const elements = {
 
 // functions
 const togglePlayback = () => {
-  //
+  elements.musicContainer.classList.toggle('play');
+
+  if (elements.audio.paused) elements.audio.play();
+  else elements.audio.pause();
 };
 
 const previousSong = () => {
@@ -37,13 +40,13 @@ const test = () => {
 
 // event handlers
 // play
-elements.playBtn.addEventListener('click', test);
+elements.playBtn.addEventListener('click', togglePlayback);
 
 // previous
-elements.prevBtn.addEventListener('click', test);
+elements.prevBtn.addEventListener('click', previousSong);
 
 // next
-elements.nextBtn.addEventListener('click', test);
+elements.nextBtn.addEventListener('click', nextSong);
 
 // skip
-elements.progress.addEventListener('click', test);
+elements.progress.addEventListener('click', skip);

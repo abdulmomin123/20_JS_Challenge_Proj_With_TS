@@ -11,6 +11,11 @@ const elements = {
     cover: document.getElementById('cover'),
 };
 const togglePlayback = () => {
+    elements.musicContainer.classList.toggle('play');
+    if (elements.audio.paused)
+        elements.audio.play();
+    else
+        elements.audio.pause();
 };
 const previousSong = () => {
 };
@@ -20,7 +25,7 @@ const skip = () => {
 };
 const test = () => {
 };
-elements.playBtn.addEventListener('click', test);
-elements.prevBtn.addEventListener('click', test);
-elements.nextBtn.addEventListener('click', test);
-elements.progress.addEventListener('click', test);
+elements.playBtn.addEventListener('click', togglePlayback);
+elements.prevBtn.addEventListener('click', previousSong);
+elements.nextBtn.addEventListener('click', nextSong);
+elements.progress.addEventListener('click', skip);
