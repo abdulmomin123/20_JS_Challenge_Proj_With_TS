@@ -18,11 +18,11 @@ const clearLoader = () => {
 };
 
 const getPosts = async () => {
-  const response = await (
+  const response: object[] = await (
     await fetch(`https://jsonplaceholder.typicode.com/users/${page}/posts`)
   ).json();
 
-  return response;
+  return response.slice(0, 5);
 };
 
 const postTemplate = () => {

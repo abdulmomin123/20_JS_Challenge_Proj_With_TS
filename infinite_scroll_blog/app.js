@@ -21,7 +21,7 @@ const clearLoader = () => {
 };
 const getPosts = () => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield (yield fetch(`https://jsonplaceholder.typicode.com/users/${page}/posts`)).json();
-    return response;
+    return response.slice(0, 5);
 });
 const postTemplate = () => {
 };
