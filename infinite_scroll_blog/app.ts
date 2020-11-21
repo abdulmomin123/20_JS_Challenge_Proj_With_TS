@@ -25,24 +25,36 @@ const getPosts = async () => {
   return response.slice(0, 5);
 };
 
-const postTemplate = (_posts: object[]) => {
-  return 'hi';
+const postTemplate = (posts: object[]) => {
+  let markup = '';
+
+  posts.forEach((post: { [prop: string]: any }, i) => {
+    markup += `
+    <div class="post">
+      <div class="number">${i + 1}</div>
+      <div class="post-info">
+        <h2 class="post-title">${post.title}</h2>
+        <p class="post-body">${post.body}</p>
+      </div>
+    </div>
+    `;
+  });
+
+  return markup;
 };
 
-const displayPosts = (_markup: string) => {
-  return 'hi';
+const displayPosts = (markup: string) => {
+  elements.postsContainer?.insertAdjacentHTML('beforeend', markup);
 };
 
-const init = async () => {
+const getAndDisplay = async () => {
   const posts = await getPosts();
 
   const markup = postTemplate(posts);
 
   displayPosts(markup);
-
-  console.log(posts);
 };
 
-init();
+getAndDisplay();
 
 // event listeners

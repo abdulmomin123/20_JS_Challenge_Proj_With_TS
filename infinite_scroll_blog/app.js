@@ -23,16 +23,28 @@ const getPosts = () => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield (yield fetch(`https://jsonplaceholder.typicode.com/users/${page}/posts`)).json();
     return response.slice(0, 5);
 });
-const postTemplate = (_posts) => {
-    return 'hi';
+const postTemplate = (posts) => {
+    let markup = '';
+    posts.forEach((post, i) => {
+        markup += `
+    <div class="post">
+      <div class="number">${i + 1}</div>
+      <div class="post-info">
+        <h2 class="post-title">${post.title}</h2>
+        <p class="post-body">${post.body}</p>
+      </div>
+    </div>
+    `;
+    });
+    return markup;
 };
-const displayPosts = (_markup) => {
-    return 'hi';
+const displayPosts = (markup) => {
+    var _a;
+    (_a = elements.postsContainer) === null || _a === void 0 ? void 0 : _a.insertAdjacentHTML('beforeend', markup);
 };
-const init = () => __awaiter(void 0, void 0, void 0, function* () {
+const getAndDisplay = () => __awaiter(void 0, void 0, void 0, function* () {
     const posts = yield getPosts();
     const markup = postTemplate(posts);
     displayPosts(markup);
-    console.log(posts);
 });
-init();
+getAndDisplay();
