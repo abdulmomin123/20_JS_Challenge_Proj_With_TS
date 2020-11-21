@@ -48,3 +48,8 @@ const getAndDisplay = () => __awaiter(void 0, void 0, void 0, function* () {
     displayPosts(markup);
 });
 getAndDisplay();
+const observer = new IntersectionObserver(getAndDisplay, {
+    root: null,
+    rootMargin: '-20px',
+    threshold: 1,
+});

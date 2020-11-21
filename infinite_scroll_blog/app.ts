@@ -58,3 +58,8 @@ const getAndDisplay = async () => {
 getAndDisplay();
 
 // event listeners
+const observer = new IntersectionObserver(getAndDisplay, {
+  root: null,
+  rootMargin: '-20px',
+  threshold: 1,
+});
