@@ -13,22 +13,23 @@ const elements = {
     loading: document.querySelector('.loader'),
     filter: document.getElementById('filter'),
 };
-let limit = 5;
 let page = 1;
 const displayLoader = () => {
+    elements.loading.classList.add('show');
 };
 const clearLoader = () => {
+    elements.loading.classList.remove('show');
 };
 const getPosts = () => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield (yield fetch(`https://jsonplaceholder.typicode.com/users/${page}/posts`)).json();
-    return response.slice(0, 5);
+    return response;
 });
 const postTemplate = (posts) => {
     let markup = '';
-    posts.forEach((post, i) => {
+    posts.forEach((post) => {
         markup += `
     <div class="post">
-      <div class="number">${i + 1}</div>
+      <div class="number">${post.id}</div>
       <div class="post-info">
         <h2 class="post-title">${post.title}</h2>
         <p class="post-body">${post.body}</p>
@@ -45,6 +46,7 @@ const getAndDisplay = () => __awaiter(void 0, void 0, void 0, function* () {
     const posts = yield getPosts();
     const markup = postTemplate(posts);
     displayPosts(markup);
+    page++;
 });
 getAndDisplay();
 const observer = new IntersectionObserver(getAndDisplay, {
