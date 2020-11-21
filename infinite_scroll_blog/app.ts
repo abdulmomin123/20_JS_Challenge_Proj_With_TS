@@ -54,13 +54,29 @@ const getAndDisplay = async () => {
   displayPosts(markup);
 
   page++;
+
+  const lastPost = elements.postsContainer.lastElementChild as HTMLDivElement;
+  observer.observe(lastPost);
 };
 
-getAndDisplay();
+const infiniteScroll = (
+  entries: IntersectionObserverEntry[],
+  observer: IntersectionObserver
+) => {
+  if (!entries[0].isIntersecting) return;
+
+  console.log(entries, observer);
+
+  displayLoader();
+  getAndDisplay();
+  clearLoader();
+};
 
 // event listeners
-const observer = new IntersectionObserver(getAndDisplay, {
+const observer = new IntersectionObserver(infiniteScroll, {
   root: null,
   rootMargin: '-20px',
   threshold: 1,
 });
+
+getAndDisplay();
