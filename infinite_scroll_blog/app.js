@@ -50,17 +50,18 @@ const getAndDisplay = () => __awaiter(void 0, void 0, void 0, function* () {
     const lastPost = elements.postsContainer.lastElementChild;
     observer.observe(lastPost);
 });
-const infiniteScroll = (entries, observer) => {
+const infiniteScroll = (entries, observer) => __awaiter(void 0, void 0, void 0, function* () {
     if (!entries[0].isIntersecting)
         return;
-    console.log(entries, observer);
+    entries.forEach(entry => observer.unobserve(entry.target));
     displayLoader();
-    getAndDisplay();
+    yield getAndDisplay();
     clearLoader();
-};
+    entries.forEach(e => console.log(e, observer));
+});
 const observer = new IntersectionObserver(infiniteScroll, {
     root: null,
-    rootMargin: '-20px',
+    rootMargin: `-50px`,
     threshold: 1,
 });
 getAndDisplay();

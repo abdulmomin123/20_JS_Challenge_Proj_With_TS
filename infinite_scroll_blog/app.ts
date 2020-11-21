@@ -59,23 +59,27 @@ const getAndDisplay = async () => {
   observer.observe(lastPost);
 };
 
-const infiniteScroll = (
+const infiniteScroll = async (
   entries: IntersectionObserverEntry[],
   observer: IntersectionObserver
 ) => {
   if (!entries[0].isIntersecting) return;
 
-  console.log(entries, observer);
+  entries.forEach(entry => observer.unobserve(entry.target));
 
   displayLoader();
-  getAndDisplay();
+
+  await getAndDisplay();
+
   clearLoader();
+
+  entries.forEach(e => console.log(e, observer));
 };
 
 // event listeners
 const observer = new IntersectionObserver(infiniteScroll, {
   root: null,
-  rootMargin: '-20px',
+  rootMargin: `-50px`,
   threshold: 1,
 });
 
