@@ -17,8 +17,12 @@ const clearLoader = () => {
   //
 };
 
-const getPosts = () => {
-  //
+const getPosts = async () => {
+  const response = await (
+    await fetch(`https://jsonplaceholder.typicode.com/users/${page}/posts`)
+  ).json();
+
+  return response;
 };
 
 const postTemplate = () => {
@@ -28,5 +32,13 @@ const postTemplate = () => {
 const displayPosts = () => {
   //
 };
+
+const init = async () => {
+  const posts = await getPosts();
+
+  console.log(posts);
+};
+
+init();
 
 // event listeners
