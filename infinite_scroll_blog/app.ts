@@ -25,7 +25,7 @@ const getPosts = async () => {
   return response.slice(0, 5);
 };
 
-const postTemplate = () => {
+const postTemplate = (posts: object[]) => {
   //
 };
 
@@ -35,6 +35,10 @@ const displayPosts = () => {
 
 const init = async () => {
   const posts = await getPosts();
+
+  const markup = postTemplate(posts);
+
+  displayPosts(markup);
 
   console.log(posts);
 };
