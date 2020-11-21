@@ -23,12 +23,16 @@ const getPosts = () => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield (yield fetch(`https://jsonplaceholder.typicode.com/users/${page}/posts`)).json();
     return response.slice(0, 5);
 });
-const postTemplate = () => {
+const postTemplate = (_posts) => {
+    return 'hi';
 };
-const displayPosts = () => {
+const displayPosts = (_markup) => {
+    return 'hi';
 };
 const init = () => __awaiter(void 0, void 0, void 0, function* () {
     const posts = yield getPosts();
+    const markup = postTemplate(posts);
+    displayPosts(markup);
     console.log(posts);
 });
 init();

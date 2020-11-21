@@ -25,12 +25,12 @@ const getPosts = async () => {
   return response.slice(0, 5);
 };
 
-const postTemplate = (posts: object[]) => {
-  //
+const postTemplate = (_posts: object[]) => {
+  return 'hi';
 };
 
-const displayPosts = () => {
-  //
+const displayPosts = (_markup: string) => {
+  return 'hi';
 };
 
 const init = async () => {
