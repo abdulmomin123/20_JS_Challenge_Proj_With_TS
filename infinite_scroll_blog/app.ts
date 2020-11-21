@@ -1,7 +1,7 @@
 // dom elements
 const elements = {
-  postsContainer: document.getElementById('posts-container'),
-  loading: document.querySelector('.loader'),
+  postsContainer: document.getElementById('posts-container') as HTMLDivElement,
+  loading: document.querySelector('.loader') as HTMLDivElement,
   filter: document.getElementById('filter'),
 };
 
@@ -44,7 +44,7 @@ const postTemplate = (posts: object[]) => {
 };
 
 const displayPosts = (markup: string) => {
-  elements.postsContainer?.insertAdjacentHTML('beforeend', markup);
+  elements.postsContainer.insertAdjacentHTML('beforeend', markup);
 };
 
 const getAndDisplay = async () => {

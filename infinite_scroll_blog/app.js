@@ -39,8 +39,7 @@ const postTemplate = (posts) => {
     return markup;
 };
 const displayPosts = (markup) => {
-    var _a;
-    (_a = elements.postsContainer) === null || _a === void 0 ? void 0 : _a.insertAdjacentHTML('beforeend', markup);
+    elements.postsContainer.insertAdjacentHTML('beforeend', markup);
 };
 const getAndDisplay = () => __awaiter(void 0, void 0, void 0, function* () {
     const posts = yield getPosts();
