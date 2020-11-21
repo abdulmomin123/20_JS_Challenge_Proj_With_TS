@@ -72,8 +72,6 @@ const infiniteScroll = async (
   await getAndDisplay();
 
   clearLoader();
-
-  entries.forEach(e => console.log(e, observer));
 };
 
 // event listeners

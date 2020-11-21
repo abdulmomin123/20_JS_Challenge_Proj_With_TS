@@ -57,7 +57,6 @@ const infiniteScroll = (entries, observer) => __awaiter(void 0, void 0, void 0, 
     displayLoader();
     yield getAndDisplay();
     clearLoader();
-    entries.forEach(e => console.log(e, observer));
 });
 const observer = new IntersectionObserver(infiniteScroll, {
     root: null,
