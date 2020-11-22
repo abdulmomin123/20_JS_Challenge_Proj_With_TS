@@ -44,6 +44,9 @@ let score = 0;
 // Init time
 let time = 10;
 
+// timer
+let timer: number;
+
 // Set difficulty to value in ls or medium
 let difficulty =
   localStorage.getItem('difficulty') !== null
@@ -52,7 +55,18 @@ let difficulty =
 
 // functions
 const startGame = () => {
+  // assign a random word
   randomWord = words[Math.floor(Math.random() * words.length)];
+
+  // reset all scores
+  score = 0;
+  time = 10;
+
+  // start the timer
+  timer = setInterval(() => {
+    time--;
+    console.log(time);
+  }, 1000);
 };
 
 const checkWord = () => {
@@ -66,6 +80,8 @@ const increaseScore = () => {
 const lostGame = () => {
   //
 };
+
+startGame();
 
 // event listeners
 elements.text.addEventListener('input', startGame);

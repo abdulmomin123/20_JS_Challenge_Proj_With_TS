@@ -35,11 +35,18 @@ const words = [
 let randomWord;
 let score = 0;
 let time = 10;
+let timer;
 let difficulty = localStorage.getItem('difficulty') !== null
     ? localStorage.getItem('difficulty')
     : 'medium';
 const startGame = () => {
     randomWord = words[Math.floor(Math.random() * words.length)];
+    score = 0;
+    time = 10;
+    timer = setInterval(() => {
+        time--;
+        console.log(time);
+    }, 1000);
 };
 const checkWord = () => {
 };
@@ -47,4 +54,5 @@ const increaseScore = () => {
 };
 const lostGame = () => {
 };
+startGame();
 elements.text.addEventListener('input', startGame);
