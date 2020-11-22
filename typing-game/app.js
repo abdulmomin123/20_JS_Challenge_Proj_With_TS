@@ -60,7 +60,12 @@ const checkWord = () => {
         increaseScore();
 };
 const increaseScore = () => {
-    time += 5;
+    if (difficulty === 'easy')
+        time += 5;
+    if (difficulty === 'medium')
+        time += 3;
+    if (difficulty === 'hard')
+        time += 2;
     score++;
     elements.text.value = '';
     randomWord = words[Math.floor(Math.random() * words.length)];
