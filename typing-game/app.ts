@@ -36,7 +36,7 @@ const words = [
 ];
 
 // Init word
-let randomWord = words[Math.floor(Math.random() * words.length)];
+let randomWord: string;
 
 // Init score
 let score = 0;
@@ -52,7 +52,7 @@ let difficulty =
 
 // functions
 const startGame = () => {
-  //
+  randomWord = words[Math.floor(Math.random() * words.length)];
 };
 
 const checkWord = () => {
@@ -66,5 +66,6 @@ const increaseScore = () => {
 const lostGame = () => {
   //
 };
+
 // event listeners
 elements.text.addEventListener('input', startGame);
