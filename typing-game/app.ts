@@ -62,10 +62,14 @@ const startGame = () => {
   score = 0;
   time = 10;
 
+  elements.text.focus();
+
   // start the timer
   timer = setInterval(() => {
+    if (time === 0) return clearInterval(timer);
+
     time--;
-    console.log(time);
+    elements.timeEl.textContent = `${time}s`;
   }, 1000);
 };
 

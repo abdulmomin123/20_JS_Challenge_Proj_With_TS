@@ -43,9 +43,12 @@ const startGame = () => {
     randomWord = words[Math.floor(Math.random() * words.length)];
     score = 0;
     time = 10;
+    elements.text.focus();
     timer = setInterval(() => {
+        if (time === 0)
+            return clearInterval(timer);
         time--;
-        console.log(time);
+        elements.timeEl.textContent = `${time}s`;
     }, 1000);
 };
 const checkWord = () => {
