@@ -40,4 +40,10 @@ let difficulty = localStorage.getItem('difficulty') !== null
     : 'medium';
 const startGame = () => {
 };
-elements.text;
+const checkWord = () => {
+};
+const increaseScore = () => {
+};
+const lostGame = () => {
+};
+elements.text.addEventListener('input', startGame);

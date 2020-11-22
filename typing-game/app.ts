@@ -55,5 +55,16 @@ const startGame = () => {
   //
 };
 
+const checkWord = () => {
+  //
+};
+
+const increaseScore = () => {
+  //
+};
+
+const lostGame = () => {
+  //
+};
 // event listeners
-elements.text;
+elements.text.addEventListener('input', startGame);
