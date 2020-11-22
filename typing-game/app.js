@@ -57,13 +57,21 @@ const startGame = () => {
     }, 1000);
 };
 const checkWord = () => {
+    if (elements.text.value === randomWord)
+        increaseScore();
 };
 const increaseScore = () => {
+    time += 5;
+    score++;
+    elements.text.value = '';
+    randomWord = words[Math.floor(Math.random() * words.length)];
+    elements.word.textContent = randomWord;
+    console.log('hi');
 };
 const lostGame = () => {
     clearInterval(timer);
     elements.endgameEl.classList.add('display');
 };
 startGame();
-elements.text.addEventListener('input', startGame);
+elements.text.addEventListener('input', checkWord);
 elements.reloadBtn.addEventListener('click', startGame);

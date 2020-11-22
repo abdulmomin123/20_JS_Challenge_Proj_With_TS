@@ -65,6 +65,7 @@ const startGame = () => {
   randomWord = words[Math.floor(Math.random() * words.length)];
 
   elements.word.textContent = randomWord;
+
   // reset all scores
   score = 0;
   time = 10;
@@ -81,11 +82,17 @@ const startGame = () => {
 };
 
 const checkWord = () => {
-  //
+  if (elements.text.value === randomWord) increaseScore();
 };
 
 const increaseScore = () => {
-  //
+  time += 5;
+  score++;
+  elements.text.value = '';
+  randomWord = words[Math.floor(Math.random() * words.length)];
+  elements.word.textContent = randomWord;
+
+  console.log('hi');
 };
 
 const lostGame = () => {
@@ -97,7 +104,7 @@ const lostGame = () => {
 startGame();
 
 // event listeners
-elements.text.addEventListener('input', startGame);
+elements.text.addEventListener('input', checkWord);
 
 // restart game
 elements.reloadBtn.addEventListener('click', startGame);
