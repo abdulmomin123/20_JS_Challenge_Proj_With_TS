@@ -7,7 +7,6 @@ const elements = {
     endgameEl: document.getElementById('end-game-container'),
     settingsBtn: document.getElementById('settings-btn'),
     settings: document.getElementById('settings'),
-    settingsForm: document.getElementById('settings-form'),
     difficultySelect: document.getElementById('difficulty'),
     reloadBtn: document.querySelector('.reload'),
     finalScore: document.querySelector('.final-score'),
@@ -80,7 +79,11 @@ const lostGame = () => {
 const changeDifficulty = () => {
     difficulty = elements.difficultySelect.value;
 };
+const toggleSettings = () => {
+    elements.settings.classList.toggle('hide');
+};
 startGame();
 elements.text.addEventListener('input', checkWord);
 elements.reloadBtn.addEventListener('click', startGame);
 elements.difficultySelect.addEventListener('change', changeDifficulty);
+elements.settingsBtn.addEventListener('click', toggleSettings);

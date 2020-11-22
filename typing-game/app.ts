@@ -7,7 +7,6 @@ const elements = {
   endgameEl: document.getElementById('end-game-container') as HTMLDivElement,
   settingsBtn: document.getElementById('settings-btn') as HTMLButtonElement,
   settings: document.getElementById('settings') as HTMLDivElement,
-  settingsForm: document.getElementById('settings-form') as HTMLFormElement,
   difficultySelect: document.getElementById('difficulty') as HTMLSelectElement,
   reloadBtn: document.querySelector('.reload') as HTMLButtonElement,
   finalScore: document.querySelector('.final-score') as HTMLParagraphElement,
@@ -107,6 +106,10 @@ const changeDifficulty = () => {
   difficulty = elements.difficultySelect.value as 'easy' | 'medium' | 'hard';
 };
 
+const toggleSettings = () => {
+  elements.settings.classList.toggle('hide');
+};
+
 startGame();
 
 // event listeners
@@ -117,3 +120,6 @@ elements.reloadBtn.addEventListener('click', startGame);
 
 // game hardness
 elements.difficultySelect.addEventListener('change', changeDifficulty);
+
+// settings
+elements.settingsBtn.addEventListener('click', toggleSettings);
