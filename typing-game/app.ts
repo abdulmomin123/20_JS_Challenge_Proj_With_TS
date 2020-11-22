@@ -56,12 +56,15 @@ let difficulty =
 
 // functions
 const startGame = () => {
+  // reseting the UI
   elements.endgameEl.classList.remove('display');
   elements.timeEl.textContent = `10s`;
+  elements.scoreEl.textContent = '0';
 
   // assign a random word
   randomWord = words[Math.floor(Math.random() * words.length)];
 
+  elements.word.textContent = randomWord;
   // reset all scores
   score = 0;
   time = 10;

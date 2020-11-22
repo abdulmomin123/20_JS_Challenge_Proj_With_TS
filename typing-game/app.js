@@ -43,7 +43,9 @@ let difficulty = localStorage.getItem('difficulty') !== null
 const startGame = () => {
     elements.endgameEl.classList.remove('display');
     elements.timeEl.textContent = `10s`;
+    elements.scoreEl.textContent = '0';
     randomWord = words[Math.floor(Math.random() * words.length)];
+    elements.word.textContent = randomWord;
     score = 0;
     time = 10;
     elements.text.focus();
