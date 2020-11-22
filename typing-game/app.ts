@@ -101,7 +101,7 @@ const lostGame = () => {
 };
 
 const changeDifficulty = () => {
-  //
+  difficulty = elements.difficultySelect.value as 'easy' | 'medium' | 'hard';
 };
 
 startGame();

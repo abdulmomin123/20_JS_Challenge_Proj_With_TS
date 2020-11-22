@@ -73,6 +73,7 @@ const lostGame = () => {
     elements.finalScore.textContent = `Your final score is ${score}`;
 };
 const changeDifficulty = () => {
+    difficulty = elements.difficultySelect.value;
 };
 startGame();
 elements.text.addEventListener('input', checkWord);
