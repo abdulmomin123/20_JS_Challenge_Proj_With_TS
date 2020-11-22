@@ -9,6 +9,7 @@ const elements = {
     settings: document.getElementById('settings'),
     settingsForm: document.getElementById('settings-form'),
     difficultySelect: document.getElementById('difficulty'),
+    reloadBtn: document.querySelector('.reload'),
 };
 const words = [
     'sigh',
@@ -40,13 +41,15 @@ let difficulty = localStorage.getItem('difficulty') !== null
     ? localStorage.getItem('difficulty')
     : 'medium';
 const startGame = () => {
+    elements.endgameEl.classList.remove('display');
+    elements.timeEl.textContent = `10s`;
     randomWord = words[Math.floor(Math.random() * words.length)];
     score = 0;
     time = 10;
     elements.text.focus();
     timer = setInterval(() => {
-        if (time === 0)
-            return clearInterval(timer);
+        if (time <= 0)
+            return lostGame();
         time--;
         elements.timeEl.textContent = `${time}s`;
     }, 1000);
@@ -56,6 +59,9 @@ const checkWord = () => {
 const increaseScore = () => {
 };
 const lostGame = () => {
+    clearInterval(timer);
+    elements.endgameEl.classList.add('display');
 };
 startGame();
 elements.text.addEventListener('input', startGame);
+elements.reloadBtn.addEventListener('click', startGame);

@@ -9,6 +9,7 @@ const elements = {
   settings: document.getElementById('settings') as HTMLDivElement,
   settingsForm: document.getElementById('settings-form') as HTMLFormElement,
   difficultySelect: document.getElementById('difficulty') as HTMLSelectElement,
+  reloadBtn: document.querySelector('.reload') as HTMLButtonElement,
 };
 
 // List of words for game
@@ -55,6 +56,9 @@ let difficulty =
 
 // functions
 const startGame = () => {
+  elements.endgameEl.classList.remove('display');
+  elements.timeEl.textContent = `10s`;
+
   // assign a random word
   randomWord = words[Math.floor(Math.random() * words.length)];
 
@@ -66,7 +70,7 @@ const startGame = () => {
 
   // start the timer
   timer = setInterval(() => {
-    if (time === 0) return clearInterval(timer);
+    if (time <= 0) return lostGame();
 
     time--;
     elements.timeEl.textContent = `${time}s`;
@@ -82,10 +86,15 @@ const increaseScore = () => {
 };
 
 const lostGame = () => {
-  //
+  clearInterval(timer);
+
+  elements.endgameEl.classList.add('display');
 };
 
 startGame();
 
 // event listeners
 elements.text.addEventListener('input', startGame);
+
+// restart game
+elements.reloadBtn.addEventListener('click', startGame);
