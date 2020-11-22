@@ -10,6 +10,7 @@ const elements = {
   settingsForm: document.getElementById('settings-form') as HTMLFormElement,
   difficultySelect: document.getElementById('difficulty') as HTMLSelectElement,
   reloadBtn: document.querySelector('.reload') as HTMLButtonElement,
+  finalScore: document.querySelector('.final-score') as HTMLParagraphElement,
 };
 
 // List of words for game
@@ -49,10 +50,7 @@ let time = 10;
 let timer: number;
 
 // Set difficulty to value in ls or medium
-let difficulty =
-  localStorage.getItem('difficulty') !== null
-    ? localStorage.getItem('difficulty')
-    : 'medium';
+let difficulty: 'easy' | 'medium' | 'hard' = 'medium';
 
 // functions
 const startGame = () => {
@@ -88,17 +86,22 @@ const checkWord = () => {
 const increaseScore = () => {
   time += 5;
   score++;
+
   elements.text.value = '';
   randomWord = words[Math.floor(Math.random() * words.length)];
   elements.word.textContent = randomWord;
-
-  console.log('hi');
+  elements.scoreEl.textContent = `${score}`;
 };
 
 const lostGame = () => {
   clearInterval(timer);
 
   elements.endgameEl.classList.add('display');
+  elements.finalScore.textContent = `Your final score is ${score}`;
+};
+
+const changeDifficulty = () => {
+  //
 };
 
 startGame();
@@ -108,3 +111,6 @@ elements.text.addEventListener('input', checkWord);
 
 // restart game
 elements.reloadBtn.addEventListener('click', startGame);
+
+// game hardness
+elements.difficultySelect.addEventListener('change', changeDifficulty);

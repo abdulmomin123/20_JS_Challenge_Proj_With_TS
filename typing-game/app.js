@@ -10,6 +10,7 @@ const elements = {
     settingsForm: document.getElementById('settings-form'),
     difficultySelect: document.getElementById('difficulty'),
     reloadBtn: document.querySelector('.reload'),
+    finalScore: document.querySelector('.final-score'),
 };
 const words = [
     'sigh',
@@ -37,9 +38,7 @@ let randomWord;
 let score = 0;
 let time = 10;
 let timer;
-let difficulty = localStorage.getItem('difficulty') !== null
-    ? localStorage.getItem('difficulty')
-    : 'medium';
+let difficulty = 'medium';
 const startGame = () => {
     elements.endgameEl.classList.remove('display');
     elements.timeEl.textContent = `10s`;
@@ -66,12 +65,16 @@ const increaseScore = () => {
     elements.text.value = '';
     randomWord = words[Math.floor(Math.random() * words.length)];
     elements.word.textContent = randomWord;
-    console.log('hi');
+    elements.scoreEl.textContent = `${score}`;
 };
 const lostGame = () => {
     clearInterval(timer);
     elements.endgameEl.classList.add('display');
+    elements.finalScore.textContent = `Your final score is ${score}`;
+};
+const changeDifficulty = () => {
 };
 startGame();
 elements.text.addEventListener('input', checkWord);
 elements.reloadBtn.addEventListener('click', startGame);
+elements.difficultySelect.addEventListener('change', changeDifficulty);
