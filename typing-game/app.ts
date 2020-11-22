@@ -1,14 +1,14 @@
 // dom elements
 const elements = {
-  word: document.getElementById('word'),
-  text: document.getElementById('text'),
-  scoreEl: document.getElementById('score'),
-  timeEl: document.getElementById('time'),
-  endgameEl: document.getElementById('end-game-container'),
-  settingsBtn: document.getElementById('settings-btn'),
-  settings: document.getElementById('settings'),
-  settingsForm: document.getElementById('settings-form'),
-  difficultySelect: document.getElementById('difficulty'),
+  word: document.getElementById('word') as HTMLHeadingElement,
+  text: document.getElementById('text') as HTMLInputElement,
+  scoreEl: document.getElementById('score') as HTMLParagraphElement,
+  timeEl: document.getElementById('time') as HTMLParagraphElement,
+  endgameEl: document.getElementById('end-game-container') as HTMLDivElement,
+  settingsBtn: document.getElementById('settings-btn') as HTMLButtonElement,
+  settings: document.getElementById('settings') as HTMLDivElement,
+  settingsForm: document.getElementById('settings-form') as HTMLFormElement,
+  difficultySelect: document.getElementById('difficulty') as HTMLSelectElement,
 };
 
 // List of words for game
@@ -36,7 +36,7 @@ const words = [
 ];
 
 // Init word
-let randomWord;
+let randomWord = words[Math.floor(Math.random() * words.length)];
 
 // Init score
 let score = 0;
@@ -51,5 +51,9 @@ let difficulty =
     : 'medium';
 
 // functions
+const startGame = () => {
+  //
+};
 
 // event listeners
+elements.text;

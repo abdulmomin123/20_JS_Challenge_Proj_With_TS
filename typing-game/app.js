@@ -32,9 +32,12 @@ const words = [
     'drag',
     'loving',
 ];
-let randomWord;
+let randomWord = words[Math.floor(Math.random() * words.length)];
 let score = 0;
 let time = 10;
 let difficulty = localStorage.getItem('difficulty') !== null
     ? localStorage.getItem('difficulty')
     : 'medium';
+const startGame = () => {
+};
+elements.text;
