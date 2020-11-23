@@ -22,3 +22,17 @@ const closeModal = () => {
 };
 
 // event listeners
+// text box open handler
+elements.toggleBtn.addEventListener('click', openModal);
+
+// pre-rendered phrase click handler
+elements.main.addEventListener('click', openModal);
+
+// speech mode change handler
+elements.voicesSelect.addEventListener('change', openModal);
+
+// read provided text handler
+elements.readBtn.addEventListener('click', openModal);
+
+// close modal handler
+elements.closeBtn.addEventListener('click', closeModal);

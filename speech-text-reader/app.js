@@ -14,3 +14,8 @@ const openModal = () => {
 };
 const closeModal = () => {
 };
+elements.toggleBtn.addEventListener('click', openModal);
+elements.main.addEventListener('click', openModal);
+elements.voicesSelect.addEventListener('change', openModal);
+elements.readBtn.addEventListener('click', openModal);
+elements.closeBtn.addEventListener('click', closeModal);
