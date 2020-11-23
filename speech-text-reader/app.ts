@@ -9,11 +9,12 @@ const elements = {
   textBox: document.querySelector('.text-box') as HTMLDivElement,
 };
 
-let voices: object[] = [];
+const voices: object[] = [];
+const utterance = new SpeechSynthesisUtterance();
 
 // functions
 const speak = (phrase: string) => {
-  const utterance = new SpeechSynthesisUtterance(phrase);
+  utterance.text = phrase;
   speechSynthesis.speak(utterance);
 };
 
@@ -35,6 +36,11 @@ const configureSpeech = () => {
   });
 };
 
+const changeVoice = () => {
+  const voice = elements.voicesSelect.value;
+  console.log(voice);
+};
+
 // event listeners
 // text box open handler
 elements.toggleBtn.addEventListener('click', openModal);
@@ -43,7 +49,7 @@ elements.toggleBtn.addEventListener('click', openModal);
 elements.closeBtn.addEventListener('click', closeModal);
 
 // speech mode change handler
-elements.voicesSelect.addEventListener('change', openModal);
+elements.voicesSelect.addEventListener('change', changeVoice);
 
 // read provided text handler
 elements.readBtn.addEventListener('click', () => {

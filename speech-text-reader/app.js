@@ -8,9 +8,10 @@ const elements = {
     closeBtn: document.getElementById('close'),
     textBox: document.querySelector('.text-box'),
 };
-let voices = [];
+const voices = [];
+const utterance = new SpeechSynthesisUtterance();
 const speak = (phrase) => {
-    const utterance = new SpeechSynthesisUtterance(phrase);
+    utterance.text = phrase;
     speechSynthesis.speak(utterance);
 };
 const openModal = () => {
@@ -26,9 +27,13 @@ const configureSpeech = () => {
         elements.voicesSelect.insertAdjacentHTML('beforeend', markup);
     });
 };
+const changeVoice = () => {
+    const voice = elements.voicesSelect.value;
+    console.log(voice);
+};
 elements.toggleBtn.addEventListener('click', openModal);
 elements.closeBtn.addEventListener('click', closeModal);
-elements.voicesSelect.addEventListener('change', openModal);
+elements.voicesSelect.addEventListener('change', changeVoice);
 elements.readBtn.addEventListener('click', () => {
     const text = elements.textarea.value;
     speak(text);
