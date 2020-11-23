@@ -1,11 +1,11 @@
 // dom elements
 const elements = {
-  main: document.querySelector('main'),
-  voicesSelect: document.getElementById('voices'),
-  textarea: document.getElementById('text'),
-  readBtn: document.getElementById('read'),
-  toggleBtn: document.getElementById('toggle'),
-  closeBtn: document.getElementById('close'),
+  main: document.querySelector('main') as HTMLDivElement,
+  voicesSelect: document.getElementById('voices') as HTMLSelectElement,
+  textarea: document.getElementById('text') as HTMLTextAreaElement,
+  readBtn: document.getElementById('read') as HTMLButtonElement,
+  toggleBtn: document.getElementById('toggle') as HTMLButtonElement,
+  closeBtn: document.getElementById('close') as HTMLDivElement,
 };
 
 // functions
