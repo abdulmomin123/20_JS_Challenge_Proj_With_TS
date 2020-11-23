@@ -34,8 +34,8 @@ configureSpeech();
 // text box open handler
 elements.toggleBtn.addEventListener('click', openModal);
 
-// pre-rendered phrase click handler
-elements.main.addEventListener('click', openModal);
+// close modal handler
+elements.closeBtn.addEventListener('click', closeModal);
 
 // speech mode change handler
 elements.voicesSelect.addEventListener('change', openModal);
@@ -47,5 +47,16 @@ elements.readBtn.addEventListener('click', () => {
   speak(text);
 });
 
-// close modal handler
-elements.closeBtn.addEventListener('click', closeModal);
+// pre-rendered phrase click handler
+elements.main.addEventListener('click', e => {
+  const target = (e.target as HTMLElement).closest('.box');
+
+  if (!target?.classList.contains('box')) return;
+  target.classList.add('active');
+
+  setTimeout(() => target.classList.remove('active'), 1000);
+
+  const info = `${target.querySelector('.info')?.textContent}`;
+
+  speak(info);
+});
