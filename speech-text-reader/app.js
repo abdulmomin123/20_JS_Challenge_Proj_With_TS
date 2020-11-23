@@ -7,3 +7,10 @@ const elements = {
     toggleBtn: document.getElementById('toggle'),
     closeBtn: document.getElementById('close'),
 };
+const speak = (phrase) => {
+    console.log(phrase);
+};
+const openModal = () => {
+};
+const closeModal = () => {
+};

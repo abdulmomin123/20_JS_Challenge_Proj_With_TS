@@ -9,5 +9,16 @@ const elements = {
 };
 
 // functions
+const speak = (phrase: string) => {
+  console.log(phrase);
+};
+
+const openModal = () => {
+  //
+};
+
+const closeModal = () => {
+  //
+};
 
 // event listeners
