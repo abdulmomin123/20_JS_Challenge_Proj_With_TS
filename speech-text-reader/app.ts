@@ -1,10 +1,12 @@
 // dom elements
-const main = document.querySelector('main');
-const voicesSelect = document.getElementById('voices');
-const textarea = document.getElementById('text');
-const readBtn = document.getElementById('read');
-const toggleBtn = document.getElementById('toggle');
-const closeBtn = document.getElementById('close');
+const elements = {
+  main: document.querySelector('main'),
+  voicesSelect: document.getElementById('voices'),
+  textarea: document.getElementById('text'),
+  readBtn: document.getElementById('read'),
+  toggleBtn: document.getElementById('toggle'),
+  closeBtn: document.getElementById('close'),
+};
 
 // functions
 
