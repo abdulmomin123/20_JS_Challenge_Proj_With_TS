@@ -1,3 +1,4 @@
+// dom elements
 const main = document.querySelector('main');
 const voicesSelect = document.getElementById('voices');
 const textarea = document.getElementById('text');
@@ -55,3 +56,7 @@ const data = [
     text: 'I Want To Go To Grandmas',
   },
 ];
+
+// functions
+
+// event listeners
