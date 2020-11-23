@@ -9,6 +9,8 @@ const elements = {
   textBox: document.querySelector('.text-box') as HTMLDivElement,
 };
 
+let voices: object[] = [];
+
 // functions
 const speak = (phrase: string) => {
   const utterance = new SpeechSynthesisUtterance(phrase);
@@ -17,7 +19,6 @@ const speak = (phrase: string) => {
 
 const openModal = () => {
   elements.textBox.classList.add('show');
-  console.log('h');
 };
 
 const closeModal = () => {
@@ -25,10 +26,14 @@ const closeModal = () => {
 };
 
 const configureSpeech = () => {
-  // speechSynthesis.speak(utterance);
-};
+  voices.push(...speechSynthesis.getVoices());
 
-configureSpeech();
+  voices.forEach((voice: { [prop: string]: any }) => {
+    const markup = `<option value="${voice.voiceURI}">${voice.voiceURI} ${voice.lang}</option>`;
+
+    elements.voicesSelect.insertAdjacentHTML('beforeend', markup);
+  });
+};
 
 // event listeners
 // text box open handler
@@ -52,11 +57,16 @@ elements.main.addEventListener('click', e => {
   const target = (e.target as HTMLElement).closest('.box');
 
   if (!target?.classList.contains('box')) return;
-  target.classList.add('active');
 
+  target.classList.add('active');
   setTimeout(() => target.classList.remove('active'), 1000);
 
   const info = `${target.querySelector('.info')?.textContent}`;
 
   speak(info);
 });
+
+// when the voices are loaded
+window.speechSynthesis.onvoiceschanged = () => {
+  configureSpeech();
+};

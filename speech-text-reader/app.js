@@ -8,20 +8,24 @@ const elements = {
     closeBtn: document.getElementById('close'),
     textBox: document.querySelector('.text-box'),
 };
+let voices = [];
 const speak = (phrase) => {
     const utterance = new SpeechSynthesisUtterance(phrase);
     speechSynthesis.speak(utterance);
 };
 const openModal = () => {
     elements.textBox.classList.add('show');
-    console.log('h');
 };
 const closeModal = () => {
     elements.textBox.classList.remove('show');
 };
 const configureSpeech = () => {
+    voices.push(...speechSynthesis.getVoices());
+    voices.forEach((voice) => {
+        const markup = `<option value="${voice.voiceURI}">${voice.voiceURI} ${voice.lang}</option>`;
+        elements.voicesSelect.insertAdjacentHTML('beforeend', markup);
+    });
 };
-configureSpeech();
 elements.toggleBtn.addEventListener('click', openModal);
 elements.closeBtn.addEventListener('click', closeModal);
 elements.voicesSelect.addEventListener('change', openModal);
@@ -39,3 +43,6 @@ elements.main.addEventListener('click', e => {
     const info = `${(_a = target.querySelector('.info')) === null || _a === void 0 ? void 0 : _a.textContent}`;
     speak(info);
 });
+window.speechSynthesis.onvoiceschanged = () => {
+    configureSpeech();
+};
