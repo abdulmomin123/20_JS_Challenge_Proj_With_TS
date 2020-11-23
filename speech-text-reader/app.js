@@ -28,8 +28,8 @@ const configureSpeech = () => {
     });
 };
 const changeVoice = () => {
-    const voice = elements.voicesSelect.value;
-    console.log(voice);
+    const newVoice = elements.voicesSelect.value;
+    utterance.voice = voices.find((voice) => voice.voiceURI === newVoice);
 };
 elements.toggleBtn.addEventListener('click', openModal);
 elements.closeBtn.addEventListener('click', closeModal);

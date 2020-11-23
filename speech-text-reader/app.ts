@@ -37,8 +37,10 @@ const configureSpeech = () => {
 };
 
 const changeVoice = () => {
-  const voice = elements.voicesSelect.value;
-  console.log(voice);
+  const newVoice = elements.voicesSelect.value;
+  utterance.voice = voices.find(
+    (voice: { [prop: string]: any }) => voice.voiceURI === newVoice
+  ) as SpeechSynthesisVoice;
 };
 
 // event listeners
