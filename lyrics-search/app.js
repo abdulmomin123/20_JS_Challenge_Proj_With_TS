@@ -6,3 +6,6 @@ const elements = {
     more: document.getElementById('more'),
 };
 const apiURL = 'https://api.lyrics.ovh';
+const test = () => {
+};
+elements.form.addEventListener('submit', test);
