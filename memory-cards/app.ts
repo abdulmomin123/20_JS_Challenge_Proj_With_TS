@@ -15,7 +15,7 @@ const elements = {
 
 // global variables
 let currentActiveCard = 0;
-const cards = [];
+const cards: Card[] = [];
 
 // card class
 interface card {
@@ -35,14 +35,13 @@ const toggleCardMaker = () => {
 };
 
 const addCard = () => {
-  // validation
-  if (
-    elements.questionEl.value.trim().length === 0 ||
-    elements.answerEl.value.trim().length === 0
-  )
-    return;
+  const question = elements.questionEl.value.trim();
+  const answer = elements.answerEl.value.trim();
 
-  console.log('hi');
+  // validation
+  if (question.length === 0 || answer.length === 0) return;
+
+  cards.push(new Card(question, answer));
 };
 
 const clearCards = () => {

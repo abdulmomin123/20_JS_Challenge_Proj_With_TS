@@ -24,10 +24,11 @@ const toggleCardMaker = () => {
     elements.addContainer.classList.toggle('show');
 };
 const addCard = () => {
-    if (elements.questionEl.value.trim().length === 0 ||
-        elements.answerEl.value.trim().length === 0)
+    const question = elements.questionEl.value.trim();
+    const answer = elements.answerEl.value.trim();
+    if (question.length === 0 || answer.length === 0)
         return;
-    console.log('hi');
+    cards.push(new Card(question, answer));
 };
 const clearCards = () => {
 };
