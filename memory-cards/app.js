@@ -30,9 +30,11 @@ const addCard = () => {
         return;
     cards.push(new Card(question, answer));
 };
-const clearCards = () => {
-};
 const goThroughCards = () => {
+};
+const saveCards = () => {
+};
+const clearCards = () => {
 };
 const renderCard = () => {
 };

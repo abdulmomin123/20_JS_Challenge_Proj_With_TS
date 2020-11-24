@@ -44,11 +44,15 @@ const addCard = () => {
   cards.push(new Card(question, answer));
 };
 
-const clearCards = () => {
+const goThroughCards = () => {
   //
 };
 
-const goThroughCards = () => {
+const saveCards = () => {
+  //
+};
+
+const clearCards = () => {
   //
 };
 
