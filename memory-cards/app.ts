@@ -18,5 +18,16 @@ let currentActiveCard = 0;
 const cardsEl = [];
 
 // functions
+const addCard = () => {
+  //
+};
+
+const clearCards = () => {
+  //
+};
+
+const goThroughCards = () => {
+  //
+};
 
 // event listeners

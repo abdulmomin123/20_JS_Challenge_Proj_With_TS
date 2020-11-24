@@ -14,3 +14,9 @@ const elements = {
 };
 let currentActiveCard = 0;
 const cardsEl = [];
+const addCard = () => {
+};
+const clearCards = () => {
+};
+const goThroughCards = () => {
+};
