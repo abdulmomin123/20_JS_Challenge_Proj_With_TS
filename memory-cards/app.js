@@ -63,6 +63,7 @@ const saveCards = () => {
 };
 const clearCards = () => {
     cards.splice(0, cards.length);
+    elements.cardsContainer.innerHTML = '';
     saveCards();
 };
 const displayCard = () => {
