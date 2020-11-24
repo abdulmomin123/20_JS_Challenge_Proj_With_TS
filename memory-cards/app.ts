@@ -13,10 +13,8 @@ const elements = {
   addContainer: document.getElementById('add-container') as HTMLDivElement,
 };
 
-// Keep track of current card
+// global variables
 let currentActiveCard = 0;
-
-// Store DOM cards
 const cardsEl = [];
 
 // functions
