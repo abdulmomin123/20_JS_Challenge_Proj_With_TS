@@ -91,10 +91,10 @@ const goThroughCards = (e) => {
     displayCard();
 };
 const flipCard = (e) => {
-    const target = e.target;
+    const target = e.target.closest('.card');
     if (!target.classList.contains('card'))
         return;
-    console.log(target);
+    target.classList.toggle('show-answer');
 };
 displaySavedCards();
 elements.showBtn.addEventListener('click', toggleCardMaker);

@@ -122,11 +122,11 @@ const goThroughCards = (e: Event) => {
 };
 
 const flipCard = (e: Event) => {
-  const target = e.target as HTMLDivElement;
+  const target = (e.target as HTMLElement).closest('.card') as HTMLElement;
 
   if (!target.classList.contains('card')) return;
 
-  console.log(target);
+  target.classList.toggle('show-answer');
 };
 
 displaySavedCards();
