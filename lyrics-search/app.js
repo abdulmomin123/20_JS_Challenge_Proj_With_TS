@@ -27,11 +27,13 @@ const getNextSongs = () => {
 };
 const getLyric = () => {
 };
-const renderSongs = () => {
+const renderSongs = (_songs) => {
+};
+const displaySongs = () => {
 };
 const test = () => {
 };
-elements.form.addEventListener('submit', getSongs);
+elements.form.addEventListener('submit', displaySongs);
 elements.result.addEventListener('click', test);
 elements.more.addEventListener('click', e => {
     const target = e.target.closest('.btn');

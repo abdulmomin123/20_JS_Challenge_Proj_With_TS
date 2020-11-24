@@ -40,17 +40,17 @@ const getLyric = () => {
   //
 };
 
-const renderSongs = () => {
+const renderSongs = (_songs: Song[]) => {
   //
 };
 
-const test = () => {
+const displaySongs = () => {
   //
 };
 
 // event listeners
 // search
-elements.form.addEventListener('submit', getSongs);
+elements.form.addEventListener('submit', displaySongs);
 
 // indivisual song click
 elements.result.addEventListener('click', test);
