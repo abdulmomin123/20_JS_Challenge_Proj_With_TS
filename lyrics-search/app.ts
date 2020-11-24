@@ -10,6 +10,14 @@ const elements = {
 const apiURL = 'https://api.lyrics.ovh';
 
 // functions
+const getSongs = () => {
+  //
+};
+
+const getLyric = () => {
+  //
+};
+
 const test = () => {
   //
 };
@@ -17,6 +25,9 @@ const test = () => {
 // event listeners
 // search
 elements.form.addEventListener('submit', test);
+
+// indivisual song click
+elements.result.addEventListener('click', test);
 
 // next & previous btn click
 elements.more.addEventListener('click', test);
