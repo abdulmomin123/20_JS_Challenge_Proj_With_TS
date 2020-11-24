@@ -122,3 +122,7 @@ ul.songs li {
   transform: scale(1.3);
   margin: 15px;
 }
+
+.hide {
+  visibility: hidden;
+}
