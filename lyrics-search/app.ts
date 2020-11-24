@@ -82,6 +82,8 @@ const displaySongs = async (e: Event) => {
   const songs = await getSongs();
 
   renderSongs(songs.data);
+
+  // make the buttons visible
 };
 
 const displayLyric = async (e: Event) => {
