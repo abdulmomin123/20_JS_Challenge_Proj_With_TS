@@ -52,8 +52,18 @@ const addCard = () => {
   toggleCardMaker();
 };
 
-const goThroughCards = () => {
-  //
+const goThroughCards = (e: Event) => {
+  const btn = (e.target as HTMLElement).closest('.nav-button');
+
+  if (btn?.id === 'prev' && activeCard !== 0) activeCard--;
+  if (
+    btn?.id === 'next' &&
+    activeCard !== cards.length - 1 &&
+    cards.length !== 0
+  )
+    activeCard++;
+
+  console.log(activeCard);
 };
 
 const saveCards = () => {
@@ -82,3 +92,7 @@ elements.addCardBtn.addEventListener('click', addCard);
 
 // clear cards
 elements.clearBtn.addEventListener('click', clearCards);
+
+// go through cards
+elements.prevBtn.addEventListener('click', goThroughCards);
+elements.nextBtn.addEventListener('click', goThroughCards);

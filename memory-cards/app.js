@@ -36,7 +36,15 @@ const addCard = () => {
     clearCardMaker();
     toggleCardMaker();
 };
-const goThroughCards = () => {
+const goThroughCards = (e) => {
+    const btn = e.target.closest('.nav-button');
+    if ((btn === null || btn === void 0 ? void 0 : btn.id) === 'prev' && activeCard !== 0)
+        activeCard--;
+    if ((btn === null || btn === void 0 ? void 0 : btn.id) === 'next' &&
+        activeCard !== cards.length - 1 &&
+        cards.length !== 0)
+        activeCard++;
+    console.log(activeCard);
 };
 const saveCards = () => {
 };
@@ -52,3 +60,5 @@ elements.showBtn.addEventListener('click', toggleCardMaker);
 elements.hideBtn.addEventListener('click', toggleCardMaker);
 elements.addCardBtn.addEventListener('click', addCard);
 elements.clearBtn.addEventListener('click', clearCards);
+elements.prevBtn.addEventListener('click', goThroughCards);
+elements.nextBtn.addEventListener('click', goThroughCards);
