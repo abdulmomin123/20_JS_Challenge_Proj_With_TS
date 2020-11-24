@@ -23,21 +23,31 @@ class Card {
 const toggleCardMaker = () => {
     elements.addContainer.classList.toggle('show');
 };
+const clearCardMaker = () => {
+    elements.questionEl.value = '';
+    elements.answerEl.value = '';
+};
 const addCard = () => {
     const question = elements.questionEl.value.trim();
     const answer = elements.answerEl.value.trim();
     if (question.length === 0 || answer.length === 0)
         return;
     cards.push(new Card(question, answer));
+    clearCardMaker();
+    toggleCardMaker();
 };
 const goThroughCards = () => {
 };
 const saveCards = () => {
 };
 const clearCards = () => {
+    cards.splice(0, cards.length);
+    saveCards();
+    console.log(cards);
 };
 const renderCard = () => {
 };
 elements.showBtn.addEventListener('click', toggleCardMaker);
 elements.hideBtn.addEventListener('click', toggleCardMaker);
 elements.addCardBtn.addEventListener('click', addCard);
+elements.clearBtn.addEventListener('click', clearCards);

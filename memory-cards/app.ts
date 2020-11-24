@@ -34,6 +34,11 @@ const toggleCardMaker = () => {
   elements.addContainer.classList.toggle('show');
 };
 
+const clearCardMaker = () => {
+  elements.questionEl.value = '';
+  elements.answerEl.value = '';
+};
+
 const addCard = () => {
   const question = elements.questionEl.value.trim();
   const answer = elements.answerEl.value.trim();
@@ -42,6 +47,9 @@ const addCard = () => {
   if (question.length === 0 || answer.length === 0) return;
 
   cards.push(new Card(question, answer));
+
+  clearCardMaker();
+  toggleCardMaker();
 };
 
 const goThroughCards = () => {
@@ -53,7 +61,10 @@ const saveCards = () => {
 };
 
 const clearCards = () => {
-  //
+  cards.splice(0, cards.length);
+  saveCards();
+
+  console.log(cards);
 };
 
 const renderCard = () => {
@@ -66,3 +77,6 @@ elements.hideBtn.addEventListener('click', toggleCardMaker);
 
 // add card
 elements.addCardBtn.addEventListener('click', addCard);
+
+// clear cards
+elements.clearBtn.addEventListener('click', clearCards);
