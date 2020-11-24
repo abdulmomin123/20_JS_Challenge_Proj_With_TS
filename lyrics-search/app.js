@@ -13,28 +13,48 @@ const elements = {
     search: document.getElementById('search'),
     result: document.getElementById('result'),
     more: document.getElementById('more'),
+    songs: document.querySelector('.songs'),
 };
 let nextPage;
-const getSongs = (e) => __awaiter(void 0, void 0, void 0, function* () {
-    e.preventDefault();
+const getSongs = () => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield (yield fetch(`https://api.lyrics.ovh/suggest/${elements.search.value}`)).json();
-    console.log(response);
     return response;
 });
 const getPrevSongs = () => {
 };
 const getNextSongs = () => {
 };
-const getLyric = () => {
+const getLyric = (artist, title) => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield (yield fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)).json();
+    return response;
+});
+const renderSongs = (songs) => {
+    songs.forEach(song => {
+        const markup = `
+    <li>
+      <span><strong>${song.artist.name}</strong> - ${song.title}</span>
+      <button class="btn" data-artist="${song.artist.name}" data-songtitle="${song.title}">Get Lyrics</button>
+    </li>
+    `;
+        elements.songs.insertAdjacentHTML('beforeend', markup);
+    });
 };
-const renderSongs = (_songs) => {
-};
-const displaySongs = () => {
-};
-const test = () => {
-};
+const displaySongs = (e) => __awaiter(void 0, void 0, void 0, function* () {
+    e.preventDefault();
+    const songs = yield getSongs();
+    renderSongs(songs.data);
+});
+const displayLyric = (e) => __awaiter(void 0, void 0, void 0, function* () {
+    const target = e.target.closest('.btn');
+    if (!target)
+        return;
+    const artist = target.dataset.artist;
+    const title = target.dataset.songtitle;
+    const lyric = yield getLyric(artist, title);
+    console.log(lyric, artist, title);
+});
 elements.form.addEventListener('submit', displaySongs);
-elements.result.addEventListener('click', test);
+elements.result.addEventListener('click', displayLyric);
 elements.more.addEventListener('click', e => {
     const target = e.target.closest('.btn');
     if (!target)
