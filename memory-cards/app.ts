@@ -49,9 +49,10 @@ const addCard = () => {
   cards.push(new Card(question, answer));
 
   insertCard(cards[cards.length - 1]);
-  saveCards();
+  displayCard();
   clearCardMaker();
   toggleCardMaker();
+  saveCards();
 };
 
 const insertCard = (card: card) => {
@@ -75,6 +76,37 @@ const insertCard = (card: card) => {
   elements.cardsContainer.insertAdjacentHTML('beforeend', markup);
 };
 
+const saveCards = () => {
+  localStorage.setItem('memoryCards', JSON.stringify(cards));
+};
+
+const clearCards = () => {
+  cards.splice(0, cards.length);
+  saveCards();
+};
+
+const displayCard = () => {
+  const allCards = elements.cardsContainer.querySelectorAll(
+    '.card'
+  ) as NodeList;
+
+  allCards.forEach(card => (card as HTMLDivElement).classList.remove('active'));
+
+  (allCards[activeCard] as HTMLDivElement).classList.add('active');
+};
+
+const displaySavedCards = () => {
+  if (localStorage.getItem('memoryCards'))
+    cards = JSON.parse(localStorage.getItem('memoryCards')!);
+  else cards = [];
+
+  // now render active card
+  if (cards.length === 0) return;
+
+  cards.forEach((card: card) => insertCard(card));
+  displayCard();
+};
+
 const goThroughCards = (e: Event) => {
   const btn = (e.target as HTMLElement).closest('.nav-button');
 
@@ -85,31 +117,19 @@ const goThroughCards = (e: Event) => {
     cards.length !== 0
   )
     activeCard++;
+
+  displayCard();
 };
 
-const saveCards = () => {
-  localStorage.setItem('memoryCards', JSON.stringify(cards));
+const flipCard = (e: Event) => {
+  const target = e.target as HTMLDivElement;
+
+  if (!target.classList.contains('card')) return;
+
+  console.log(target);
 };
 
-const clearCards = () => {
-  cards.splice(0, cards.length);
-  saveCards();
-};
-
-const renderSavedCards = () => {
-  if (localStorage.getItem('memoryCards'))
-    cards = JSON.parse(localStorage.getItem('memoryCards')!);
-  else cards = [];
-
-  // now render active card
-  if (cards.length !== 0)
-    cards.forEach((card: card) => {
-      insertCard(card);
-      elements.cardsContainer.firstElementChild!.classList.add('active');
-    });
-};
-
-renderSavedCards();
+displaySavedCards();
 
 // event listeners
 elements.showBtn.addEventListener('click', toggleCardMaker);
@@ -124,3 +144,6 @@ elements.clearBtn.addEventListener('click', clearCards);
 // go through cards
 elements.prevBtn.addEventListener('click', goThroughCards);
 elements.nextBtn.addEventListener('click', goThroughCards);
+
+// flip the card
+elements.cardsContainer.addEventListener('click', flipCard);
