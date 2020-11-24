@@ -9,9 +9,22 @@ const elements = {
 // global variables
 const apiURL = 'https://api.lyrics.ovh';
 
+// structure of a song
+interface Song {
+  id: number;
+  title: string;
+  artist: { name: string };
+}
+
 // functions
-const getSongs = () => {
-  //
+const getSongs = async (e: Event) => {
+  e.preventDefault();
+
+  const response = await (
+    await fetch(`${apiURL}/suggest/${elements.search.value}`)
+  ).json();
+
+  console.log(response);
 };
 
 const getLyric = () => {
@@ -24,7 +37,7 @@ const test = () => {
 
 // event listeners
 // search
-elements.form.addEventListener('submit', test);
+elements.form.addEventListener('submit', getSongs);
 
 // indivisual song click
 elements.result.addEventListener('click', test);
