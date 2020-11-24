@@ -12,7 +12,7 @@ const elements = {
     clearBtn: document.getElementById('clear'),
     addContainer: document.getElementById('add-container'),
 };
-let currentActiveCard = 0;
+let activeCard = 0;
 const cards = [];
 class Card {
     constructor(question, answer) {
@@ -47,6 +47,7 @@ const clearCards = () => {
 };
 const renderCard = () => {
 };
+renderCard();
 elements.showBtn.addEventListener('click', toggleCardMaker);
 elements.hideBtn.addEventListener('click', toggleCardMaker);
 elements.addCardBtn.addEventListener('click', addCard);

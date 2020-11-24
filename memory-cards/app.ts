@@ -14,7 +14,7 @@ const elements = {
 };
 
 // global variables
-let currentActiveCard = 0;
+let activeCard = 0;
 const cards: Card[] = [];
 
 // card class
@@ -70,6 +70,8 @@ const clearCards = () => {
 const renderCard = () => {
   //
 };
+
+renderCard();
 
 // event listeners
 elements.showBtn.addEventListener('click', toggleCardMaker);
