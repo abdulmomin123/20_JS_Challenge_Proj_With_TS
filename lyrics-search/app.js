@@ -1,6 +1,8 @@
 "use strict";
-const form = document.getElementById('form');
-const search = document.getElementById('search');
-const result = document.getElementById('result');
-const more = document.getElementById('more');
+const elements = {
+    form: document.getElementById('form'),
+    search: document.getElementById('search'),
+    result: document.getElementById('result'),
+    more: document.getElementById('more'),
+};
 const apiURL = 'https://api.lyrics.ovh';
