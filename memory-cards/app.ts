@@ -33,6 +33,7 @@ class Card implements card {
 const toggleCardMaker = () => {
   elements.addContainer.classList.toggle('show');
 };
+
 const addCard = () => {
   //
 };
@@ -42,6 +43,10 @@ const clearCards = () => {
 };
 
 const goThroughCards = () => {
+  //
+};
+
+const renderCard = () => {
   //
 };
 

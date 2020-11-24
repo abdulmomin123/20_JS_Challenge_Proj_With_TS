@@ -29,5 +29,7 @@ const clearCards = () => {
 };
 const goThroughCards = () => {
 };
+const renderCard = () => {
+};
 elements.showBtn.addEventListener('click', toggleCardMaker);
 elements.hideBtn.addEventListener('click', toggleCardMaker);
