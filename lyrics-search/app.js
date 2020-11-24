@@ -29,6 +29,7 @@ const getLyric = (artist, title) => __awaiter(void 0, void 0, void 0, function* 
     return response;
 });
 const renderSongs = (songs) => {
+    elements.songs.innerHTML = '';
     songs.forEach(song => {
         const markup = `
     <li>
@@ -40,10 +41,10 @@ const renderSongs = (songs) => {
     });
 };
 const renderLyric = ({ artist, title, lyric, }) => {
-    elements.result.innerHTML = `
+    elements.songs.innerHTML = `
   <h2><strong>${artist}</strong> - ${title}</h2>
 
-  <span>${lyric}</span>
+  <span>${lyric.lyrics}</span>
   `;
 };
 const displaySongs = (e) => __awaiter(void 0, void 0, void 0, function* () {
@@ -58,7 +59,9 @@ const displayLyric = (e) => __awaiter(void 0, void 0, void 0, function* () {
     const artist = target.dataset.artist;
     const title = target.dataset.songtitle;
     const lyric = yield getLyric(artist, title);
+    lyric.lyrics = lyric.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
     renderLyric({ artist, title, lyric });
+    console.log(lyric.lyrics);
 });
 elements.form.addEventListener('submit', displaySongs);
 elements.result.addEventListener('click', displayLyric);

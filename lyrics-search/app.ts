@@ -14,6 +14,10 @@ interface Song {
   artist: { name: string };
 }
 
+interface Lyric {
+  lyrics: string;
+}
+
 let nextPage: string;
 
 // functions
@@ -42,6 +46,8 @@ const getLyric = async (artist: string, title: string) => {
 };
 
 const renderSongs = (songs: Song[]) => {
+  elements.songs.innerHTML = '';
+
   songs.forEach(song => {
     const markup = `
     <li>
@@ -61,12 +67,12 @@ const renderLyric = ({
 }: {
   artist: string;
   title: string;
-  lyric: string;
+  lyric: Lyric;
 }) => {
-  elements.result.innerHTML = `
+  elements.songs.innerHTML = `
   <h2><strong>${artist}</strong> - ${title}</h2>
 
-  <span>${lyric}</span>
+  <span>${lyric.lyrics}</span>
   `;
 };
 
@@ -86,11 +92,13 @@ const displayLyric = async (e: Event) => {
   const artist = target.dataset.artist!;
   const title = target.dataset.songtitle!;
 
-  const lyric = await getLyric(artist, title);
+  const lyric: Lyric = await getLyric(artist, title);
+
+  lyric.lyrics = lyric.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
 
   renderLyric({ artist, title, lyric });
 
-  // console.log(lyric.lyrics, artist, title);
+  console.log(lyric.lyrics);
 };
 
 // event listeners
