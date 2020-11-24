@@ -13,7 +13,13 @@ const elements = {
     addContainer: document.getElementById('add-container'),
 };
 let currentActiveCard = 0;
-const cardsEl = [];
+const cards = [];
+class Card {
+    constructor(question, answer) {
+        this.question = question;
+        this.answer = answer;
+    }
+}
 const toggleCardMaker = () => {
     elements.addContainer.classList.toggle('show');
 };

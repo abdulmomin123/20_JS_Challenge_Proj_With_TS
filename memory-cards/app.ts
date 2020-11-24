@@ -15,7 +15,19 @@ const elements = {
 
 // global variables
 let currentActiveCard = 0;
-const cardsEl = [];
+const cards = [];
+
+// card class
+interface card {
+  question: string;
+  answer: string;
+}
+
+class Card implements card {
+  constructor(public question: string, public answer: string) {
+    //
+  }
+}
 
 // functions
 const toggleCardMaker = () => {
