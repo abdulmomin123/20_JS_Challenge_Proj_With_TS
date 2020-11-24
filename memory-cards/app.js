@@ -70,6 +70,7 @@ const displayCard = () => {
     const allCards = elements.cardsContainer.querySelectorAll('.card');
     allCards.forEach(card => card.classList.remove('active'));
     allCards[activeCard].classList.add('active');
+    elements.currentEl.textContent = `${activeCard + 1}/${cards.length}`;
 };
 const displaySavedCards = () => {
     if (localStorage.getItem('memoryCards'))

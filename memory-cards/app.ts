@@ -94,6 +94,7 @@ const displayCard = () => {
   allCards.forEach(card => (card as HTMLDivElement).classList.remove('active'));
 
   (allCards[activeCard] as HTMLDivElement).classList.add('active');
+  elements.currentEl.textContent = `${activeCard + 1}/${cards.length}`;
 };
 
 const displaySavedCards = () => {
