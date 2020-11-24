@@ -15,7 +15,7 @@ const elements = {
 
 // global variables
 let activeCard = 0;
-const cards: Card[] = [];
+let cards: Card[] = [];
 
 // card class
 interface card {
@@ -68,7 +68,7 @@ const goThroughCards = (e: Event) => {
 };
 
 const saveCards = () => {
-  //
+  localStorage.setItem('memoryCards', JSON.stringify(cards));
 };
 
 const clearCards = () => {
@@ -77,7 +77,7 @@ const clearCards = () => {
 };
 
 const renderCard = () => {
-  //
+  cards = JSON.parse(localStorage.getItem('memoryCards')) || [];
 };
 
 renderCard();

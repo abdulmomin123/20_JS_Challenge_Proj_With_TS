@@ -48,6 +48,7 @@ const goThroughCards = (e) => {
     renderCard();
 };
 const saveCards = () => {
+    localStorage.setItem('memoryCards', JSON.stringify(cards));
 };
 const clearCards = () => {
     cards.splice(0, cards.length);
