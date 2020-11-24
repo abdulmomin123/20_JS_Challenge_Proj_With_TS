@@ -14,11 +14,11 @@ const elements = {
     result: document.getElementById('result'),
     more: document.getElementById('more'),
 };
-const apiURL = 'https://api.lyrics.ovh';
 const getSongs = (e) => __awaiter(void 0, void 0, void 0, function* () {
     e.preventDefault();
-    const response = yield (yield fetch(`${apiURL}/suggest/${elements.search.value}`)).json();
+    const response = yield (yield fetch(`https://api.lyrics.ovh/suggest/${elements.search.value}`)).json();
     console.log(response);
+    return response;
 });
 const getLyric = () => {
 };

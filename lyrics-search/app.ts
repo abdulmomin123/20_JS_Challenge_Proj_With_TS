@@ -7,8 +7,6 @@ const elements = {
 };
 
 // global variables
-const apiURL = 'https://api.lyrics.ovh';
-
 // structure of a song
 interface Song {
   id: number;
@@ -21,10 +19,11 @@ const getSongs = async (e: Event) => {
   e.preventDefault();
 
   const response = await (
-    await fetch(`${apiURL}/suggest/${elements.search.value}`)
+    await fetch(`https://api.lyrics.ovh/suggest/${elements.search.value}`)
   ).json();
 
   console.log(response);
+  return response;
 };
 
 const getLyric = () => {
