@@ -33,9 +33,29 @@ const addCard = () => {
     if (question.length === 0 || answer.length === 0)
         return;
     cards.push(new Card(question, answer));
+    insertCard(cards[cards.length - 1]);
     saveCards();
     clearCardMaker();
     toggleCardMaker();
+};
+const insertCard = (card) => {
+    const markup = `
+  <div class="card">
+    <div class="inner-card">
+      <div class="inner-card-front">
+        <p>
+          ${card.question}
+        </p>
+      </div>
+      <div class="inner-card-back">
+        <p>
+        ${card.answer}
+        </p>
+      </div>
+    </div>
+  </div>
+`;
+    elements.cardsContainer.insertAdjacentHTML('beforeend', markup);
 };
 const goThroughCards = (e) => {
     const btn = e.target.closest('.nav-button');
@@ -45,7 +65,6 @@ const goThroughCards = (e) => {
         activeCard !== cards.length - 1 &&
         cards.length !== 0)
         activeCard++;
-    renderCard();
 };
 const saveCards = () => {
     localStorage.setItem('memoryCards', JSON.stringify(cards));
@@ -54,30 +73,15 @@ const clearCards = () => {
     cards.splice(0, cards.length);
     saveCards();
 };
-const renderCard = () => {
+const renderSavedCards = () => {
     if (localStorage.getItem('memoryCards'))
         cards = JSON.parse(localStorage.getItem('memoryCards'));
     else
         cards = [];
-    const markup = `
-  <div class="card active">
-    <div class="inner-card">
-      <div class="inner-card-front">
-        <p>
-          ${cards[activeCard].question}
-        </p>
-      </div>
-      <div class="inner-card-back">
-        <p>
-        ${cards[activeCard].answer}
-        </p>
-      </div>
-    </div>
-  </div>
-`;
-    elements.cardsContainer.insertAdjacentHTML('beforeend', markup);
+    if (cards.length !== 0)
+        cards.forEach((card) => insertCard(card));
 };
-renderCard();
+renderSavedCards();
 elements.showBtn.addEventListener('click', toggleCardMaker);
 elements.hideBtn.addEventListener('click', toggleCardMaker);
 elements.addCardBtn.addEventListener('click', addCard);

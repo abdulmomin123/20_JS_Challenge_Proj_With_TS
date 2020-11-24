@@ -48,9 +48,31 @@ const addCard = () => {
 
   cards.push(new Card(question, answer));
 
+  insertCard(cards[cards.length - 1]);
   saveCards();
   clearCardMaker();
   toggleCardMaker();
+};
+
+const insertCard = (card: card) => {
+  const markup = `
+  <div class="card">
+    <div class="inner-card">
+      <div class="inner-card-front">
+        <p>
+          ${card.question}
+        </p>
+      </div>
+      <div class="inner-card-back">
+        <p>
+        ${card.answer}
+        </p>
+      </div>
+    </div>
+  </div>
+`;
+
+  elements.cardsContainer.insertAdjacentHTML('beforeend', markup);
 };
 
 const goThroughCards = (e: Event) => {
@@ -63,8 +85,6 @@ const goThroughCards = (e: Event) => {
     cards.length !== 0
   )
     activeCard++;
-
-  renderCard();
 };
 
 const saveCards = () => {
@@ -76,33 +96,16 @@ const clearCards = () => {
   saveCards();
 };
 
-const renderCard = () => {
+const renderSavedCards = () => {
   if (localStorage.getItem('memoryCards'))
     cards = JSON.parse(localStorage.getItem('memoryCards')!);
   else cards = [];
 
   // now render active card
-  const markup = `
-  <div class="card active">
-    <div class="inner-card">
-      <div class="inner-card-front">
-        <p>
-          ${cards[activeCard].question}
-        </p>
-      </div>
-      <div class="inner-card-back">
-        <p>
-        ${cards[activeCard].answer}
-        </p>
-      </div>
-    </div>
-  </div>
-`;
-
-  elements.cardsContainer.insertAdjacentHTML('beforeend', markup);
+  if (cards.length !== 0) cards.forEach((card: card) => insertCard(card));
 };
 
-renderCard();
+renderSavedCards();
 
 // event listeners
 elements.showBtn.addEventListener('click', toggleCardMaker);
