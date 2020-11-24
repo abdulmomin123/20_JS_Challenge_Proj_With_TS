@@ -59,6 +59,23 @@ const renderCard = () => {
         cards = JSON.parse(localStorage.getItem('memoryCards'));
     else
         cards = [];
+    const markup = `
+  <div class="card active">
+    <div class="inner-card">
+      <div class="inner-card-front">
+        <p>
+          ${cards[activeCard].question}
+        </p>
+      </div>
+      <div class="inner-card-back">
+        <p>
+        ${cards[activeCard].answer}
+        </p>
+      </div>
+    </div>
+  </div>
+`;
+    elements.cardsContainer.insertAdjacentHTML('beforeend', markup);
 };
 renderCard();
 elements.showBtn.addEventListener('click', toggleCardMaker);

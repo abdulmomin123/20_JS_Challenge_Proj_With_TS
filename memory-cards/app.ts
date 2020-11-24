@@ -82,6 +82,24 @@ const renderCard = () => {
   else cards = [];
 
   // now render active card
+  const markup = `
+  <div class="card active">
+    <div class="inner-card">
+      <div class="inner-card-front">
+        <p>
+          ${cards[activeCard].question}
+        </p>
+      </div>
+      <div class="inner-card-back">
+        <p>
+        ${cards[activeCard].answer}
+        </p>
+      </div>
+    </div>
+  </div>
+`;
+
+  elements.cardsContainer.insertAdjacentHTML('beforeend', markup);
 };
 
 renderCard();
