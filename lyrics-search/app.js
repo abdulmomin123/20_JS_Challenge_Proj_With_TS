@@ -61,7 +61,6 @@ const displayLyric = (e) => __awaiter(void 0, void 0, void 0, function* () {
     const lyric = yield getLyric(artist, title);
     lyric.lyrics = lyric.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
     renderLyric({ artist, title, lyric });
-    console.log(lyric.lyrics);
 });
 elements.form.addEventListener('submit', displaySongs);
 elements.result.addEventListener('click', displayLyric);

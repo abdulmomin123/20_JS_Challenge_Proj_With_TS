@@ -97,8 +97,6 @@ const displayLyric = async (e: Event) => {
   lyric.lyrics = lyric.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
 
   renderLyric({ artist, title, lyric });
-
-  console.log(lyric.lyrics);
 };
 
 // event listeners
