@@ -14,6 +14,8 @@ interface Song {
   artist: { name: string };
 }
 
+let currentPage = 0;
+
 // functions
 const getSongs = async (e: Event) => {
   e.preventDefault();
@@ -27,6 +29,10 @@ const getSongs = async (e: Event) => {
 };
 
 const getLyric = () => {
+  //
+};
+
+const renderSongs = () => {
   //
 };
 

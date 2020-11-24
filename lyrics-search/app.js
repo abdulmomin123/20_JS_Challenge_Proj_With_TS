@@ -14,6 +14,7 @@ const elements = {
     result: document.getElementById('result'),
     more: document.getElementById('more'),
 };
+let currentPage = 0;
 const getSongs = (e) => __awaiter(void 0, void 0, void 0, function* () {
     e.preventDefault();
     const response = yield (yield fetch(`https://api.lyrics.ovh/suggest/${elements.search.value}`)).json();
@@ -21,6 +22,8 @@ const getSongs = (e) => __awaiter(void 0, void 0, void 0, function* () {
     return response;
 });
 const getLyric = () => {
+};
+const renderSongs = () => {
 };
 const test = () => {
 };
