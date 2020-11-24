@@ -79,7 +79,10 @@ const renderSavedCards = () => {
     else
         cards = [];
     if (cards.length !== 0)
-        cards.forEach((card) => insertCard(card));
+        cards.forEach((card) => {
+            insertCard(card);
+            elements.cardsContainer.firstElementChild.classList.add('active');
+        });
 };
 renderSavedCards();
 elements.showBtn.addEventListener('click', toggleCardMaker);

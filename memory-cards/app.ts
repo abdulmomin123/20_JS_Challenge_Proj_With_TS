@@ -102,7 +102,11 @@ const renderSavedCards = () => {
   else cards = [];
 
   // now render active card
-  if (cards.length !== 0) cards.forEach((card: card) => insertCard(card));
+  if (cards.length !== 0)
+    cards.forEach((card: card) => {
+      insertCard(card);
+      elements.cardsContainer.firstElementChild!.classList.add('active');
+    });
 };
 
 renderSavedCards();
