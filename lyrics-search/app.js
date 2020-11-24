@@ -39,6 +39,13 @@ const renderSongs = (songs) => {
         elements.songs.insertAdjacentHTML('beforeend', markup);
     });
 };
+const renderLyric = ({ artist, title, lyric, }) => {
+    elements.result.innerHTML = `
+  <h2><strong>${artist}</strong> - ${title}</h2>
+
+  <span>${lyric}</span>
+  `;
+};
 const displaySongs = (e) => __awaiter(void 0, void 0, void 0, function* () {
     e.preventDefault();
     const songs = yield getSongs();
@@ -51,7 +58,7 @@ const displayLyric = (e) => __awaiter(void 0, void 0, void 0, function* () {
     const artist = target.dataset.artist;
     const title = target.dataset.songtitle;
     const lyric = yield getLyric(artist, title);
-    console.log(lyric, artist, title);
+    renderLyric({ artist, title, lyric });
 });
 elements.form.addEventListener('submit', displaySongs);
 elements.result.addEventListener('click', displayLyric);

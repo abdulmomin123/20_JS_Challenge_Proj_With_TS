@@ -14,10 +14,6 @@ interface Song {
   artist: { name: string };
 }
 
-interface Lyric {
-  lyrics: string;
-}
-
 let nextPage: string;
 
 // functions
@@ -38,7 +34,6 @@ const getNextSongs = () => {
 };
 
 const getLyric = async (artist: string, title: string) => {
-  // https://api.lyrics.ovh/v1/artist/title
   const response = await (
     await fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)
   ).json();
@@ -59,6 +54,22 @@ const renderSongs = (songs: Song[]) => {
   });
 };
 
+const renderLyric = ({
+  artist,
+  title,
+  lyric,
+}: {
+  artist: string;
+  title: string;
+  lyric: string;
+}) => {
+  elements.result.innerHTML = `
+  <h2><strong>${artist}</strong> - ${title}</h2>
+
+  <span>${lyric}</span>
+  `;
+};
+
 const displaySongs = async (e: Event) => {
   e.preventDefault();
 
@@ -77,7 +88,9 @@ const displayLyric = async (e: Event) => {
 
   const lyric = await getLyric(artist, title);
 
-  console.log(lyric, artist, title);
+  renderLyric({ artist, title, lyric });
+
+  // console.log(lyric.lyrics, artist, title);
 };
 
 // event listeners
