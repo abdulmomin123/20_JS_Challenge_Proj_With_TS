@@ -77,7 +77,9 @@ const clearCards = () => {
 };
 
 const renderCard = () => {
-  cards = JSON.parse(localStorage.getItem('memoryCards')) || [];
+  if (localStorage.getItem('memoryCards'))
+    cards = JSON.parse(localStorage.getItem('memoryCards')!);
+  else cards = [];
 };
 
 renderCard();

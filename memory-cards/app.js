@@ -13,7 +13,7 @@ const elements = {
     addContainer: document.getElementById('add-container'),
 };
 let activeCard = 0;
-const cards = [];
+let cards = [];
 class Card {
     constructor(question, answer) {
         this.question = question;
@@ -55,6 +55,10 @@ const clearCards = () => {
     saveCards();
 };
 const renderCard = () => {
+    if (localStorage.getItem('memoryCards'))
+        cards = JSON.parse(localStorage.getItem('memoryCards'));
+    else
+        cards = [];
 };
 renderCard();
 elements.showBtn.addEventListener('click', toggleCardMaker);
