@@ -80,6 +80,8 @@ const renderCard = () => {
   if (localStorage.getItem('memoryCards'))
     cards = JSON.parse(localStorage.getItem('memoryCards')!);
   else cards = [];
+
+  // now render active card
 };
 
 renderCard();
