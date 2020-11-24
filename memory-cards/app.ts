@@ -1,15 +1,17 @@
 // dom elements
-const cardsContainer = document.getElementById('cards-container');
-const prevBtn = document.getElementById('prev');
-const nextBtn = document.getElementById('next');
-const currentEl = document.getElementById('current');
-const showBtn = document.getElementById('show');
-const hideBtn = document.getElementById('hide');
-const questionEl = document.getElementById('question');
-const answerEl = document.getElementById('answer');
-const addCardBtn = document.getElementById('add-card');
-const clearBtn = document.getElementById('clear');
-const addContainer = document.getElementById('add-container');
+const elements = {
+  cardsContainer: document.getElementById('cards-container') as HTMLDivElement,
+  prevBtn: document.getElementById('prev') as HTMLButtonElement,
+  nextBtn: document.getElementById('next') as HTMLButtonElement,
+  currentEl: document.getElementById('current') as HTMLParagraphElement,
+  showBtn: document.getElementById('show') as HTMLButtonElement,
+  hideBtn: document.getElementById('hide') as HTMLButtonElement,
+  questionEl: document.getElementById('question') as HTMLTextAreaElement,
+  answerEl: document.getElementById('answer') as HTMLTextAreaElement,
+  addCardBtn: document.getElementById('add-card') as HTMLButtonElement,
+  clearBtn: document.getElementById('clear') as HTMLButtonElement,
+  addContainer: document.getElementById('add-container') as HTMLDivElement,
+};
 
 // Keep track of current card
 let currentActiveCard = 0;
