@@ -14,7 +14,7 @@ interface Song {
   artist: { name: string };
 }
 
-let currentPage = 0;
+let nextPage: string;
 
 // functions
 const getSongs = async (e: Event) => {
@@ -26,6 +26,14 @@ const getSongs = async (e: Event) => {
 
   console.log(response);
   return response;
+};
+
+const getPrevSongs = () => {
+  //
+};
+
+const getNextSongs = () => {
+  //
 };
 
 const getLyric = () => {
@@ -48,4 +56,13 @@ elements.form.addEventListener('submit', getSongs);
 elements.result.addEventListener('click', test);
 
 // next & previous btn click
-elements.more.addEventListener('click', test);
+elements.more.addEventListener('click', e => {
+  const target = (e.target as HTMLButtonElement).closest('.btn');
+
+  if (!target) return;
+
+  if (target.classList.contains('btn-prev')) getPrevSongs();
+  else getNextSongs();
+
+  console.log(target);
+});

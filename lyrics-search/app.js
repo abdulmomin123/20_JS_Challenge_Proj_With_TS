@@ -14,13 +14,17 @@ const elements = {
     result: document.getElementById('result'),
     more: document.getElementById('more'),
 };
-let currentPage = 0;
+let nextPage;
 const getSongs = (e) => __awaiter(void 0, void 0, void 0, function* () {
     e.preventDefault();
     const response = yield (yield fetch(`https://api.lyrics.ovh/suggest/${elements.search.value}`)).json();
     console.log(response);
     return response;
 });
+const getPrevSongs = () => {
+};
+const getNextSongs = () => {
+};
 const getLyric = () => {
 };
 const renderSongs = () => {
@@ -29,4 +33,13 @@ const test = () => {
 };
 elements.form.addEventListener('submit', getSongs);
 elements.result.addEventListener('click', test);
-elements.more.addEventListener('click', test);
+elements.more.addEventListener('click', e => {
+    const target = e.target.closest('.btn');
+    if (!target)
+        return;
+    if (target.classList.contains('btn-prev'))
+        getPrevSongs();
+    else
+        getNextSongs();
+    console.log(target);
+});
