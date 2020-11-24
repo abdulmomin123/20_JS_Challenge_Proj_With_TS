@@ -48,6 +48,7 @@ const addCard = () => {
 
   cards.push(new Card(question, answer));
 
+  saveCards();
   clearCardMaker();
   toggleCardMaker();
 };
@@ -63,7 +64,7 @@ const goThroughCards = (e: Event) => {
   )
     activeCard++;
 
-  console.log(activeCard);
+  renderCard();
 };
 
 const saveCards = () => {
@@ -73,8 +74,6 @@ const saveCards = () => {
 const clearCards = () => {
   cards.splice(0, cards.length);
   saveCards();
-
-  console.log(cards);
 };
 
 const renderCard = () => {

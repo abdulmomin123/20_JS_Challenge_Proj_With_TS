@@ -33,6 +33,7 @@ const addCard = () => {
     if (question.length === 0 || answer.length === 0)
         return;
     cards.push(new Card(question, answer));
+    saveCards();
     clearCardMaker();
     toggleCardMaker();
 };
@@ -44,14 +45,13 @@ const goThroughCards = (e) => {
         activeCard !== cards.length - 1 &&
         cards.length !== 0)
         activeCard++;
-    console.log(activeCard);
+    renderCard();
 };
 const saveCards = () => {
 };
 const clearCards = () => {
     cards.splice(0, cards.length);
     saveCards();
-    console.log(cards);
 };
 const renderCard = () => {
 };
