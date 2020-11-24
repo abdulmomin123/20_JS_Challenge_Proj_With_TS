@@ -18,6 +18,9 @@ let currentActiveCard = 0;
 const cardsEl = [];
 
 // functions
+const toggleCardMaker = () => {
+  elements.addContainer.classList.toggle('show');
+};
 const addCard = () => {
   //
 };
@@ -31,3 +34,5 @@ const goThroughCards = () => {
 };
 
 // event listeners
+elements.showBtn.addEventListener('click', toggleCardMaker);
+elements.hideBtn.addEventListener('click', toggleCardMaker);
