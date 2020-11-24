@@ -17,3 +17,6 @@ const test = () => {
 // event listeners
 // search
 elements.form.addEventListener('submit', test);
+
+// next & previous btn click
+elements.more.addEventListener('click', test);

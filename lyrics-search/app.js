@@ -9,3 +9,4 @@ const apiURL = 'https://api.lyrics.ovh';
 const test = () => {
 };
 elements.form.addEventListener('submit', test);
+elements.more.addEventListener('click', test);
