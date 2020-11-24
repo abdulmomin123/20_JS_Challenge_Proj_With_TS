@@ -35,7 +35,14 @@ const toggleCardMaker = () => {
 };
 
 const addCard = () => {
-  //
+  // validation
+  if (
+    elements.questionEl.value.trim().length === 0 ||
+    elements.answerEl.value.trim().length === 0
+  )
+    return;
+
+  console.log('hi');
 };
 
 const clearCards = () => {
@@ -53,3 +60,6 @@ const renderCard = () => {
 // event listeners
 elements.showBtn.addEventListener('click', toggleCardMaker);
 elements.hideBtn.addEventListener('click', toggleCardMaker);
+
+// add card
+elements.addCardBtn.addEventListener('click', addCard);

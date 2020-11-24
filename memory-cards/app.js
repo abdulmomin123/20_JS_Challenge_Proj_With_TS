@@ -24,6 +24,10 @@ const toggleCardMaker = () => {
     elements.addContainer.classList.toggle('show');
 };
 const addCard = () => {
+    if (elements.questionEl.value.trim().length === 0 ||
+        elements.answerEl.value.trim().length === 0)
+        return;
+    console.log('hi');
 };
 const clearCards = () => {
 };
@@ -33,3 +37,4 @@ const renderCard = () => {
 };
 elements.showBtn.addEventListener('click', toggleCardMaker);
 elements.hideBtn.addEventListener('click', toggleCardMaker);
+elements.addCardBtn.addEventListener('click', addCard);
