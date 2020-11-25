@@ -15,3 +15,9 @@ const richestPeople = [
     'Michael Bloomberg',
     'Larry Page',
 ];
+const shuffleArr = () => {
+};
+const renderNames = () => {
+};
+const checkOrder = () => {
+};
