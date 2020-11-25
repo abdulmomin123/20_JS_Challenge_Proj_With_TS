@@ -14,12 +14,17 @@ const nextYear = new Date(currentTime.getFullYear() + 1, 0, 1, 0, 0);
 
 // functions
 const displayRemaningTime = () => {
-  const remaningDays = new Date(2021, 0, 1, 0, 0) - Date.now();
-  // const remaningHours
-  // const remaningMinutes
-  // const remaningSeconds
+  let totalSeconds = (+nextYear - Date.now()) / 1000;
+
+  const remaningDays = Math.floor(totalSeconds / 60 / 60 / 24);
+  let remaningHours;
+  let remaningMinutes;
+  let remaningSeconds;
 
   elements.days.textContent = `${remaningDays}`;
+  elements.hours.textContent = `${remaningHours}`;
+  elements.minutes.textContent = `${remaningMinutes}`;
+  elements.seconds.textContent = `${remaningSeconds}`;
   console.log(remaningDays);
   return;
 };
