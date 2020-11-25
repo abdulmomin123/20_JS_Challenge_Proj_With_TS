@@ -5,6 +5,8 @@ const elements = {
   result: document.getElementById('result') as HTMLDivElement,
   more: document.getElementById('more') as HTMLDivElement,
   songs: document.querySelector('.songs') as HTMLElement,
+  prevBtn: document.querySelector('.btn-prev') as HTMLButtonElement,
+  nextBtn: document.querySelector('.btn-next') as HTMLButtonElement,
 };
 
 // global variables
@@ -21,20 +23,22 @@ interface Lyric {
 let nextPage: string;
 
 // functions
-const getSongs = async () => {
-  const response = await (
-    await fetch(`https://api.lyrics.ovh/suggest/${elements.search.value}`)
-  ).json();
+const getSongs = async (url: string) => {
+  const response = await (await fetch(url)).json();
 
   return response;
 };
 
-const getPrevSongs = () => {
-  //
+const getPrevSongs = async (url: string) => {
+  const songs = await getSongs(url);
+
+  renderSongs(songs);
 };
 
-const getNextSongs = () => {
-  //
+const getNextSongs = async (url: string) => {
+  const songs = await getSongs(url);
+
+  renderSongs(songs);
 };
 
 const getLyric = async (artist: string, title: string) => {
@@ -79,11 +83,17 @@ const renderLyric = ({
 const displaySongs = async (e: Event) => {
   e.preventDefault();
 
-  const songs = await getSongs();
+  const songs = await getSongs(
+    `https://api.lyrics.ovh/suggest/${elements.search.value}`
+  );
 
   renderSongs(songs.data);
 
   // make the buttons visible
+  if (songs.next) elements.nextBtn.classList.remove('hide');
+  if (songs.next) elements.prevBtn.classList.remove('hide');
+
+  console.log(songs);
 };
 
 const displayLyric = async (e: Event) => {
@@ -114,8 +124,8 @@ elements.more.addEventListener('click', e => {
 
   if (!target) return;
 
-  if (target.classList.contains('btn-prev')) getPrevSongs();
-  else getNextSongs();
+  if (target.classList.contains('btn-prev')) getPrevSongs('hi');
+  else getNextSongs('hi');
 
   console.log(target);
 });

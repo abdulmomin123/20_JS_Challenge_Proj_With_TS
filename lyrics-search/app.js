@@ -14,16 +14,22 @@ const elements = {
     result: document.getElementById('result'),
     more: document.getElementById('more'),
     songs: document.querySelector('.songs'),
+    prevBtn: document.querySelector('.btn-prev'),
+    nextBtn: document.querySelector('.btn-next'),
 };
 let nextPage;
-const getSongs = () => __awaiter(void 0, void 0, void 0, function* () {
-    const response = yield (yield fetch(`https://api.lyrics.ovh/suggest/${elements.search.value}`)).json();
+const getSongs = (url) => __awaiter(void 0, void 0, void 0, function* () {
+    const response = yield (yield fetch(url)).json();
     return response;
 });
-const getPrevSongs = () => {
-};
-const getNextSongs = () => {
-};
+const getPrevSongs = (url) => __awaiter(void 0, void 0, void 0, function* () {
+    const songs = yield getSongs(url);
+    renderSongs(songs);
+});
+const getNextSongs = (url) => __awaiter(void 0, void 0, void 0, function* () {
+    const songs = yield getSongs(url);
+    renderSongs(songs);
+});
 const getLyric = (artist, title) => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield (yield fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)).json();
     return response;
@@ -49,8 +55,13 @@ const renderLyric = ({ artist, title, lyric, }) => {
 };
 const displaySongs = (e) => __awaiter(void 0, void 0, void 0, function* () {
     e.preventDefault();
-    const songs = yield getSongs();
+    const songs = yield getSongs(`https://api.lyrics.ovh/suggest/${elements.search.value}`);
     renderSongs(songs.data);
+    if (songs.next)
+        elements.nextBtn.classList.remove('hide');
+    if (songs.next)
+        elements.prevBtn.classList.remove('hide');
+    console.log(songs);
 });
 const displayLyric = (e) => __awaiter(void 0, void 0, void 0, function* () {
     const target = e.target.closest('.btn');
@@ -69,8 +80,8 @@ elements.more.addEventListener('click', e => {
     if (!target)
         return;
     if (target.classList.contains('btn-prev'))
-        getPrevSongs();
+        getPrevSongs('hi');
     else
-        getNextSongs();
+        getNextSongs('hi');
     console.log(target);
 });
