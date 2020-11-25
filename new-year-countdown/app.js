@@ -8,9 +8,12 @@ const elements = {
     year: document.getElementById('year'),
 };
 const currentTime = new Date();
-const calcRemaningTime = () => {
-};
+const nextYear = currentTime.getFullYear() + 1;
 const displayRemaningTime = () => {
+    const remaningDays = nextYear - Date.now();
+    elements.days.textContent = `${remaningDays}`;
+    console.log(remaningDays);
+    return;
 };
 const displayNextYear = () => {
     elements.year.textContent = `${currentTime.getFullYear() + 1}`;
