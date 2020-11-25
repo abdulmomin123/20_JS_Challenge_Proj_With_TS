@@ -15,9 +15,20 @@ const richestPeople = [
     'Michael Bloomberg',
     'Larry Page',
 ];
-const shuffleArr = () => {
+const shuffleArr = (arr) => {
+    let m = arr.length, t, i;
+    while (m) {
+        i = Math.floor(Math.random() * m--);
+        t = arr[m];
+        arr[m] = arr[i];
+        arr[i] = t;
+    }
+    return arr;
 };
 const renderNames = () => {
+    const names = shuffleArr(richestPeople);
+    console.log(names);
 };
 const checkOrder = () => {
 };
+renderNames();
