@@ -19,19 +19,19 @@ const elements = {
 };
 let nextPage;
 const getSongs = (url) => __awaiter(void 0, void 0, void 0, function* () {
-    const response = yield (yield fetch(url)).json();
+    const response = yield (yield fetch(`https://cors-anywhere.herokuapp.com/${url}`)).json();
     return response;
 });
 const getPrevSongs = (url) => __awaiter(void 0, void 0, void 0, function* () {
     const songs = yield getSongs(url);
-    renderSongs(songs);
+    renderSongs(songs.data);
 });
 const getNextSongs = (url) => __awaiter(void 0, void 0, void 0, function* () {
     const songs = yield getSongs(url);
-    renderSongs(songs);
+    renderSongs(songs.data);
 });
 const getLyric = (artist, title) => __awaiter(void 0, void 0, void 0, function* () {
-    const response = yield (yield fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)).json();
+    const response = yield (yield fetch(`https://cors-anywhere.herokuapp.com/api.lyrics.ovh/v1/${artist}/${title}`)).json();
     return response;
 });
 const renderSongs = (songs) => {
@@ -55,7 +55,7 @@ const renderLyric = ({ artist, title, lyric, }) => {
 };
 const displaySongs = (e) => __awaiter(void 0, void 0, void 0, function* () {
     e.preventDefault();
-    const songs = yield getSongs(`https://api.lyrics.ovh/suggest/${elements.search.value}`);
+    const songs = yield getSongs(`api.lyrics.ovh/suggest/${elements.search.value}`);
     renderSongs(songs.data);
     if (songs.next)
         elements.nextBtn.classList.remove('hide');
@@ -80,8 +80,8 @@ elements.more.addEventListener('click', e => {
     if (!target)
         return;
     if (target.classList.contains('btn-prev'))
-        getPrevSongs('hi');
+        getPrevSongs(`api.deezer.com/search?limit=15&q=know&index=15`);
     else
-        getNextSongs('hi');
+        getNextSongs(`api.deezer.com/search?limit=15&q=know&index=15`);
     console.log(target);
 });

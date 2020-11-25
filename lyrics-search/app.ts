@@ -24,7 +24,9 @@ let nextPage: string;
 
 // functions
 const getSongs = async (url: string) => {
-  const response = await (await fetch(url)).json();
+  const response = await (
+    await fetch(`https://cors-anywhere.herokuapp.com/${url}`)
+  ).json();
 
   return response;
 };
@@ -32,18 +34,20 @@ const getSongs = async (url: string) => {
 const getPrevSongs = async (url: string) => {
   const songs = await getSongs(url);
 
-  renderSongs(songs);
+  renderSongs(songs.data);
 };
 
 const getNextSongs = async (url: string) => {
   const songs = await getSongs(url);
 
-  renderSongs(songs);
+  renderSongs(songs.data);
 };
 
 const getLyric = async (artist: string, title: string) => {
   const response = await (
-    await fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)
+    await fetch(
+      `https://cors-anywhere.herokuapp.com/api.lyrics.ovh/v1/${artist}/${title}`
+    )
   ).json();
 
   return response;
@@ -84,7 +88,7 @@ const displaySongs = async (e: Event) => {
   e.preventDefault();
 
   const songs = await getSongs(
-    `https://api.lyrics.ovh/suggest/${elements.search.value}`
+    `api.lyrics.ovh/suggest/${elements.search.value}`
   );
 
   renderSongs(songs.data);
@@ -124,8 +128,9 @@ elements.more.addEventListener('click', e => {
 
   if (!target) return;
 
-  if (target.classList.contains('btn-prev')) getPrevSongs('hi');
-  else getNextSongs('hi');
+  if (target.classList.contains('btn-prev'))
+    getPrevSongs(`api.deezer.com/search?limit=15&q=know&index=15`);
+  else getNextSongs(`api.deezer.com/search?limit=15&q=know&index=15`);
 
   console.log(target);
 });
