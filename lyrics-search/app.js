@@ -17,26 +17,26 @@ const elements = {
     prevBtn: document.querySelector('.btn-prev'),
     nextBtn: document.querySelector('.btn-next'),
 };
-let nextPage;
 const getSongs = (url) => __awaiter(void 0, void 0, void 0, function* () {
-    const response = yield (yield fetch(`https://cors-anywhere.herokuapp.com/${url}`)).json();
-    return response;
+    const songs = yield (yield fetch(`https://cors-anywhere.herokuapp.com/${url}`)).json();
+    return songs;
 });
 const getPrevSongs = (url) => __awaiter(void 0, void 0, void 0, function* () {
     const songs = yield getSongs(url);
-    renderSongs(songs.data);
+    renderSongs(songs);
 });
 const getNextSongs = (url) => __awaiter(void 0, void 0, void 0, function* () {
     const songs = yield getSongs(url);
-    renderSongs(songs.data);
+    console.log(songs);
+    renderSongs(songs);
 });
 const getLyric = (artist, title) => __awaiter(void 0, void 0, void 0, function* () {
-    const response = yield (yield fetch(`https://cors-anywhere.herokuapp.com/api.lyrics.ovh/v1/${artist}/${title}`)).json();
-    return response;
+    const lyric = yield (yield fetch(`https://cors-anywhere.herokuapp.com/api.lyrics.ovh/v1/${artist}/${title}`)).json();
+    return lyric;
 });
 const renderSongs = (songs) => {
     elements.songs.innerHTML = '';
-    songs.forEach(song => {
+    songs.data.forEach(song => {
         const markup = `
     <li>
       <span><strong>${song.artist.name}</strong> - ${song.title}</span>
@@ -56,12 +56,15 @@ const renderLyric = ({ artist, title, lyric, }) => {
 const displaySongs = (e) => __awaiter(void 0, void 0, void 0, function* () {
     e.preventDefault();
     const songs = yield getSongs(`api.lyrics.ovh/suggest/${elements.search.value}`);
-    renderSongs(songs.data);
-    if (songs.next)
+    renderSongs(songs);
+    if (songs.next) {
         elements.nextBtn.classList.remove('hide');
-    if (songs.next)
+        elements.nextBtn.dataset.next = songs.next;
+    }
+    if (songs.prev) {
         elements.prevBtn.classList.remove('hide');
-    console.log(songs);
+        elements.prevBtn.dataset.previous = songs.prev;
+    }
 });
 const displayLyric = (e) => __awaiter(void 0, void 0, void 0, function* () {
     const target = e.target.closest('.btn');
@@ -80,8 +83,7 @@ elements.more.addEventListener('click', e => {
     if (!target)
         return;
     if (target.classList.contains('btn-prev'))
-        getPrevSongs(`api.deezer.com/search?limit=15&q=know&index=15`);
+        getPrevSongs(target.dataset.previous);
     else
-        getNextSongs(`api.deezer.com/search?limit=15&q=know&index=15`);
-    console.log(target);
+        getNextSongs(target.dataset.next);
 });
