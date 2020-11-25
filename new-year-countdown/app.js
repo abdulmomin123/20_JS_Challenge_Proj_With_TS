@@ -7,3 +7,13 @@ const elements = {
     countdown: document.getElementById('countdown'),
     year: document.getElementById('year'),
 };
+const currentTime = new Date();
+const calcRemaningTime = () => {
+};
+const displayRemaningTime = () => {
+};
+const displayNextYear = () => {
+    elements.year.textContent = `${currentTime.getFullYear() + 1}`;
+};
+displayRemaningTime();
+displayNextYear();

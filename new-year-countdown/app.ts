@@ -9,5 +9,21 @@ const elements = {
 };
 
 // global variables
+const currentTime = new Date();
 
 // functions
+const calcRemaningTime = () => {
+  //
+};
+
+const displayRemaningTime = () => {
+  //
+};
+
+const displayNextYear = () => {
+  elements.year.textContent = `${currentTime.getFullYear() + 1}`;
+};
+
+// Display remaning time & year
+displayRemaningTime();
+displayNextYear();
