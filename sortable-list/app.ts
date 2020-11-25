@@ -40,10 +40,22 @@ const shuffleArr = (arr: any[]) => {
 const renderNames = () => {
   const names = shuffleArr(richestPeople);
 
-  console.log(names);
+  names.forEach((name, i) => {
+    const markup = `
+      <li data-index="0">
+        <span class="number">${i + 1}</span>
+        <div class="draggable" draggable="true">
+          <p class="person-name">${name}</p>
+          <i class="fas fa-grip-lines" aria-hidden="true"></i>
+        </div>
+      </li>
+    `;
+
+    elements.draggable_list.insertAdjacentHTML('beforeend', markup);
+  });
 };
 
-const checkOrder = () => {
+const checkOrder = (_names: string[]) => {
   //
 };
 
