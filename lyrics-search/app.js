@@ -45,6 +45,20 @@ const renderSongs = (songs) => {
     `;
         elements.songs.insertAdjacentHTML('beforeend', markup);
     });
+    if (songs.next) {
+        elements.nextBtn.classList.remove('hide');
+        elements.nextBtn.dataset.next = songs.next;
+    }
+    else {
+        elements.nextBtn.classList.add('hide');
+    }
+    if (songs.prev) {
+        elements.prevBtn.classList.remove('hide');
+        elements.prevBtn.dataset.previous = songs.prev;
+    }
+    else {
+        elements.prevBtn.classList.add('hide');
+    }
 };
 const renderLyric = ({ artist, title, lyric, }) => {
     elements.songs.innerHTML = `
@@ -57,14 +71,6 @@ const displaySongs = (e) => __awaiter(void 0, void 0, void 0, function* () {
     e.preventDefault();
     const songs = yield getSongs(`api.lyrics.ovh/suggest/${elements.search.value}`);
     renderSongs(songs);
-    if (songs.next) {
-        elements.nextBtn.classList.remove('hide');
-        elements.nextBtn.dataset.next = songs.next;
-    }
-    if (songs.prev) {
-        elements.prevBtn.classList.remove('hide');
-        elements.prevBtn.dataset.previous = songs.prev;
-    }
 });
 const displayLyric = (e) => __awaiter(void 0, void 0, void 0, function* () {
     const target = e.target.closest('.btn');

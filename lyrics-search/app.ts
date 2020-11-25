@@ -71,6 +71,22 @@ const renderSongs = (songs: Songs) => {
 
     elements.songs.insertAdjacentHTML('beforeend', markup);
   });
+
+  // make the buttons visible
+  // add the next or previous link data into the buttons
+  if (songs.next) {
+    elements.nextBtn.classList.remove('hide');
+    elements.nextBtn.dataset.next = songs.next;
+  } else {
+    elements.nextBtn.classList.add('hide');
+  }
+
+  if (songs.prev) {
+    elements.prevBtn.classList.remove('hide');
+    elements.prevBtn.dataset.previous = songs.prev;
+  } else {
+    elements.prevBtn.classList.add('hide');
+  }
 };
 
 const renderLyric = ({
@@ -97,18 +113,6 @@ const displaySongs = async (e: Event) => {
   );
 
   renderSongs(songs);
-
-  // make the buttons visible
-  // add the next or previous link data into the buttons
-  if (songs.next) {
-    elements.nextBtn.classList.remove('hide');
-    elements.nextBtn.dataset.next = songs.next;
-  }
-
-  if (songs.prev) {
-    elements.prevBtn.classList.remove('hide');
-    elements.prevBtn.dataset.previous = songs.prev;
-  }
 };
 
 const displayLyric = async (e: Event) => {
