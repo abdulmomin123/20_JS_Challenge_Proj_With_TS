@@ -1,11 +1,12 @@
 // dom elements
-const days = document.getElementById('days');
-const hours = document.getElementById('hours');
-const minutes = document.getElementById('minutes');
-const seconds = document.getElementById('seconds');
-const countdown = document.getElementById('countdown');
-const year = document.getElementById('year');
-const loading = document.getElementById('loading');
+const elements = {
+  days: document.getElementById('days') as HTMLHeadingElement,
+  hours: document.getElementById('hours') as HTMLHeadingElement,
+  minutes: document.getElementById('minutes') as HTMLHeadingElement,
+  seconds: document.getElementById('seconds') as HTMLHeadingElement,
+  countdown: document.getElementById('countdown') as HTMLDivElement,
+  year: document.getElementById('year') as HTMLDivElement,
+};
 
 // global variables
 

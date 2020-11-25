@@ -1,8 +1,9 @@
 "use strict";
-const days = document.getElementById('days');
-const hours = document.getElementById('hours');
-const minutes = document.getElementById('minutes');
-const seconds = document.getElementById('seconds');
-const countdown = document.getElementById('countdown');
-const year = document.getElementById('year');
-const loading = document.getElementById('loading');
+const elements = {
+    days: document.getElementById('days'),
+    hours: document.getElementById('hours'),
+    minutes: document.getElementById('minutes'),
+    seconds: document.getElementById('seconds'),
+    countdown: document.getElementById('countdown'),
+    year: document.getElementById('year'),
+};
