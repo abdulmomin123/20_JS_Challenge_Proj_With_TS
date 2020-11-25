@@ -26,7 +26,7 @@ const shuffleArr = (arr) => {
     return arr;
 };
 const renderNames = () => {
-    const names = shuffleArr(richestPeople);
+    const names = shuffleArr([...richestPeople]);
     names.forEach((name, i) => {
         const markup = `
       <li data-index="0">
@@ -40,6 +40,15 @@ const renderNames = () => {
         elements.draggable_list.insertAdjacentHTML('beforeend', markup);
     });
 };
-const checkOrder = (_names) => {
+const checkOrder = () => {
+    const userOder = [...elements.draggable_list.querySelectorAll('li')];
+    userOder.forEach((user, i) => {
+        const name = user.querySelector('.person-name').textContent;
+        if (i === richestPeople.indexOf(name))
+            user.classList.add('right');
+        else
+            user.classList.add('wrong');
+    });
 };
 renderNames();
+elements.check.addEventListener('click', checkOrder);
