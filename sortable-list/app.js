@@ -55,13 +55,11 @@ const startDrag = (e) => {
     const target = e.target;
     (_a = e.dataTransfer) === null || _a === void 0 ? void 0 : _a.setData('text/plain', target.querySelector('.person-name').textContent);
 };
-const middleOfDrag = (e) => {
-    console.log(e);
-};
 const endDrag = (e) => {
     const target = e.target.closest('li');
     console.log(target);
 };
 renderNames();
 elements.check.addEventListener('click', checkOrder);
-elements.draggable_list.addEventListener('drop', endDrag);
+elements.draggable_list.addEventListener('dragover', e => e.target.closest('li').classList.add('over'));
+elements.draggable_list.addEventListener('dragleave', e => e.target.closest('li').classList.remove('over'));

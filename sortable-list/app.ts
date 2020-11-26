@@ -75,10 +75,6 @@ const startDrag = (e: DragEvent) => {
   );
 };
 
-const middleOfDrag = (e: DragEvent) => {
-  console.log(e);
-};
-
 const endDrag = (e: DragEvent) => {
   const target = (e.target as HTMLElement).closest('li');
 
@@ -93,5 +89,11 @@ elements.check.addEventListener('click', checkOrder);
 
 // drag handler
 // elements.draggable_list.addEventListener('dragstart', startDrag);
-// elements.draggable_list.addEventListener('dragover', middleOfDrag);
-elements.draggable_list.addEventListener('drop', endDrag);
+
+// elements.draggable_list.addEventListener('drop', endDrag);
+elements.draggable_list.addEventListener('dragover', e =>
+  (e.target as HTMLElement).closest('li')!.classList.add('over')
+);
+elements.draggable_list.addEventListener('dragleave', e =>
+  (e.target as HTMLElement).closest('li')!.classList.remove('over')
+);
