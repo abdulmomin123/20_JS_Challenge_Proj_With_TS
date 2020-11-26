@@ -45,9 +45,9 @@ const checkOrder = () => {
     userOder.forEach((user, i) => {
         const name = user.querySelector('.person-name').textContent;
         if (i === richestPeople.indexOf(name))
-            user.classList.add('right');
+            user.className = 'right';
         else
-            user.classList.add('wrong');
+            user.className = 'wrong';
     });
 };
 const startDrag = (e) => {
@@ -57,7 +57,9 @@ const startDrag = (e) => {
 };
 const endDrag = (e) => {
     const target = e.target.closest('li');
+    const data = e.dataTransfer.getData('text/plain');
     target.classList.remove('over');
+    target.querySelector('.person-name').textContent = data;
     console.log(target);
 };
 renderNames();
