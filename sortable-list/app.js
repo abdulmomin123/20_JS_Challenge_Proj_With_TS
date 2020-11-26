@@ -15,6 +15,7 @@ const richestPeople = [
     'Michael Bloomberg',
     'Larry Page',
 ];
+let draggedEl;
 const shuffleArr = (arr) => {
     let m = arr.length, t, i;
     while (m) {
@@ -53,14 +54,15 @@ const checkOrder = () => {
 const startDrag = (e) => {
     var _a;
     const target = e.target;
+    draggedEl = target;
     (_a = e.dataTransfer) === null || _a === void 0 ? void 0 : _a.setData('text/plain', target.querySelector('.person-name').textContent);
 };
 const endDrag = (e) => {
     const target = e.target.closest('li');
     const data = e.dataTransfer.getData('text/plain');
     target.classList.remove('over');
+    draggedEl.querySelector('.person-name').textContent = target.querySelector('.person-name').textContent;
     target.querySelector('.person-name').textContent = data;
-    console.log(target);
 };
 renderNames();
 elements.check.addEventListener('click', checkOrder);

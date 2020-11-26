@@ -17,6 +17,8 @@ const richestPeople = [
   'Larry Page',
 ];
 
+let draggedEl: HTMLElement;
+
 // functions
 const shuffleArr = (arr: any[]) => {
   let m = arr.length,
@@ -68,6 +70,7 @@ const checkOrder = () => {
 
 const startDrag = (e: DragEvent) => {
   const target = e.target as HTMLElement;
+  draggedEl = target;
 
   e.dataTransfer?.setData(
     'text/plain',
@@ -80,9 +83,10 @@ const endDrag = (e: DragEvent) => {
   const data = e.dataTransfer!.getData('text/plain')!;
 
   target.classList.remove('over');
+  draggedEl.querySelector('.person-name')!.textContent = target.querySelector(
+    '.person-name'
+  )!.textContent;
   target.querySelector('.person-name')!.textContent = data;
-
-  console.log(target);
 };
 
 renderNames();
