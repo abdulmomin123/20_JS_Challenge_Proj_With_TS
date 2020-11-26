@@ -29,7 +29,7 @@ const renderNames = () => {
     const names = shuffleArr([...richestPeople]);
     names.forEach((name, i) => {
         const markup = `
-      <li data-index="0">
+      <li ondragover="event.preventDefault">
         <span class="number">${i + 1}</span>
         <div class="draggable" draggable="true">
           <p class="person-name">${name}</p>
@@ -50,9 +50,18 @@ const checkOrder = () => {
             user.classList.add('wrong');
     });
 };
-const switchPlaces = (e) => {
+const startDrag = (e) => {
+    var _a;
+    const name = e.target.querySelector('.person-name')
+        .textContent;
+    (_a = e.dataTransfer) === null || _a === void 0 ? void 0 : _a.setData('text/plain', name);
+};
+const middleOfDrag = (e) => {
+    console.log(e);
+};
+const endDrag = (e) => {
     console.log(e);
 };
 renderNames();
 elements.check.addEventListener('click', checkOrder);
-elements.draggable_list.addEventListener('drag', switchPlaces);
+elements.draggable_list.addEventListener('dragstart', startDrag);

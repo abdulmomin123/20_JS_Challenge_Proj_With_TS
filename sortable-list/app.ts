@@ -42,7 +42,7 @@ const renderNames = () => {
 
   names.forEach((name, i) => {
     const markup = `
-      <li data-index="0">
+      <li ondragover="event.preventDefault">
         <span class="number">${i + 1}</span>
         <div class="draggable" draggable="true">
           <p class="person-name">${name}</p>
@@ -66,7 +66,18 @@ const checkOrder = () => {
   });
 };
 
-const switchPlaces = (e: Event) => {
+const startDrag = (e: DragEvent) => {
+  const name = (e.target as HTMLElement).querySelector('.person-name')!
+    .textContent!;
+
+  e.dataTransfer?.setData('text/plain', name);
+};
+
+const middleOfDrag = (e: DragEvent) => {
+  console.log(e);
+};
+
+const endDrag = (e: DragEvent) => {
   console.log(e);
 };
 
@@ -77,4 +88,9 @@ renderNames();
 elements.check.addEventListener('click', checkOrder);
 
 // drag handler
-elements.draggable_list.addEventListener('drag', switchPlaces);
+elements.draggable_list.addEventListener('dragstart', startDrag);
+// elements.draggable_list.addEventListener('dragover', e => {
+//   e.preventDefault();
+//   console.log(e);
+// });
+// elements.draggable_list.addEventListener('drop', switchPlaces);
