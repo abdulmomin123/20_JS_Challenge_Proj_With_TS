@@ -76,7 +76,8 @@ const startDrag = (e: DragEvent) => {
 };
 
 const endDrag = (e: DragEvent) => {
-  const target = (e.target as HTMLElement).closest('li');
+  const target = (e.target as HTMLElement).closest('li')!;
+  target.classList.remove('over');
 
   console.log(target);
 };
@@ -88,12 +89,18 @@ renderNames();
 elements.check.addEventListener('click', checkOrder);
 
 // drag handler
-// elements.draggable_list.addEventListener('dragstart', startDrag);
+// start
+elements.draggable_list.addEventListener('dragstart', startDrag);
 
-// elements.draggable_list.addEventListener('drop', endDrag);
+// dragging over
 elements.draggable_list.addEventListener('dragover', e =>
   (e.target as HTMLElement).closest('li')!.classList.add('over')
 );
+
+// drag leave
 elements.draggable_list.addEventListener('dragleave', e =>
   (e.target as HTMLElement).closest('li')!.classList.remove('over')
 );
+
+// drop
+elements.draggable_list.addEventListener('drop', endDrag);

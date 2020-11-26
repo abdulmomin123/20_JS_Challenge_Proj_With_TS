@@ -57,9 +57,12 @@ const startDrag = (e) => {
 };
 const endDrag = (e) => {
     const target = e.target.closest('li');
+    target.classList.remove('over');
     console.log(target);
 };
 renderNames();
 elements.check.addEventListener('click', checkOrder);
+elements.draggable_list.addEventListener('dragstart', startDrag);
 elements.draggable_list.addEventListener('dragover', e => e.target.closest('li').classList.add('over'));
 elements.draggable_list.addEventListener('dragleave', e => e.target.closest('li').classList.remove('over'));
+elements.draggable_list.addEventListener('drop', endDrag);
