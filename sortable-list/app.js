@@ -50,5 +50,9 @@ const checkOrder = () => {
             user.classList.add('wrong');
     });
 };
+const switchPlaces = (e) => {
+    console.log(e);
+};
 renderNames();
 elements.check.addEventListener('click', checkOrder);
+elements.draggable_list.addEventListener('drag', switchPlaces);

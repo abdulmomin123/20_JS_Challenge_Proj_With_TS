@@ -66,8 +66,15 @@ const checkOrder = () => {
   });
 };
 
+const switchPlaces = (e: Event) => {
+  console.log(e);
+};
+
 renderNames();
 
 // event listeners
 // check order
 elements.check.addEventListener('click', checkOrder);
+
+// drag handler
+elements.draggable_list.addEventListener('drag', switchPlaces);
