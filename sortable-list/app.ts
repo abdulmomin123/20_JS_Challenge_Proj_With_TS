@@ -42,7 +42,7 @@ const renderNames = () => {
 
   names.forEach((name, i) => {
     const markup = `
-      <li ondragover="event.preventDefault">
+      <li ondragover="event.preventDefault()">
         <span class="number">${i + 1}</span>
         <div class="draggable" draggable="true">
           <p class="person-name">${name}</p>
@@ -67,10 +67,12 @@ const checkOrder = () => {
 };
 
 const startDrag = (e: DragEvent) => {
-  const name = (e.target as HTMLElement).querySelector('.person-name')!
-    .textContent!;
+  const target = e.target as HTMLElement;
 
-  e.dataTransfer?.setData('text/plain', name);
+  e.dataTransfer?.setData(
+    'text/plain',
+    target.querySelector('.person-name')!.textContent!
+  );
 };
 
 const middleOfDrag = (e: DragEvent) => {
@@ -78,7 +80,9 @@ const middleOfDrag = (e: DragEvent) => {
 };
 
 const endDrag = (e: DragEvent) => {
-  console.log(e);
+  const target = (e.target as HTMLElement).closest('li');
+
+  console.log(target);
 };
 
 renderNames();
@@ -88,9 +92,6 @@ renderNames();
 elements.check.addEventListener('click', checkOrder);
 
 // drag handler
-elements.draggable_list.addEventListener('dragstart', startDrag);
-// elements.draggable_list.addEventListener('dragover', e => {
-//   e.preventDefault();
-//   console.log(e);
-// });
-// elements.draggable_list.addEventListener('drop', switchPlaces);
+// elements.draggable_list.addEventListener('dragstart', startDrag);
+// elements.draggable_list.addEventListener('dragover', middleOfDrag);
+elements.draggable_list.addEventListener('drop', endDrag);
