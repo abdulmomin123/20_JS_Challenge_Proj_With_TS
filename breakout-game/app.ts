@@ -6,7 +6,7 @@ const elements = {
   canvas: document.getElementById('canvas') as HTMLCanvasElement,
 };
 
-const ctx = elements.canvas.getContext('2d');
+const ctx = elements.canvas.getContext('2d') as CanvasRenderingContext2D;
 
 // functions
 const moveBarLeft = () => {
@@ -18,7 +18,8 @@ const moveBarRight = () => {
 };
 
 const drawBricks = () => {
-  //
+  ctx.fillStyle = '#0095dd';
+  ctx.fillRect(45, 55, 70, 20);
 };
 
 const drawBall = () => {
@@ -39,6 +40,8 @@ const moveBar = (e: KeyboardEvent) => {
 
   console.log(key);
 };
+
+drawBricks();
 
 // event listeners
 // move the bar left or right
