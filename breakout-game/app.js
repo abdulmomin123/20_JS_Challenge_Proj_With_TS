@@ -10,9 +10,10 @@ const moveBarLeft = () => {
 };
 const moveBarRight = () => {
 };
-const drawBricks = () => {
+const drawBricks = (startX, startY, brickHeight, bricksPerRow, totalRows) => {
     ctx.fillStyle = '#0095dd';
-    ctx.fillRect(45, 55, 70, 20);
+    ctx.fillRect(startX, startY, 70, brickHeight);
+    console.log(bricksPerRow, totalRows);
 };
 const drawBall = () => {
 };
@@ -28,5 +29,5 @@ const moveBar = (e) => {
         moveBarRight();
     console.log(key);
 };
-drawBricks();
+drawBricks(45, 55, 20, 9, 5);
 document.addEventListener('keydown', moveBar);
