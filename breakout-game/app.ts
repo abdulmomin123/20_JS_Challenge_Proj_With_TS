@@ -22,6 +22,9 @@ const moveBar = (e: KeyboardEvent) => {
 
   if (key !== 37 && key !== 39) return;
 
+  if (key === 37) moveBarLeft();
+  else moveBarRight();
+
   console.log(key);
 };
 

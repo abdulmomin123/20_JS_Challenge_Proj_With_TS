@@ -14,6 +14,10 @@ const moveBar = (e) => {
     const key = e.keyCode;
     if (key !== 37 && key !== 39)
         return;
+    if (key === 37)
+        moveBarLeft();
+    else
+        moveBarRight();
     console.log(key);
 };
 document.addEventListener('keydown', moveBar);
