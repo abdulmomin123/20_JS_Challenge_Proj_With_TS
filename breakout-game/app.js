@@ -5,10 +5,12 @@ const elements = {
     rules: document.getElementById('rules'),
     canvas: document.getElementById('canvas'),
 };
-const context = elements.canvas.getContext('2d');
+const ctx = elements.canvas.getContext('2d');
 const moveBarLeft = () => {
 };
 const moveBarRight = () => {
+};
+const drawBricks = () => {
 };
 const moveBar = (e) => {
     const key = e.keyCode;

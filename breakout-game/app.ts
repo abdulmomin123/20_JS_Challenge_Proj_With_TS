@@ -6,7 +6,7 @@ const elements = {
   canvas: document.getElementById('canvas') as HTMLCanvasElement,
 };
 
-const context = elements.canvas.getContext('2d');
+const ctx = elements.canvas.getContext('2d');
 
 // functions
 const moveBarLeft = () => {
@@ -14,6 +14,10 @@ const moveBarLeft = () => {
 };
 
 const moveBarRight = () => {
+  //
+};
+
+const drawBricks = () => {
   //
 };
 
