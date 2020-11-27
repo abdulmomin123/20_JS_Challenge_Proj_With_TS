@@ -12,6 +12,10 @@ const moveBarRight = () => {
 };
 const drawBricks = () => {
 };
+const drawBall = () => {
+};
+const drawBar = () => {
+};
 const moveBar = (e) => {
     const key = e.keyCode;
     if (key !== 37 && key !== 39)

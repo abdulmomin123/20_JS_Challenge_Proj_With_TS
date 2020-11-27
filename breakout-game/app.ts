@@ -21,6 +21,14 @@ const drawBricks = () => {
   //
 };
 
+const drawBall = () => {
+  //
+};
+
+const drawBar = () => {
+  //
+};
+
 const moveBar = (e: KeyboardEvent) => {
   const key = e.keyCode;
 
