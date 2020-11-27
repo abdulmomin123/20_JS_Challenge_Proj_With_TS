@@ -6,6 +6,10 @@ const elements = {
     canvas: document.getElementById('canvas'),
 };
 const context = elements.canvas.getContext('2d');
+const moveBarLeft = () => {
+};
+const moveBarRight = () => {
+};
 const moveBar = (e) => {
     const key = e.keyCode;
     if (key !== 37 && key !== 39)

@@ -9,6 +9,14 @@ const elements = {
 const context = elements.canvas.getContext('2d');
 
 // functions
+const moveBarLeft = () => {
+  //
+};
+
+const moveBarRight = () => {
+  //
+};
+
 const moveBar = (e: KeyboardEvent) => {
   const key = e.keyCode;
 
