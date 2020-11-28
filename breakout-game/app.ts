@@ -16,6 +16,7 @@ interface Bricks {
   brickHeight: number;
   bricksPerRow: number;
   totalRows: number;
+  spaceBetweenBrick: number;
 }
 
 // functions
@@ -35,14 +36,18 @@ const drawBricks = (config: Bricks) => {
     brickHeight,
     bricksPerRow,
     totalRows,
+    spaceBetweenBrick,
   } = config;
 
-  const workingWidth = canvas.offsetWidth - startingPoingX * 2;
+  const totalWidth = canvas.offsetWidth - startingPoingX * 2;
+  const widthWithoutSpace = totalWidth - (bricksPerRow - 1) * spaceBetweenBrick;
 
-  console.log(workingWidth);
+  const singleBrickWidth = widthWithoutSpace / bricksPerRow;
+
   ctx.fillStyle = '#0095dd';
   ctx.fillRect(startingPoingX, startingPointY, 70, brickHeight);
 
+  console.log(singleBrickWidth);
   console.log(bricksPerRow, totalRows);
 };
 
@@ -72,6 +77,7 @@ drawBricks({
   brickHeight: 20,
   bricksPerRow: 9,
   totalRows: 5,
+  spaceBetweenBrick: 10,
 });
 
 // event listeners

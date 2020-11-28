@@ -11,11 +11,13 @@ const moveBarLeft = () => {
 const moveBarRight = () => {
 };
 const drawBricks = (config) => {
-    const { canvas, startingPoingX, startingPointY, brickHeight, bricksPerRow, totalRows, } = config;
-    const workingWidth = canvas.offsetWidth - startingPoingX * 2;
-    console.log(workingWidth);
+    const { canvas, startingPoingX, startingPointY, brickHeight, bricksPerRow, totalRows, spaceBetweenBrick, } = config;
+    const totalWidth = canvas.offsetWidth - startingPoingX * 2;
+    const widthWithoutSpace = totalWidth - (bricksPerRow - 1) * spaceBetweenBrick;
+    const singleBrickWidth = widthWithoutSpace / bricksPerRow;
     ctx.fillStyle = '#0095dd';
     ctx.fillRect(startingPoingX, startingPointY, 70, brickHeight);
+    console.log(singleBrickWidth);
     console.log(bricksPerRow, totalRows);
 };
 const drawBall = () => {
@@ -39,5 +41,6 @@ drawBricks({
     brickHeight: 20,
     bricksPerRow: 9,
     totalRows: 5,
+    spaceBetweenBrick: 10,
 });
 document.addEventListener('keydown', moveBar);
