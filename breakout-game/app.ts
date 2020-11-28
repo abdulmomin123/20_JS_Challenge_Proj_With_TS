@@ -39,7 +39,8 @@ const drawBricks = (config: Bricks) => {
     spaceBetweenBrick,
   } = config;
 
-  let startingPoint = startX;
+  let startingPointX = startX;
+  // let startingPointY = startY;
 
   const totalWidth = canvas.offsetWidth - startX * 2;
   const widthWithoutSpace = totalWidth - (bricksPerRow - 1) * spaceBetweenBrick;
@@ -47,14 +48,16 @@ const drawBricks = (config: Bricks) => {
   const singleBrickWidth = widthWithoutSpace / bricksPerRow;
 
   ctx.fillStyle = '#0095dd';
-  for (let i = 0; i < bricksPerRow; i++) {
-    ctx.fillRect(startingPoint, startY, 70, brickHeight);
-    startingPoint += singleBrickWidth + spaceBetweenBrick;
-    // console.log(i);
+
+  for (let i = 0; i < totalRows; i++) {
+    for (let j = 0; j < bricksPerRow; j++) {
+      ctx.fillRect(startingPointX, startY, 70, brickHeight);
+      startingPointX += singleBrickWidth + spaceBetweenBrick;
+    }
   }
 
   console.log(singleBrickWidth);
-  console.log(bricksPerRow, totalRows, startingPoint);
+  console.log(bricksPerRow, totalRows, startingPointX);
 };
 
 const drawBall = () => {
