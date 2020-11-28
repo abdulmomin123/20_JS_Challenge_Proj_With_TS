@@ -72,17 +72,17 @@ const drawBall = () => {
 const drawBar = (config: Bar) => {
   const { startX, startY, width, height } = config;
 
-  ctx.fillRect(startX, startY, width, height);
+  ctx.clearRect(0, startY, width, height);
 
-  console.log(startX, startY, width, height);
+  ctx.fillRect(startX, startY, width, height);
 };
 
 const moveBar = (e: KeyboardEvent) => {
   const key = e.keyCode;
 
-  if (key !== 37 && key !== 39) return;
+  if (key !== 37 && key !== 39 && key !== 65 && key !== 68) return;
 
-  if (key === 37) moveBarLeft();
+  if (key === 37 || key === 65) moveBarLeft();
   else moveBarRight();
 
   console.log(key);

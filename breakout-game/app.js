@@ -31,14 +31,14 @@ const drawBall = () => {
 };
 const drawBar = (config) => {
     const { startX, startY, width, height } = config;
+    ctx.clearRect(0, startY, width, height);
     ctx.fillRect(startX, startY, width, height);
-    console.log(startX, startY, width, height);
 };
 const moveBar = (e) => {
     const key = e.keyCode;
-    if (key !== 37 && key !== 39)
+    if (key !== 37 && key !== 39 && key !== 65 && key !== 68)
         return;
-    if (key === 37)
+    if (key === 37 || key === 65)
         moveBarLeft();
     else
         moveBarRight();
