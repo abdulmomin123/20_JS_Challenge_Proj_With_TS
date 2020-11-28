@@ -55,6 +55,7 @@ const drawBricks = (config: Bricks) => {
       startingPointX += singleBrickWidth + spaceBetweenBrick;
     }
 
+    startingPointX = startX;
     startingPointY += brickHeight + spaceBetweenBrick;
   }
 

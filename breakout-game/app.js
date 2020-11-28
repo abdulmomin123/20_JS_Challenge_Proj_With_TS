@@ -23,6 +23,7 @@ const drawBricks = (config) => {
             ctx.fillRect(startingPointX, startingPointY, 70, brickHeight);
             startingPointX += singleBrickWidth + spaceBetweenBrick;
         }
+        startingPointX = startX;
         startingPointY += brickHeight + spaceBetweenBrick;
     }
     console.log(singleBrickWidth);
