@@ -27,15 +27,18 @@ const moveBarRight = () => {
   //
 };
 
-const drawBricks = (
-  startX: number,
-  startY: number,
-  brickHeight: number,
-  bricksPerRow: number,
-  totalRows: number
-) => {
+const drawBricks = (config: Bricks) => {
+  const {
+    canvas,
+    startingPoingX,
+    startingPointY,
+    brickHeight,
+    bricksPerRow,
+    totalRows,
+  } = config;
+
   ctx.fillStyle = '#0095dd';
-  ctx.fillRect(startX, startY, 70, brickHeight);
+  ctx.fillRect(startingPoingX, startingPointY, 70, brickHeight);
 
   console.log(bricksPerRow, totalRows);
 };
@@ -59,7 +62,14 @@ const moveBar = (e: KeyboardEvent) => {
   console.log(key);
 };
 
-drawBricks(45, 60, 20, 9, 5);
+drawBricks({
+  canvas: elements.canvas,
+  startingPoingX: 45,
+  startingPointY: 60,
+  brickHeight: 20,
+  bricksPerRow: 9,
+  totalRows: 5,
+});
 
 // event listeners
 // move the bar left or right
