@@ -72,6 +72,8 @@ const drawBall = () => {
 const drawBar = (config: Bar) => {
   const { startX, startY, width, height } = config;
 
+  ctx.fillRect(startX, startY, width, height);
+
   console.log(startX, startY, width, height);
 };
 
@@ -98,9 +100,9 @@ drawBricks({
 drawBall();
 
 drawBar({
-  startX: elements.canvas.offsetWidth / 2 - 25 / 2,
-  startY: elements.canvas.offsetHeight - 10,
-  width: 25,
+  startX: elements.canvas.offsetWidth / 2 - 80 / 2,
+  startY: elements.canvas.offsetHeight - 10 * 2,
+  width: 80,
   height: 10,
 });
 
