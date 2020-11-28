@@ -10,7 +10,6 @@ const elements = {
 const ctx = elements.canvas.getContext('2d') as CanvasRenderingContext2D;
 
 interface Bricks {
-  canvas: HTMLCanvasElement;
   startX: number;
   startY: number;
   brickHeight: number;
@@ -37,7 +36,6 @@ const moveBarRight = () => {
 
 const drawBricks = (config: Bricks) => {
   const {
-    canvas,
     startX,
     startY,
     brickHeight,
@@ -49,7 +47,7 @@ const drawBricks = (config: Bricks) => {
   let startingPointX = startX;
   let startingPointY = startY;
 
-  const totalWidth = canvas.offsetWidth - startX * 2;
+  const totalWidth = elements.canvas.offsetWidth - startX * 2;
   const widthWithoutSpace = totalWidth - (bricksPerRow - 1) * spaceBetweenBrick;
 
   const singleBrickWidth = widthWithoutSpace / bricksPerRow;
@@ -71,8 +69,10 @@ const drawBall = () => {
   //
 };
 
-const drawBar = () => {
-  //
+const drawBar = (config: Bar) => {
+  const { startX, startY, width, height } = config;
+
+  console.log(startX, startY, width, height);
 };
 
 const moveBar = (e: KeyboardEvent) => {
@@ -87,13 +87,21 @@ const moveBar = (e: KeyboardEvent) => {
 };
 
 drawBricks({
-  canvas: elements.canvas,
   startX: 45,
   startY: 60,
   brickHeight: 20,
   bricksPerRow: 9,
   totalRows: 5,
   spaceBetweenBrick: 10,
+});
+
+drawBall();
+
+drawBar({
+  startX: elements.canvas.offsetWidth / 2 - 25 / 2,
+  startY: elements.canvas.offsetHeight - 10,
+  width: 25,
+  height: 10,
 });
 
 // event listeners
