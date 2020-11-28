@@ -37,6 +37,9 @@ const drawBricks = (config: Bricks) => {
     totalRows,
   } = config;
 
+  const workingWidth = canvas.offsetWidth - startingPoingX * 2;
+
+  console.log(workingWidth);
   ctx.fillStyle = '#0095dd';
   ctx.fillRect(startingPoingX, startingPointY, 70, brickHeight);
 
