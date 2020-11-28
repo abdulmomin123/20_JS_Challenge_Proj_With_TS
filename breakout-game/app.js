@@ -26,8 +26,6 @@ const drawBricks = (config) => {
         startingPointX = startX;
         startingPointY += brickHeight + spaceBetweenBrick;
     }
-    console.log(singleBrickWidth);
-    console.log(bricksPerRow, totalRows, startingPointX);
 };
 const drawBall = () => {
 };

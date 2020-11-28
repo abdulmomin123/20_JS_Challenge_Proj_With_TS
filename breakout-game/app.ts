@@ -19,6 +19,13 @@ interface Bricks {
   spaceBetweenBrick: number;
 }
 
+interface Bar {
+  startX: number;
+  startY: number;
+  width: number;
+  height: number;
+}
+
 // functions
 const moveBarLeft = () => {
   //
@@ -58,9 +65,6 @@ const drawBricks = (config: Bricks) => {
     startingPointX = startX;
     startingPointY += brickHeight + spaceBetweenBrick;
   }
-
-  console.log(singleBrickWidth);
-  console.log(bricksPerRow, totalRows, startingPointX);
 };
 
 const drawBall = () => {
