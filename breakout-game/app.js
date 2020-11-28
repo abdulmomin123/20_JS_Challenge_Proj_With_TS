@@ -11,13 +11,16 @@ const moveBarLeft = () => {
 const moveBarRight = () => {
 };
 const drawBricks = (config) => {
-    const { canvas, startingPointX, startingPointY, brickHeight, bricksPerRow, totalRows, spaceBetweenBrick, } = config;
-    let startingPoint = startingPointX;
-    const totalWidth = canvas.offsetWidth - startingPointX * 2;
+    const { canvas, startX, startY, brickHeight, bricksPerRow, totalRows, spaceBetweenBrick, } = config;
+    let startingPoint = startX;
+    const totalWidth = canvas.offsetWidth - startX * 2;
     const widthWithoutSpace = totalWidth - (bricksPerRow - 1) * spaceBetweenBrick;
     const singleBrickWidth = widthWithoutSpace / bricksPerRow;
     ctx.fillStyle = '#0095dd';
-    ctx.fillRect(startingPointX, startingPointY, 70, brickHeight);
+    for (let i = 0; i < bricksPerRow; i++) {
+        ctx.fillRect(startingPoint, startY, 70, brickHeight);
+        startingPoint += singleBrickWidth + spaceBetweenBrick;
+    }
     console.log(singleBrickWidth);
     console.log(bricksPerRow, totalRows, startingPoint);
 };
@@ -37,8 +40,8 @@ const moveBar = (e) => {
 };
 drawBricks({
     canvas: elements.canvas,
-    startingPointX: 45,
-    startingPointY: 60,
+    startX: 45,
+    startY: 60,
     brickHeight: 20,
     bricksPerRow: 9,
     totalRows: 5,
