@@ -6,9 +6,28 @@ const elements = {
     canvas: document.getElementById('canvas'),
 };
 const ctx = elements.canvas.getContext('2d');
+let barX = elements.canvas.offsetWidth / 2 - 80 / 2;
 const moveBarLeft = () => {
+    if (barX <= 0)
+        return;
+    barX -= 5;
+    drawBar({
+        barX,
+        barY: elements.canvas.offsetHeight - 10 * 2,
+        width: 80,
+        height: 10,
+    });
 };
 const moveBarRight = () => {
+    if (barX >= elements.canvas.offsetWidth - 80)
+        return;
+    barX += 5;
+    drawBar({
+        barX,
+        barY: elements.canvas.offsetHeight - 10 * 2,
+        width: 80,
+        height: 10,
+    });
 };
 const drawBricks = (config) => {
     const { startX, startY, brickHeight, bricksPerRow, totalRows, spaceBetweenBrick, } = config;
@@ -30,9 +49,9 @@ const drawBricks = (config) => {
 const drawBall = () => {
 };
 const drawBar = (config) => {
-    const { startX, startY, width, height } = config;
-    ctx.clearRect(0, startY, width, height);
-    ctx.fillRect(startX, startY, width, height);
+    const { barX, barY, width, height } = config;
+    ctx.clearRect(0, barY, width, height);
+    ctx.fillRect(barX, barY, width, height);
 };
 const moveBar = (e) => {
     const key = e.keyCode;
@@ -42,7 +61,6 @@ const moveBar = (e) => {
         moveBarLeft();
     else
         moveBarRight();
-    console.log(key);
 };
 drawBricks({
     startX: 45,
@@ -54,8 +72,8 @@ drawBricks({
 });
 drawBall();
 drawBar({
-    startX: elements.canvas.offsetWidth / 2 - 80 / 2,
-    startY: elements.canvas.offsetHeight - 10 * 2,
+    barX,
+    barY: elements.canvas.offsetHeight - 10 * 2,
     width: 80,
     height: 10,
 });

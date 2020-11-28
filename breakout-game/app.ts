@@ -9,6 +9,9 @@ const elements = {
 // global variables
 const ctx = elements.canvas.getContext('2d') as CanvasRenderingContext2D;
 
+// current positon of the bar
+let barX = elements.canvas.offsetWidth / 2 - 80 / 2;
+
 interface Bricks {
   startX: number;
   startY: number;
@@ -19,19 +22,37 @@ interface Bricks {
 }
 
 interface Bar {
-  startX: number;
-  startY: number;
+  barX: number;
+  barY: number;
   width: number;
   height: number;
 }
 
 // functions
 const moveBarLeft = () => {
-  //
+  if (barX <= 0) return;
+
+  barX -= 5;
+
+  drawBar({
+    barX,
+    barY: elements.canvas.offsetHeight - 10 * 2,
+    width: 80,
+    height: 10,
+  });
 };
 
 const moveBarRight = () => {
-  //
+  if (barX >= elements.canvas.offsetWidth - 80) return;
+
+  barX += 5;
+
+  drawBar({
+    barX,
+    barY: elements.canvas.offsetHeight - 10 * 2,
+    width: 80,
+    height: 10,
+  });
 };
 
 const drawBricks = (config: Bricks) => {
@@ -70,11 +91,11 @@ const drawBall = () => {
 };
 
 const drawBar = (config: Bar) => {
-  const { startX, startY, width, height } = config;
+  const { barX, barY, width, height } = config;
 
-  ctx.clearRect(0, startY, width, height);
+  ctx.clearRect(0, barY, width, height);
 
-  ctx.fillRect(startX, startY, width, height);
+  ctx.fillRect(barX, barY, width, height);
 };
 
 const moveBar = (e: KeyboardEvent) => {
@@ -84,8 +105,6 @@ const moveBar = (e: KeyboardEvent) => {
 
   if (key === 37 || key === 65) moveBarLeft();
   else moveBarRight();
-
-  console.log(key);
 };
 
 drawBricks({
@@ -100,8 +119,8 @@ drawBricks({
 drawBall();
 
 drawBar({
-  startX: elements.canvas.offsetWidth / 2 - 80 / 2,
-  startY: elements.canvas.offsetHeight - 10 * 2,
+  barX,
+  barY: elements.canvas.offsetHeight - 10 * 2,
   width: 80,
   height: 10,
 });
