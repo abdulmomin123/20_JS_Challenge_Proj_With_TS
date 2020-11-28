@@ -6,7 +6,17 @@ const elements = {
   canvas: document.getElementById('canvas') as HTMLCanvasElement,
 };
 
+// global variables
 const ctx = elements.canvas.getContext('2d') as CanvasRenderingContext2D;
+
+interface Bricks {
+  canvas: HTMLCanvasElement;
+  startingPoingX: number;
+  startingPointY: number;
+  brickHeight: number;
+  bricksPerRow: number;
+  totalRows: number;
+}
 
 // functions
 const moveBarLeft = () => {
@@ -49,7 +59,7 @@ const moveBar = (e: KeyboardEvent) => {
   console.log(key);
 };
 
-drawBricks(45, 55, 20, 9, 5);
+drawBricks(45, 60, 20, 9, 5);
 
 // event listeners
 // move the bar left or right

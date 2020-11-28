@@ -29,5 +29,5 @@ const moveBar = (e) => {
         moveBarRight();
     console.log(key);
 };
-drawBricks(45, 55, 20, 9, 5);
+drawBricks(45, 60, 20, 9, 5);
 document.addEventListener('keydown', moveBar);
