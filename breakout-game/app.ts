@@ -138,11 +138,14 @@ const drawAll = () => {
 };
 
 const updateCanvas = () => {
+  // move the ball & bar
   moveBall();
   moveBar();
 
+  // draw everything
   drawAll();
 
+  // do it again
   requestAnimationFrame(updateCanvas);
 };
 
