@@ -141,3 +141,11 @@ drawBar({
 // event listeners
 // move the bar left or right
 document.addEventListener('keydown', moveBar);
+
+// Rules and close event handlers
+elements.rulesBtn.addEventListener('click', () =>
+  elements.rules.classList.add('show')
+);
+elements.closeBtn.addEventListener('click', () =>
+  elements.rules.classList.remove('show')
+);

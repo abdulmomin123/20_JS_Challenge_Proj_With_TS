@@ -86,3 +86,5 @@ drawBar({
     height: 10,
 });
 document.addEventListener('keydown', moveBar);
+elements.rulesBtn.addEventListener('click', () => elements.rules.classList.add('show'));
+elements.closeBtn.addEventListener('click', () => elements.rules.classList.remove('show'));
