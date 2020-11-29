@@ -83,6 +83,12 @@ const drawBar = (config: Bar) => {
 };
 
 const moveBar = () => {
+  if (
+    (barX <= 0 && moveDirection < 0) ||
+    (barX >= elements.canvas.width - 80 && moveDirection > 0)
+  )
+    return;
+
   barX += moveDirection;
 
   drawBar({
@@ -136,9 +142,9 @@ document.addEventListener('keydown', e => {
 
   if (key !== 37 && key !== 39 && key !== 65 && key !== 68) return;
 
-  if ((key === 37 || key === 65) && barX > 0) {
+  if (key === 37 || key === 65) {
     moveDirection = -8;
-  } else if ((key === 39 || key === 68) && barX < elements.canvas.width - 80) {
+  } else if (key === 39 || key === 68) {
     moveDirection = 8;
   }
 });
