@@ -6,11 +6,12 @@ const elements = {
     canvas: document.getElementById('canvas'),
 };
 const ctx = elements.canvas.getContext('2d');
+ctx.fillStyle = '#0095dd';
 let barX = elements.canvas.offsetWidth / 2 - 80 / 2;
 const moveBarLeft = () => {
     if (barX <= 0)
         return;
-    barX -= 5;
+    barX -= 10;
     drawBar({
         barX,
         barY: elements.canvas.offsetHeight - 10 * 2,
@@ -21,7 +22,7 @@ const moveBarLeft = () => {
 const moveBarRight = () => {
     if (barX >= elements.canvas.offsetWidth - 80)
         return;
-    barX += 5;
+    barX += 10;
     drawBar({
         barX,
         barY: elements.canvas.offsetHeight - 10 * 2,
@@ -36,7 +37,6 @@ const drawBricks = (config) => {
     const totalWidth = elements.canvas.offsetWidth - startX * 2;
     const widthWithoutSpace = totalWidth - (bricksPerRow - 1) * spaceBetweenBrick;
     const singleBrickWidth = widthWithoutSpace / bricksPerRow;
-    ctx.fillStyle = '#0095dd';
     for (let i = 0; i < totalRows; i++) {
         for (let j = 0; j < bricksPerRow; j++) {
             ctx.fillRect(startingPointX, startingPointY, 70, brickHeight);
@@ -50,7 +50,7 @@ const drawBall = () => {
 };
 const drawBar = (config) => {
     const { barX, barY, width, height } = config;
-    ctx.clearRect(0, barY, width, height);
+    ctx.clearRect(0, barY, elements.canvas.offsetWidth, height);
     ctx.fillRect(barX, barY, width, height);
 };
 const moveBar = (e) => {
