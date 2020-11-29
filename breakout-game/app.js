@@ -11,8 +11,8 @@ ctx.font = '20px Arial';
 let score = 0;
 let barX = elements.canvas.width / 2 - 80 / 2;
 let moveDirection = 0;
-let ballX = elements.canvas.width / 2;
-let ballY = elements.canvas.height - (20 + 10);
+let ballX = elements.canvas.width / 3;
+let ballY = elements.canvas.height - 150;
 const drawBricks = (config) => {
     const { startX, startY, brickHeight, bricksPerRow, totalRows, spaceBetweenBrick, } = config;
     let startingPointX = startX;
@@ -56,6 +56,8 @@ const moveBar = () => {
     });
 };
 const moveBall = () => {
+    ballX += 4;
+    ballY -= 4;
 };
 const drawAll = () => {
     ctx.clearRect(0, 0, elements.canvas.width, elements.canvas.height);

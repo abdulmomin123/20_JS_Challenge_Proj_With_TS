@@ -18,8 +18,8 @@ let barX = elements.canvas.width / 2 - 80 / 2;
 let moveDirection = 0;
 
 // current positon of the ball
-let ballX = elements.canvas.width / 2;
-let ballY = elements.canvas.height - (20 + 10);
+let ballX = elements.canvas.width / 3;
+let ballY = elements.canvas.height - 150;
 
 interface Bricks {
   startX: number;
@@ -111,7 +111,8 @@ const moveBar = () => {
 };
 
 const moveBall = () => {
-  //
+  ballX += 4;
+  ballY -= 4;
 };
 
 const drawAll = () => {
