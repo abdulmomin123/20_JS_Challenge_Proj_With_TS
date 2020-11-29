@@ -9,6 +9,7 @@ const elements = {
 // global variables
 const ctx = elements.canvas.getContext('2d') as CanvasRenderingContext2D;
 ctx.fillStyle = '#0095dd';
+ctx.font = '20px Arial';
 
 let score = 0;
 
@@ -85,7 +86,7 @@ const drawBar = (config: Bar) => {
 };
 
 const drawScore = () => {
-  //
+  ctx.fillText(`Score: ${score}`, elements.canvas.width - 140, 35);
 };
 
 const moveBar = () => {

@@ -7,6 +7,7 @@ const elements = {
 };
 const ctx = elements.canvas.getContext('2d');
 ctx.fillStyle = '#0095dd';
+ctx.font = '20px Arial';
 let score = 0;
 let barX = elements.canvas.width / 2 - 80 / 2;
 let moveDirection = 0;
@@ -38,6 +39,7 @@ const drawBar = (config) => {
     ctx.fillRect(barX, barY, width, height);
 };
 const drawScore = () => {
+    ctx.fillText(`Score: ${score}`, elements.canvas.width - 140, 35);
 };
 const moveBar = () => {
     if ((barX <= 0 && moveDirection < 0) ||
