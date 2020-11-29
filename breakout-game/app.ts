@@ -39,7 +39,7 @@ interface Ball {
 const moveBarLeft = () => {
   if (barX <= 0) return;
 
-  barX -= 10;
+  barX -= 15;
 
   drawBar({
     barX,
@@ -52,7 +52,7 @@ const moveBarLeft = () => {
 const moveBarRight = () => {
   if (barX >= elements.canvas.offsetWidth - 80) return;
 
-  barX += 10;
+  barX += 15;
 
   drawBar({
     barX,

@@ -11,7 +11,7 @@ let barX = elements.canvas.offsetWidth / 2 - 80 / 2;
 const moveBarLeft = () => {
     if (barX <= 0)
         return;
-    barX -= 10;
+    barX -= 15;
     drawBar({
         barX,
         barY: elements.canvas.offsetHeight - 10 * 2,
@@ -22,7 +22,7 @@ const moveBarLeft = () => {
 const moveBarRight = () => {
     if (barX >= elements.canvas.offsetWidth - 80)
         return;
-    barX += 10;
+    barX += 15;
     drawBar({
         barX,
         barY: elements.canvas.offsetHeight - 10 * 2,
