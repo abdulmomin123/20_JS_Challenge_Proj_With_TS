@@ -126,13 +126,13 @@ const moveBall = () => {
     ballDirectionX = 'right';
     ballDirectionY = 'bottom';
   } else if (
-    ballY >= elements.canvas.height - 10 &&
+    ballY >= elements.canvas.height - 30 &&
     ballDirectionX === 'right'
   ) {
     ballDirectionX = 'right';
     ballDirectionY = 'top';
   } else if (
-    ballY >= elements.canvas.height - 10 &&
+    ballY >= elements.canvas.height - 30 &&
     ballDirectionX === 'left'
   ) {
     ballDirectionX = 'left';
