@@ -12,6 +12,7 @@ ctx.fillStyle = '#0095dd';
 
 // current positon of the bar
 let barX = elements.canvas.width / 2 - 80 / 2;
+let moveDirection = 0;
 
 interface Bricks {
   startX: number;
@@ -81,12 +82,8 @@ const drawBar = (config: Bar) => {
   ctx.fillRect(barX, barY, width, height);
 };
 
-const moveBar = (direction: 'left' | 'right') => {
-  if (direction === 'left' && barX > 0) {
-    barX -= 15;
-  } else if (direction === 'right' && barX < elements.canvas.width - 80) {
-    barX += 15;
-  }
+const moveBar = () => {
+  barX += moveDirection;
 
   drawBar({
     barX,
@@ -137,8 +134,13 @@ document.addEventListener('keydown', e => {
 
   if (key !== 37 && key !== 39 && key !== 65 && key !== 68) return;
 
-  if (key === 37 || key === 65) moveBar('left');
-  else moveBar('right');
+  if ((key === 37 || key === 65) && barX > 0) {
+    moveDirection = -15;
+    moveBar();
+  } else if ((key === 39 || key === 68) && barX < elements.canvas.width - 80) {
+    moveDirection = 15;
+    moveBar();
+  }
 });
 
 // Rules and close event handlers

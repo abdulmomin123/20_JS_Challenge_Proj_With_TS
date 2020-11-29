@@ -8,6 +8,7 @@ const elements = {
 const ctx = elements.canvas.getContext('2d');
 ctx.fillStyle = '#0095dd';
 let barX = elements.canvas.width / 2 - 80 / 2;
+let moveDirection = 0;
 const drawBricks = (config) => {
     const { startX, startY, brickHeight, bricksPerRow, totalRows, spaceBetweenBrick, } = config;
     let startingPointX = startX;
@@ -35,13 +36,8 @@ const drawBar = (config) => {
     ctx.clearRect(0, barY, elements.canvas.width, height);
     ctx.fillRect(barX, barY, width, height);
 };
-const moveBar = (direction) => {
-    if (direction === 'left' && barX > 0) {
-        barX -= 15;
-    }
-    else if (direction === 'right' && barX < elements.canvas.width - 80) {
-        barX += 15;
-    }
+const moveBar = () => {
+    barX += moveDirection;
     drawBar({
         barX,
         barY: elements.canvas.height - 10 * 2,
@@ -80,10 +76,14 @@ document.addEventListener('keydown', e => {
     const key = e.keyCode;
     if (key !== 37 && key !== 39 && key !== 65 && key !== 68)
         return;
-    if (key === 37 || key === 65)
-        moveBar('left');
-    else
-        moveBar('right');
+    if ((key === 37 || key === 65) && barX > 0) {
+        moveDirection = -15;
+        moveBar();
+    }
+    else if ((key === 39 || key === 68) && barX < elements.canvas.width - 80) {
+        moveDirection = 15;
+        moveBar();
+    }
 });
 elements.rulesBtn.addEventListener('click', () => elements.rules.classList.add('show'));
 elements.closeBtn.addEventListener('click', () => elements.rules.classList.remove('show'));
