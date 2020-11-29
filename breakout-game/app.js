@@ -68,22 +68,24 @@ const drawAll = () => {
     });
 };
 const updateCanvas = () => {
+    moveBar();
     drawAll();
     requestAnimationFrame(updateCanvas);
 };
-drawAll();
+updateCanvas();
 document.addEventListener('keydown', e => {
     const key = e.keyCode;
     if (key !== 37 && key !== 39 && key !== 65 && key !== 68)
         return;
     if ((key === 37 || key === 65) && barX > 0) {
-        moveDirection = -15;
-        moveBar();
+        moveDirection = -8;
     }
     else if ((key === 39 || key === 68) && barX < elements.canvas.width - 80) {
-        moveDirection = 15;
-        moveBar();
+        moveDirection = 8;
     }
+});
+document.addEventListener('keyup', () => {
+    moveDirection = 0;
 });
 elements.rulesBtn.addEventListener('click', () => elements.rules.classList.add('show'));
 elements.closeBtn.addEventListener('click', () => elements.rules.classList.remove('show'));

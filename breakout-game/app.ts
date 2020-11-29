@@ -120,12 +120,14 @@ const drawAll = () => {
 };
 
 const updateCanvas = () => {
+  moveBar();
+
   drawAll();
 
   requestAnimationFrame(updateCanvas);
 };
 
-drawAll();
+updateCanvas();
 
 // event listeners
 // move the bar left or right
@@ -135,12 +137,15 @@ document.addEventListener('keydown', e => {
   if (key !== 37 && key !== 39 && key !== 65 && key !== 68) return;
 
   if ((key === 37 || key === 65) && barX > 0) {
-    moveDirection = -15;
-    moveBar();
+    moveDirection = -8;
   } else if ((key === 39 || key === 68) && barX < elements.canvas.width - 80) {
-    moveDirection = 15;
-    moveBar();
+    moveDirection = 8;
   }
+});
+
+// reset the movedirection
+document.addEventListener('keyup', () => {
+  moveDirection = 0;
 });
 
 // Rules and close event handlers
