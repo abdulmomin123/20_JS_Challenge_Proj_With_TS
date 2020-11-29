@@ -10,6 +10,8 @@ const elements = {
 const ctx = elements.canvas.getContext('2d') as CanvasRenderingContext2D;
 ctx.fillStyle = '#0095dd';
 
+let score = 0;
+
 // current positon of the bar
 let barX = elements.canvas.width / 2 - 80 / 2;
 let moveDirection = 0;
@@ -82,6 +84,10 @@ const drawBar = (config: Bar) => {
   ctx.fillRect(barX, barY, width, height);
 };
 
+const drawScore = () => {
+  //
+};
+
 const moveBar = () => {
   if (
     (barX <= 0 && moveDirection < 0) ||
@@ -97,6 +103,10 @@ const moveBar = () => {
     width: 80,
     height: 10,
   });
+};
+
+const moveBall = () => {
+  //
 };
 
 const drawAll = () => {
@@ -123,9 +133,12 @@ const drawAll = () => {
     width: 80,
     height: 10,
   });
+
+  drawScore();
 };
 
 const updateCanvas = () => {
+  moveBall();
   moveBar();
 
   drawAll();

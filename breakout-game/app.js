@@ -7,6 +7,7 @@ const elements = {
 };
 const ctx = elements.canvas.getContext('2d');
 ctx.fillStyle = '#0095dd';
+let score = 0;
 let barX = elements.canvas.width / 2 - 80 / 2;
 let moveDirection = 0;
 const drawBricks = (config) => {
@@ -36,6 +37,8 @@ const drawBar = (config) => {
     ctx.clearRect(0, barY, elements.canvas.width, height);
     ctx.fillRect(barX, barY, width, height);
 };
+const drawScore = () => {
+};
 const moveBar = () => {
     if ((barX <= 0 && moveDirection < 0) ||
         (barX >= elements.canvas.width - 80 && moveDirection > 0))
@@ -47,6 +50,8 @@ const moveBar = () => {
         width: 80,
         height: 10,
     });
+};
+const moveBall = () => {
 };
 const drawAll = () => {
     ctx.clearRect(0, 0, elements.canvas.width, elements.canvas.height);
@@ -69,8 +74,10 @@ const drawAll = () => {
         width: 80,
         height: 10,
     });
+    drawScore();
 };
 const updateCanvas = () => {
+    moveBall();
     moveBar();
     drawAll();
     requestAnimationFrame(updateCanvas);
