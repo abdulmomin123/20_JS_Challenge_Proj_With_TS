@@ -95,7 +95,7 @@ const drawBall = (config: Ball) => {
   const { startX, startY, radius } = config;
 
   ctx.beginPath();
-  ctx.arc(startX, startY, radius, 10, 20);
+  ctx.arc(startX, startY, radius, 1, 8);
   ctx.fill();
 };
 
