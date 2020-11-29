@@ -11,7 +11,7 @@ const ctx = elements.canvas.getContext('2d') as CanvasRenderingContext2D;
 ctx.fillStyle = '#0095dd';
 
 // current positon of the bar
-let barX = elements.canvas.offsetWidth / 2 - 80 / 2;
+let barX = elements.canvas.width / 2 - 80 / 2;
 
 interface Bricks {
   startX: number;
@@ -36,32 +36,6 @@ interface Ball {
 }
 
 // functions
-const moveBarLeft = () => {
-  if (barX <= 0) return;
-
-  barX -= 15;
-
-  drawBar({
-    barX,
-    barY: elements.canvas.offsetHeight - 10 * 2,
-    width: 80,
-    height: 10,
-  });
-};
-
-const moveBarRight = () => {
-  if (barX >= elements.canvas.offsetWidth - 80) return;
-
-  barX += 15;
-
-  drawBar({
-    barX,
-    barY: elements.canvas.offsetHeight - 10 * 2,
-    width: 80,
-    height: 10,
-  });
-};
-
 const drawBricks = (config: Bricks) => {
   const {
     startX,
@@ -75,7 +49,7 @@ const drawBricks = (config: Bricks) => {
   let startingPointX = startX;
   let startingPointY = startY;
 
-  const totalWidth = elements.canvas.offsetWidth - startX * 2;
+  const totalWidth = elements.canvas.width - startX * 2;
   const widthWithoutSpace = totalWidth - (bricksPerRow - 1) * spaceBetweenBrick;
 
   const singleBrickWidth = widthWithoutSpace / bricksPerRow;
@@ -102,45 +76,70 @@ const drawBall = (config: Ball) => {
 const drawBar = (config: Bar) => {
   const { barX, barY, width, height } = config;
 
-  ctx.clearRect(0, barY, elements.canvas.offsetWidth, height);
+  ctx.clearRect(0, barY, elements.canvas.width, height);
 
   ctx.fillRect(barX, barY, width, height);
 };
 
-const moveBar = (e: KeyboardEvent) => {
+const moveBar = (direction: 'left' | 'right') => {
+  if (direction === 'left' && barX > 0) {
+    barX -= 15;
+  } else if (direction === 'right' && barX < elements.canvas.width - 80) {
+    barX += 15;
+  }
+
+  drawBar({
+    barX,
+    barY: elements.canvas.height - 10 * 2,
+    width: 80,
+    height: 10,
+  });
+};
+
+const drawAll = () => {
+  ctx.clearRect(0, 0, elements.canvas.width, elements.canvas.height);
+
+  drawBricks({
+    startX: 45,
+    startY: 60,
+    brickHeight: 20,
+    bricksPerRow: 9,
+    totalRows: 5,
+    spaceBetweenBrick: 10,
+  });
+
+  drawBall({
+    startX: elements.canvas.width / 2,
+    startY: elements.canvas.height - (20 + 12),
+    radius: 12,
+  });
+
+  drawBar({
+    barX,
+    barY: elements.canvas.height - 10 * 2,
+    width: 80,
+    height: 10,
+  });
+};
+
+const updateCanvas = () => {
+  drawAll();
+
+  requestAnimationFrame(updateCanvas);
+};
+
+drawAll();
+
+// event listeners
+// move the bar left or right
+document.addEventListener('keydown', e => {
   const key = e.keyCode;
 
   if (key !== 37 && key !== 39 && key !== 65 && key !== 68) return;
 
-  if (key === 37 || key === 65) moveBarLeft();
-  else moveBarRight();
-};
-
-drawBricks({
-  startX: 45,
-  startY: 60,
-  brickHeight: 20,
-  bricksPerRow: 9,
-  totalRows: 5,
-  spaceBetweenBrick: 10,
+  if (key === 37 || key === 65) moveBar('left');
+  else moveBar('right');
 });
-
-drawBall({
-  startX: elements.canvas.offsetWidth / 2,
-  startY: elements.canvas.offsetHeight - (20 + 12),
-  radius: 12,
-});
-
-drawBar({
-  barX,
-  barY: elements.canvas.offsetHeight - 10 * 2,
-  width: 80,
-  height: 10,
-});
-
-// event listeners
-// move the bar left or right
-document.addEventListener('keydown', moveBar);
 
 // Rules and close event handlers
 elements.rulesBtn.addEventListener('click', () =>
