@@ -11,6 +11,8 @@ ctx.font = '20px Arial';
 let score = 0;
 let barX = elements.canvas.width / 2 - 80 / 2;
 let moveDirection = 0;
+let ballDirectionX = 'right';
+let ballDirectionY = 'top';
 let ballX = elements.canvas.width / 3;
 let ballY = elements.canvas.height - 150;
 const drawBricks = (config) => {
@@ -56,8 +58,59 @@ const moveBar = () => {
     });
 };
 const moveBall = () => {
-    ballX += 4;
-    ballY -= 4;
+    if (ballY <= 10 && ballDirectionX === 'right') {
+        ballDirectionX = 'right';
+        ballDirectionY = 'bottom';
+    }
+    else if (ballY <= 10 && ballDirectionX === 'left') {
+        ballDirectionX = 'left';
+        ballDirectionY = 'bottom';
+    }
+    else if (ballX <= 10 && ballDirectionY === 'top') {
+        ballDirectionX = 'right';
+        ballDirectionY = 'top';
+    }
+    else if (ballX <= 10 && ballDirectionY === 'bottom') {
+        ballDirectionX = 'right';
+        ballDirectionY = 'bottom';
+    }
+    else if (ballY >= elements.canvas.height - 10 &&
+        ballDirectionX === 'right') {
+        ballDirectionX = 'right';
+        ballDirectionY = 'top';
+    }
+    else if (ballY >= elements.canvas.height - 10 &&
+        ballDirectionX === 'left') {
+        ballDirectionX = 'left';
+        ballDirectionY = 'top';
+    }
+    else if (ballX >= elements.canvas.width - 10 && ballDirectionY === 'top') {
+    }
+    else if (ballX >= elements.canvas.width - 10 &&
+        ballDirectionY === 'bottom') {
+        ballDirectionX = 'left';
+        ballDirectionY = 'bottom';
+    }
+    else if (ballX >= elements.canvas.width - 10 && ballDirectionY === 'top') {
+        ballDirectionX = 'left';
+        ballDirectionY = 'top';
+    }
+    if (ballDirectionY === 'top' && ballDirectionX === 'right') {
+        ballX += 4;
+        ballY -= 4;
+    }
+    else if (ballDirectionY === 'top' && ballDirectionX === 'left') {
+        ballX -= 4;
+        ballY -= 4;
+    }
+    else if (ballDirectionY === 'bottom' && ballDirectionX === 'right') {
+        ballX += 4;
+        ballY += 4;
+    }
+    else if (ballDirectionY === 'bottom' && ballDirectionX === 'left') {
+        ballX -= 4;
+        ballY += 4;
+    }
 };
 const drawAll = () => {
     ctx.clearRect(0, 0, elements.canvas.width, elements.canvas.height);
