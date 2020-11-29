@@ -17,6 +17,10 @@ let score = 0;
 let barX = elements.canvas.width / 2 - 80 / 2;
 let moveDirection = 0;
 
+// current positon of the ball
+let ballX = elements.canvas.width / 2;
+let ballY = elements.canvas.height - (20 + 10);
+
 interface Bricks {
   startX: number;
   startY: number;
@@ -34,8 +38,8 @@ interface Bar {
 }
 
 interface Ball {
-  startX: number;
-  startY: number;
+  ballX: number;
+  ballY: number;
   radius: number;
 }
 
@@ -70,10 +74,10 @@ const drawBricks = (config: Bricks) => {
 };
 
 const drawBall = (config: Ball) => {
-  const { startX, startY, radius } = config;
+  const { ballX, ballY, radius } = config;
 
   ctx.beginPath();
-  ctx.arc(startX, startY, radius, 1, 8);
+  ctx.arc(ballX, ballY, radius, 1, 8);
   ctx.fill();
 };
 
@@ -123,9 +127,9 @@ const drawAll = () => {
   });
 
   drawBall({
-    startX: elements.canvas.width / 2,
-    startY: elements.canvas.height - (20 + 12),
-    radius: 12,
+    ballX,
+    ballY,
+    radius: 10,
   });
 
   drawBar({
