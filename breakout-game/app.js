@@ -46,7 +46,11 @@ const drawBricks = (config) => {
         startingPointY += brickHeight + spaceBetweenBrick;
     }
 };
-const drawBall = () => {
+const drawBall = (config) => {
+    const { startX, startY, radius } = config;
+    ctx.beginPath();
+    ctx.arc(startX, startY, radius, 10, 20);
+    ctx.fill();
 };
 const drawBar = (config) => {
     const { barX, barY, width, height } = config;
@@ -70,7 +74,11 @@ drawBricks({
     totalRows: 5,
     spaceBetweenBrick: 10,
 });
-drawBall();
+drawBall({
+    startX: elements.canvas.offsetWidth / 2,
+    startY: elements.canvas.offsetHeight - (20 + 12),
+    radius: 12,
+});
 drawBar({
     barX,
     barY: elements.canvas.offsetHeight - 10 * 2,

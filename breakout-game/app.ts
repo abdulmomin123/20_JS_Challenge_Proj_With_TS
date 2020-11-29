@@ -29,6 +29,12 @@ interface Bar {
   height: number;
 }
 
+interface Ball {
+  startX: number;
+  startY: number;
+  radius: number;
+}
+
 // functions
 const moveBarLeft = () => {
   if (barX <= 0) return;
@@ -85,8 +91,12 @@ const drawBricks = (config: Bricks) => {
   }
 };
 
-const drawBall = () => {
-  //
+const drawBall = (config: Ball) => {
+  const { startX, startY, radius } = config;
+
+  ctx.beginPath();
+  ctx.arc(startX, startY, radius, 10, 20);
+  ctx.fill();
 };
 
 const drawBar = (config: Bar) => {
@@ -115,7 +125,11 @@ drawBricks({
   spaceBetweenBrick: 10,
 });
 
-drawBall();
+drawBall({
+  startX: elements.canvas.offsetWidth / 2,
+  startY: elements.canvas.offsetHeight - (20 + 12),
+  radius: 12,
+});
 
 drawBar({
   barX,
