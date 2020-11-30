@@ -97,9 +97,7 @@ const drawBricks = () => {
         ctx.closePath();
     });
 };
-const drawAllBricks = () => {
-    bricks.forEach(brick => (brick.visible = true));
-};
+const drawAllBricks = () => bricks.forEach(brick => (brick.visible = true));
 const drawBall = () => {
     ctx.beginPath();
     ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);

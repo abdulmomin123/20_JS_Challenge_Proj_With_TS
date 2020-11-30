@@ -145,9 +145,7 @@ const drawBricks = () => {
   });
 };
 
-const drawAllBricks = () => {
-  bricks.forEach(brick => (brick.visible = true));
-};
+const drawAllBricks = () => bricks.forEach(brick => (brick.visible = true));
 
 const drawBall = () => {
   ctx.beginPath();
