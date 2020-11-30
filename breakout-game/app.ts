@@ -56,9 +56,22 @@ class Bar {
     //
   }
 
-  move(x: number, y: number, direction: 'left' | 'right') {
+  move(direction: 'left' | 'right') {
     if (direction === 'left') this.x -= this.dx;
     else this.x += this.dx;
+  }
+}
+
+class Brick {
+  constructor(
+    public width: number,
+    public height: number,
+    public padding: number,
+    public offsetX: number,
+    public offsetY: number,
+    public visible: boolean
+  ) {
+    //
   }
 }
 
@@ -69,13 +82,6 @@ interface Bricks {
   bricksPerRow: number;
   totalRows: number;
   spaceBetweenBrick: number;
-}
-
-interface Bar {
-  barX: number;
-  barY: number;
-  width: number;
-  height: number;
 }
 
 // // functions

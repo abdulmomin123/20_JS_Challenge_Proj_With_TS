@@ -31,18 +31,29 @@ class Ball {
     }
 }
 class Bar {
-    constructor(x, y, w, h, speed, dx, visible) {
+    constructor(x, y, width, height, speed, dx, visible) {
         this.x = x;
         this.y = y;
-        this.w = w;
-        this.h = h;
+        this.width = width;
+        this.height = height;
         this.speed = speed;
         this.dx = dx;
         this.visible = visible;
     }
-    move(x, y, direction) {
+    move(direction) {
         if (direction === 'left')
-            this.x = x;
-        this.y = y;
+            this.x -= this.dx;
+        else
+            this.x += this.dx;
+    }
+}
+class Brick {
+    constructor(width, height, padding, offsetX, offsetY, visible) {
+        this.width = width;
+        this.height = height;
+        this.padding = padding;
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
+        this.visible = visible;
     }
 }
