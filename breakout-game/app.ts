@@ -78,9 +78,28 @@ class Brick {
   }
 }
 
+// Instanciating all the classes
+const ball = new Ball(
+  elements.canvas.width / 2,
+  elements.canvas.height / 2,
+  10,
+  4,
+  4,
+  -4,
+  true
+);
+
 // creating the bricks
 const createBricks = (numberOfRows: number, numberOfColumns: number) => {
-  //
+  const bricks = [];
+
+  for (let i = 0; i < numberOfRows; i++) {
+    bricks[i] = [];
+
+    for (let j = 0; j < numberOfColumns; j++) {
+      //
+    }
+  }
 };
 
 // // functions

@@ -58,5 +58,12 @@ class Brick {
         this.visible = visible;
     }
 }
-const createBricks = () => {
+const ball = new Ball(elements.canvas.width / 2, elements.canvas.height / 2, 10, 4, 4, -4, true);
+const createBricks = (numberOfRows, numberOfColumns) => {
+    const bricks = [];
+    for (let i = 0; i < numberOfRows; i++) {
+        bricks[i] = [];
+        for (let j = 0; j < numberOfColumns; j++) {
+        }
+    }
 };
