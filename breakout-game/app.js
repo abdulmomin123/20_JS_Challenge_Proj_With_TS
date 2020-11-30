@@ -97,3 +97,10 @@ const drawBricks = () => {
         ctx.closePath();
     });
 };
+const drawBall = () => {
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+    ctx.fillStyle = ball.visible ? '#0095dd' : 'transparent';
+    ctx.fill();
+    ctx.closePath();
+};

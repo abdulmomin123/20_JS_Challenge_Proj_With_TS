@@ -145,13 +145,13 @@ const drawBricks = () => {
   });
 };
 
-// const drawBall = (config: Ball) => {
-//   const { ballX, ballY, radius } = config;
-
-//   ctx.beginPath();
-//   ctx.arc(ballX, ballY, radius, 1, 8);
-//   ctx.fill();
-// };
+const drawBall = () => {
+  ctx.beginPath();
+  ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+  ctx.fillStyle = ball.visible ? '#0095dd' : 'transparent';
+  ctx.fill();
+  ctx.closePath();
+};
 
 // const drawBar = (config: Bar) => {
 //   const { barX, barY, width, height } = config;
