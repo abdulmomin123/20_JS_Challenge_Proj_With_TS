@@ -37,9 +37,20 @@ class Ball {
     //
   }
 
-  move(x: number, y: number) {
-    this.x += x;
-    this.y += y;
+  move(directionX: 'left' | 'right', directionY: 'top' | 'bottom') {
+    if (directionY === 'top' && directionX === 'right') {
+      this.x += this.speed;
+      this.y -= this.speed;
+    } else if (directionY === 'top' && directionX === 'left') {
+      this.x -= this.speed;
+      this.y -= this.speed;
+    } else if (directionY === 'bottom' && directionX === 'right') {
+      this.x += this.speed;
+      this.y += this.speed;
+    } else if (directionY === 'bottom' && directionX === 'left') {
+      this.x -= this.speed;
+      this.y += this.speed;
+    }
   }
 }
 
@@ -123,37 +134,35 @@ const createBricks = (numberOfRows: number, numberOfColumns: number) => {
 // All bricks
 const bricks = createBricks(5, 9);
 
-console.log(bricks);
-
 // // functions
-// const drawBricks = (config: Bricks) => {
-//   const {
-//     startX,
-//     startY,
-//     brickHeight,
-//     bricksPerRow,
-//     totalRows,
-//     spaceBetweenBrick,
-//   } = config;
+const drawBricks = (config: Bricks) => {
+  const {
+    startX,
+    startY,
+    brickHeight,
+    bricksPerRow,
+    totalRows,
+    spaceBetweenBrick,
+  } = config;
 
-//   let startingPointX = startX;
-//   let startingPointY = startY;
+  let startingPointX = startX;
+  let startingPointY = startY;
 
-//   const totalWidth = elements.canvas.width - startX * 2;
-//   const widthWithoutSpace = totalWidth - (bricksPerRow - 1) * spaceBetweenBrick;
+  const totalWidth = elements.canvas.width - startX * 2;
+  const widthWithoutSpace = totalWidth - (bricksPerRow - 1) * spaceBetweenBrick;
 
-//   const singleBrickWidth = widthWithoutSpace / bricksPerRow;
+  const singleBrickWidth = widthWithoutSpace / bricksPerRow;
 
-//   for (let i = 0; i < totalRows; i++) {
-//     for (let j = 0; j < bricksPerRow; j++) {
-//       ctx.fillRect(startingPointX, startingPointY, 70, brickHeight);
-//       startingPointX += singleBrickWidth + spaceBetweenBrick;
-//     }
+  for (let i = 0; i < totalRows; i++) {
+    for (let j = 0; j < bricksPerRow; j++) {
+      ctx.fillRect(startingPointX, startingPointY, 70, brickHeight);
+      startingPointX += singleBrickWidth + spaceBetweenBrick;
+    }
 
-//     startingPointX = startX;
-//     startingPointY += brickHeight + spaceBetweenBrick;
-//   }
-// };
+    startingPointX = startX;
+    startingPointY += brickHeight + spaceBetweenBrick;
+  }
+};
 
 // const drawBall = (config: Ball) => {
 //   const { ballX, ballY, radius } = config;

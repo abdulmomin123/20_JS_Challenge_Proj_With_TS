@@ -74,4 +74,3 @@ const createBricks = (numberOfRows, numberOfColumns) => {
     return bricks;
 };
 const bricks = createBricks(5, 9);
-console.log(bricks);
