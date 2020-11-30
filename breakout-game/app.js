@@ -97,6 +97,9 @@ const drawBricks = () => {
         ctx.closePath();
     });
 };
+const drawAllBricks = () => {
+    bricks.forEach(brick => (brick.visible = true));
+};
 const drawBall = () => {
     ctx.beginPath();
     ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
@@ -110,4 +113,7 @@ const drawBar = () => {
     ctx.fillStyle = bar.visible ? '#0095dd' : 'transparent';
     ctx.fill();
     ctx.closePath();
+};
+const drawScore = () => {
+    ctx.fillText(`Score: ${score}`, elements.canvas.width - 140, 35);
 };
