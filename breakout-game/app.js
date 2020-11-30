@@ -40,4 +40,8 @@ class Bar {
         this.dx = dx;
         this.visible = visible;
     }
+    move(x, y) {
+        this.x = x;
+        this.y = y;
+    }
 }
