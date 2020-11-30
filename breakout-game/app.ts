@@ -153,13 +153,13 @@ const drawBall = () => {
   ctx.closePath();
 };
 
-// const drawBar = (config: Bar) => {
-//   const { barX, barY, width, height } = config;
-
-//   ctx.clearRect(0, barY, elements.canvas.width, height);
-
-//   ctx.fillRect(barX, barY, width, height);
-// };
+const drawBar = () => {
+  ctx.beginPath();
+  ctx.rect(bar.x, bar.y, bar.width, bar.height);
+  ctx.fillStyle = bar.visible ? '#0095dd' : 'transparent';
+  ctx.fill();
+  ctx.closePath();
+};
 
 // const drawScore = () => {
 //   ctx.fillText(`Score: ${score}`, elements.canvas.width - 140, 35);

@@ -104,3 +104,10 @@ const drawBall = () => {
     ctx.fill();
     ctx.closePath();
 };
+const drawBar = () => {
+    ctx.beginPath();
+    ctx.rect(bar.x, bar.y, bar.width, bar.height);
+    ctx.fillStyle = bar.visible ? '#0095dd' : 'transparent';
+    ctx.fill();
+    ctx.closePath();
+};
