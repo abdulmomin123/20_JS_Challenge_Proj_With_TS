@@ -79,6 +79,7 @@ class Brick {
 }
 
 // Instanciating all the classes
+// the ball
 const ball = new Ball(
   elements.canvas.width / 2,
   elements.canvas.height / 2,
@@ -86,6 +87,20 @@ const ball = new Ball(
   4,
   4,
   -4,
+  true
+);
+
+// a single brick
+const brick = new Brick(70, 20, 10, 45, 60, true);
+
+// the bar
+const bar = new Bar(
+  elements.canvas.width / 2 - 40,
+  elements.canvas.height - 20,
+  80,
+  10,
+  8,
+  0,
   true
 );
 
