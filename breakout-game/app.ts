@@ -157,7 +157,18 @@ const drawScore = () => {
   ctx.fillText(`Score: ${score}`, elements.canvas.width - 140, 35);
 };
 
-const moveBar = () => {};
+const moveBar = () => {
+  bar.x += bar.dx;
+
+  // Wall detection
+  if (bar.x + bar.width > elements.canvas.width) {
+    bar.x = elements.canvas.width - bar.width;
+  }
+
+  if (bar.x < 0) {
+    bar.x = 0;
+  }
+};
 
 const moveBall = () => {};
 
@@ -192,15 +203,15 @@ document.addEventListener('keydown', e => {
   if (key !== 37 && key !== 39 && key !== 65 && key !== 68) return;
 
   if (key === 37 || key === 65) {
-    // moveDirection = -8;
+    bar.dx = -bar.speed;
   } else if (key === 39 || key === 68) {
-    // moveDirection = 8;
+    bar.dx = bar.speed;
   }
 });
 
 // reset the movedirection
 document.addEventListener('keyup', () => {
-  // moveDirection = 0;
+  bar.dx = 0;
 });
 
 // Rules and close event handlers

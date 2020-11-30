@@ -109,7 +109,15 @@ const drawBar = () => {
 const drawScore = () => {
     ctx.fillText(`Score: ${score}`, elements.canvas.width - 140, 35);
 };
-const moveBar = () => { };
+const moveBar = () => {
+    bar.x += bar.dx;
+    if (bar.x + bar.width > elements.canvas.width) {
+        bar.x = elements.canvas.width - bar.width;
+    }
+    if (bar.x < 0) {
+        bar.x = 0;
+    }
+};
 const moveBall = () => { };
 const drawAll = () => {
     ctx.clearRect(0, 0, elements.canvas.width, elements.canvas.height);
@@ -130,11 +138,14 @@ document.addEventListener('keydown', e => {
     if (key !== 37 && key !== 39 && key !== 65 && key !== 68)
         return;
     if (key === 37 || key === 65) {
+        bar.dx = -bar.speed;
     }
     else if (key === 39 || key === 68) {
+        bar.dx = bar.speed;
     }
 });
 document.addEventListener('keyup', () => {
+    bar.dx = 0;
 });
 elements.rulesBtn.addEventListener('click', () => elements.rules.classList.add('show'));
 elements.closeBtn.addEventListener('click', () => elements.rules.classList.remove('show'));
