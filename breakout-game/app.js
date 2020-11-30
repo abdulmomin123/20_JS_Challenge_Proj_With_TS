@@ -11,7 +11,6 @@ ctx.font = '20px Arial';
 let score = 0;
 let barX = elements.canvas.width / 2 - 80 / 2;
 let moveDirection = 0;
-const bricks = [];
 let ballDirectionX = 'right';
 let ballDirectionY = 'top';
 let ballX = elements.canvas.width / 3;
@@ -59,13 +58,20 @@ class Brick {
     }
 }
 const ball = new Ball(elements.canvas.width / 2, elements.canvas.height / 2, 10, 4, 4, -4, true);
-const brick = new Brick(70, 20, 10, 45, 60, true);
 const bar = new Bar(elements.canvas.width / 2 - 40, elements.canvas.height - 20, 80, 10, 8, 0, true);
+const brick = new Brick(70, 20, 10, 45, 60, true);
 const createBricks = (numberOfRows, numberOfColumns) => {
     const bricks = [];
+    let { offsetX, offsetY } = brick;
     for (let i = 0; i < numberOfRows; i++) {
-        bricks[i] = [];
         for (let j = 0; j < numberOfColumns; j++) {
+            bricks.push(new Brick(70, 20, 10, offsetX, offsetY, true));
+            offsetX += brick.width + brick.padding;
         }
+        offsetX = brick.offsetX;
+        offsetY += brick.height + brick.padding;
     }
+    return bricks;
 };
+const bricks = createBricks(5, 9);
+console.log(bricks);

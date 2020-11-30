@@ -18,9 +18,6 @@ let score = 0;
 let barX = elements.canvas.width / 2 - 80 / 2;
 let moveDirection = 0;
 
-// All bricks
-const bricks = [];
-
 // current positon of the ball
 let ballDirectionX: 'left' | 'right' = 'right';
 let ballDirectionY: 'top' | 'bottom' = 'top';
@@ -90,9 +87,6 @@ const ball = new Ball(
   true
 );
 
-// a single brick
-const brick = new Brick(70, 20, 10, 45, 60, true);
-
 // the bar
 const bar = new Bar(
   elements.canvas.width / 2 - 40,
@@ -104,18 +98,32 @@ const bar = new Bar(
   true
 );
 
-// creating the bricks
+// a single brick
+const brick = new Brick(70, 20, 10, 45, 60, true);
+
+// creating the bricks block
 const createBricks = (numberOfRows: number, numberOfColumns: number) => {
-  const bricks = [];
+  const bricks: Brick[] = [];
+  let { offsetX, offsetY } = brick;
 
   for (let i = 0; i < numberOfRows; i++) {
-    bricks[i] = [];
-
     for (let j = 0; j < numberOfColumns; j++) {
-      //
+      bricks.push(new Brick(70, 20, 10, offsetX, offsetY, true));
+
+      offsetX += brick.width + brick.padding;
     }
+
+    offsetX = brick.offsetX;
+    offsetY += brick.height + brick.padding;
   }
+
+  return bricks;
 };
+
+// All bricks
+const bricks = createBricks(5, 9);
+
+console.log(bricks);
 
 // // functions
 // const drawBricks = (config: Bricks) => {
