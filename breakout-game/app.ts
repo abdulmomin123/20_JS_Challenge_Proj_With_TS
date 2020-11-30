@@ -14,16 +14,6 @@ ctx.font = '20px Arial';
 // score
 let score = 0;
 
-// current positon of the bar
-let barX = elements.canvas.width / 2 - 80 / 2;
-let moveDirection = 0;
-
-// current positon of the ball
-let ballDirectionX: 'left' | 'right' = 'right';
-let ballDirectionY: 'top' | 'bottom' = 'top';
-let ballX = elements.canvas.width / 3;
-let ballY = elements.canvas.height - 150;
-
 class Ball {
   constructor(
     public x: number,
@@ -167,140 +157,56 @@ const drawScore = () => {
   ctx.fillText(`Score: ${score}`, elements.canvas.width - 140, 35);
 };
 
-// const moveBar = () => {
-//   if (
-//     (barX <= 0 && moveDirection < 0) ||
-//     (barX >= elements.canvas.width - 80 && moveDirection > 0)
-//   )
-//     return;
+const moveBar = () => {};
 
-//   barX += moveDirection;
+const moveBall = () => {};
 
-//   drawBar({
-//     barX,
-//     barY: elements.canvas.height - 10 * 2,
-//     width: 80,
-//     height: 10,
-//   });
-// };
+const drawAll = () => {
+  ctx.clearRect(0, 0, elements.canvas.width, elements.canvas.height);
 
-// const moveBall = () => {
-//   if (ballY <= 10 && ballDirectionX === 'right') {
-//     ballDirectionX = 'right';
-//     ballDirectionY = 'bottom';
-//   } else if (ballY <= 10 && ballDirectionX === 'left') {
-//     ballDirectionX = 'left';
-//     ballDirectionY = 'bottom';
-//   } else if (ballX <= 10 && ballDirectionY === 'top') {
-//     ballDirectionX = 'right';
-//     ballDirectionY = 'top';
-//   } else if (ballX <= 10 && ballDirectionY === 'bottom') {
-//     ballDirectionX = 'right';
-//     ballDirectionY = 'bottom';
-//   } else if (
-//     ballY >= elements.canvas.height - 30 &&
-//     ballDirectionX === 'right'
-//   ) {
-//     ballDirectionX = 'right';
-//     ballDirectionY = 'top';
-//   } else if (
-//     ballY >= elements.canvas.height - 30 &&
-//     ballDirectionX === 'left'
-//   ) {
-//     ballDirectionX = 'left';
-//     ballDirectionY = 'top';
-//   } else if (ballX >= elements.canvas.width - 10 && ballDirectionY === 'top') {
-//     ballDirectionX = 'left';
-//     ballDirectionY = 'top';
-//   } else if (
-//     ballX >= elements.canvas.width - 10 &&
-//     ballDirectionY === 'bottom'
-//   ) {
-//     ballDirectionX = 'left';
-//     ballDirectionY = 'bottom';
-//   }
+  drawBricks();
+  drawBall();
+  drawBar();
+  drawScore();
+};
 
-//   // movement
-//   if (ballDirectionY === 'top' && ballDirectionX === 'right') {
-//     ballX += 4;
-//     ballY -= 4;
-//   } else if (ballDirectionY === 'top' && ballDirectionX === 'left') {
-//     ballX -= 4;
-//     ballY -= 4;
-//   } else if (ballDirectionY === 'bottom' && ballDirectionX === 'right') {
-//     ballX += 4;
-//     ballY += 4;
-//   } else if (ballDirectionY === 'bottom' && ballDirectionX === 'left') {
-//     ballX -= 4;
-//     ballY += 4;
-//   }
-// };
+const updateCanvas = () => {
+  // move the ball & bar
+  moveBall();
+  moveBar();
 
-// const drawAll = () => {
-//   ctx.clearRect(0, 0, elements.canvas.width, elements.canvas.height);
+  // draw everything
+  drawAll();
 
-//   drawBricks({
-//     startX: 45,
-//     startY: 60,
-//     brickHeight: 20,
-//     bricksPerRow: 9,
-//     totalRows: 5,
-//     spaceBetweenBrick: 10,
-//   });
+  // do it again
+  requestAnimationFrame(updateCanvas);
+};
 
-//   drawBall({
-//     ballX,
-//     ballY,
-//     radius: 10,
-//   });
+updateCanvas();
 
-//   drawBar({
-//     barX,
-//     barY: elements.canvas.height - 10 * 2,
-//     width: 80,
-//     height: 10,
-//   });
+// event listeners
+// move the bar left or right
+document.addEventListener('keydown', e => {
+  const key = e.keyCode;
 
-//   drawScore();
-// };
+  if (key !== 37 && key !== 39 && key !== 65 && key !== 68) return;
 
-// const updateCanvas = () => {
-//   // move the ball & bar
-//   moveBall();
-//   moveBar();
+  if (key === 37 || key === 65) {
+    // moveDirection = -8;
+  } else if (key === 39 || key === 68) {
+    // moveDirection = 8;
+  }
+});
 
-//   // draw everything
-//   drawAll();
+// reset the movedirection
+document.addEventListener('keyup', () => {
+  // moveDirection = 0;
+});
 
-//   // do it again
-//   requestAnimationFrame(updateCanvas);
-// };
-
-// updateCanvas();
-
-// // event listeners
-// // move the bar left or right
-// document.addEventListener('keydown', e => {
-//   const key = e.keyCode;
-
-//   if (key !== 37 && key !== 39 && key !== 65 && key !== 68) return;
-
-//   if (key === 37 || key === 65) {
-//     moveDirection = -8;
-//   } else if (key === 39 || key === 68) {
-//     moveDirection = 8;
-//   }
-// });
-
-// // reset the movedirection
-// document.addEventListener('keyup', () => {
-//   moveDirection = 0;
-// });
-
-// // Rules and close event handlers
-// elements.rulesBtn.addEventListener('click', () =>
-//   elements.rules.classList.add('show')
-// );
-// elements.closeBtn.addEventListener('click', () =>
-//   elements.rules.classList.remove('show')
-// );
+// Rules and close event handlers
+elements.rulesBtn.addEventListener('click', () =>
+  elements.rules.classList.add('show')
+);
+elements.closeBtn.addEventListener('click', () =>
+  elements.rules.classList.remove('show')
+);

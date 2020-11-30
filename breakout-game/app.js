@@ -9,12 +9,6 @@ const ctx = elements.canvas.getContext('2d');
 ctx.fillStyle = '#0095dd';
 ctx.font = '20px Arial';
 let score = 0;
-let barX = elements.canvas.width / 2 - 80 / 2;
-let moveDirection = 0;
-let ballDirectionX = 'right';
-let ballDirectionY = 'top';
-let ballX = elements.canvas.width / 3;
-let ballY = elements.canvas.height - 150;
 class Ball {
     constructor(x, y, radius, speed, dx, dy, visible) {
         this.x = x;
@@ -115,3 +109,32 @@ const drawBar = () => {
 const drawScore = () => {
     ctx.fillText(`Score: ${score}`, elements.canvas.width - 140, 35);
 };
+const moveBar = () => { };
+const moveBall = () => { };
+const drawAll = () => {
+    ctx.clearRect(0, 0, elements.canvas.width, elements.canvas.height);
+    drawBricks();
+    drawBall();
+    drawBar();
+    drawScore();
+};
+const updateCanvas = () => {
+    moveBall();
+    moveBar();
+    drawAll();
+    requestAnimationFrame(updateCanvas);
+};
+updateCanvas();
+document.addEventListener('keydown', e => {
+    const key = e.keyCode;
+    if (key !== 37 && key !== 39 && key !== 65 && key !== 68)
+        return;
+    if (key === 37 || key === 65) {
+    }
+    else if (key === 39 || key === 68) {
+    }
+});
+document.addEventListener('keyup', () => {
+});
+elements.rulesBtn.addEventListener('click', () => elements.rules.classList.add('show'));
+elements.closeBtn.addEventListener('click', () => elements.rules.classList.remove('show'));
