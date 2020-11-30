@@ -27,19 +27,56 @@ class Ball {
     //
   }
 
-  move(directionX: 'left' | 'right', directionY: 'top' | 'bottom') {
-    if (directionY === 'top' && directionX === 'right') {
-      this.x += this.speed;
-      this.y -= this.speed;
-    } else if (directionY === 'top' && directionX === 'left') {
-      this.x -= this.speed;
-      this.y -= this.speed;
-    } else if (directionY === 'bottom' && directionX === 'right') {
-      this.x += this.speed;
-      this.y += this.speed;
-    } else if (directionY === 'bottom' && directionX === 'left') {
-      this.x -= this.speed;
-      this.y += this.speed;
+  move() {
+    ball.x += ball.dx;
+    ball.y += ball.dy;
+
+    // Wall collision (right/left)
+    if (
+      this.x + this.radius > elements.canvas.width ||
+      this.x - this.radius < 0
+    ) {
+      this.dx *= -1; // this.dx = this.dx * -1
+    }
+
+    // Wall collision (top/bottom)
+    if (
+      this.y + this.radius > elements.canvas.height ||
+      this.y - this.radius < 0
+    ) {
+      this.dy *= -1;
+    }
+
+    // Paddle collision
+    if (
+      this.x - this.radius > bar.x &&
+      this.x + this.radius < bar.x + bar.width &&
+      this.y + this.radius > bar.y
+    ) {
+      this.dy = -this.speed;
+    }
+
+    // Brick collision
+    bricks.forEach(brick => {
+      if (brick.visible) {
+        if (
+          this.x - this.radius > brick.offsetX && // left brick side check
+          this.x + this.radius < brick.offsetX + brick.width && // right brick side check
+          this.y + this.radius > brick.offsetY && // top brick side check
+          this.y - this.radius < brick.offsetY + brick.height // bottom brick side check
+        ) {
+          this.dy *= -1;
+          brick.visible = false;
+
+          increaseScore();
+        }
+      }
+    });
+
+    // Hit bottom wall - Lose
+    if (this.y + this.radius > elements.canvas.height) {
+      score = 0;
+      drawAllBricks();
     }
   }
 }
@@ -157,6 +194,10 @@ const drawScore = () => {
   ctx.fillText(`Score: ${score}`, elements.canvas.width - 140, 35);
 };
 
+const increaseScore = () => {
+  score++;
+};
+
 const moveBar = () => {
   bar.x += bar.dx;
 
@@ -181,7 +222,7 @@ const drawAll = () => {
 
 const updateCanvas = () => {
   // move the ball & bar
-  ball.move('right', 'top');
+  ball.move();
   moveBar();
 
   // draw everything

@@ -19,22 +19,37 @@ class Ball {
         this.dy = dy;
         this.visible = visible;
     }
-    move(directionX, directionY) {
-        if (directionY === 'top' && directionX === 'right') {
-            this.x += this.speed;
-            this.y -= this.speed;
+    move() {
+        ball.x += ball.dx;
+        ball.y += ball.dy;
+        if (this.x + this.radius > elements.canvas.width ||
+            this.x - this.radius < 0) {
+            this.dx *= -1;
         }
-        else if (directionY === 'top' && directionX === 'left') {
-            this.x -= this.speed;
-            this.y -= this.speed;
+        if (this.y + this.radius > elements.canvas.height ||
+            this.y - this.radius < 0) {
+            this.dy *= -1;
         }
-        else if (directionY === 'bottom' && directionX === 'right') {
-            this.x += this.speed;
-            this.y += this.speed;
+        if (this.x - this.radius > bar.x &&
+            this.x + this.radius < bar.x + bar.width &&
+            this.y + this.radius > bar.y) {
+            this.dy = -this.speed;
         }
-        else if (directionY === 'bottom' && directionX === 'left') {
-            this.x -= this.speed;
-            this.y += this.speed;
+        bricks.forEach(brick => {
+            if (brick.visible) {
+                if (this.x - this.radius > brick.offsetX &&
+                    this.x + this.radius < brick.offsetX + brick.width &&
+                    this.y + this.radius > brick.offsetY &&
+                    this.y - this.radius < brick.offsetY + brick.height) {
+                    this.dy *= -1;
+                    brick.visible = false;
+                    increaseScore();
+                }
+            }
+        });
+        if (this.y + this.radius > elements.canvas.height) {
+            score = 0;
+            drawAllBricks();
         }
     }
 }
@@ -109,6 +124,9 @@ const drawBar = () => {
 const drawScore = () => {
     ctx.fillText(`Score: ${score}`, elements.canvas.width - 140, 35);
 };
+const increaseScore = () => {
+    score++;
+};
 const moveBar = () => {
     bar.x += bar.dx;
     if (bar.x + bar.width > elements.canvas.width) {
@@ -126,7 +144,7 @@ const drawAll = () => {
     drawScore();
 };
 const updateCanvas = () => {
-    ball.move('right', 'top');
+    ball.move();
     moveBar();
     drawAll();
     requestAnimationFrame(updateCanvas);
