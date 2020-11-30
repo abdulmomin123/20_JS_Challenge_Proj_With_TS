@@ -18,6 +18,9 @@ let score = 0;
 let barX = elements.canvas.width / 2 - 80 / 2;
 let moveDirection = 0;
 
+// All bricks
+const bricks = [];
+
 // current positon of the ball
 let ballDirectionX: 'left' | 'right' = 'right';
 let ballDirectionY: 'top' | 'bottom' = 'top';
@@ -75,14 +78,10 @@ class Brick {
   }
 }
 
-interface Bricks {
-  startX: number;
-  startY: number;
-  brickHeight: number;
-  bricksPerRow: number;
-  totalRows: number;
-  spaceBetweenBrick: number;
-}
+// creating the bricks
+const createBricks = (numberOfRows: number, numberOfColumns: number) => {
+  //
+};
 
 // // functions
 // const drawBricks = (config: Bricks) => {

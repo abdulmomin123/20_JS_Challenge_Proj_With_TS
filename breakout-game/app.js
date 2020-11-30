@@ -11,6 +11,7 @@ ctx.font = '20px Arial';
 let score = 0;
 let barX = elements.canvas.width / 2 - 80 / 2;
 let moveDirection = 0;
+const bricks = [];
 let ballDirectionX = 'right';
 let ballDirectionY = 'top';
 let ballX = elements.canvas.width / 3;
@@ -57,3 +58,5 @@ class Brick {
         this.visible = visible;
     }
 }
+const createBricks = () => {
+};
