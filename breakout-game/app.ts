@@ -135,33 +135,14 @@ const createBricks = (numberOfRows: number, numberOfColumns: number) => {
 const bricks = createBricks(5, 9);
 
 // // functions
-const drawBricks = (config: Bricks) => {
-  const {
-    startX,
-    startY,
-    brickHeight,
-    bricksPerRow,
-    totalRows,
-    spaceBetweenBrick,
-  } = config;
-
-  let startingPointX = startX;
-  let startingPointY = startY;
-
-  const totalWidth = elements.canvas.width - startX * 2;
-  const widthWithoutSpace = totalWidth - (bricksPerRow - 1) * spaceBetweenBrick;
-
-  const singleBrickWidth = widthWithoutSpace / bricksPerRow;
-
-  for (let i = 0; i < totalRows; i++) {
-    for (let j = 0; j < bricksPerRow; j++) {
-      ctx.fillRect(startingPointX, startingPointY, 70, brickHeight);
-      startingPointX += singleBrickWidth + spaceBetweenBrick;
-    }
-
-    startingPointX = startX;
-    startingPointY += brickHeight + spaceBetweenBrick;
-  }
+const drawBricks = () => {
+  bricks.forEach(brick => {
+    ctx.beginPath();
+    ctx.rect(brick.offsetX, brick.offsetY, brick.width, brick.height);
+    ctx.fillStyle = brick.visible ? '#0095dd' : 'transparent';
+    ctx.fill();
+    ctx.closePath();
+  });
 };
 
 // const drawBall = (config: Ball) => {

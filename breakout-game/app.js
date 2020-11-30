@@ -25,9 +25,23 @@ class Ball {
         this.dy = dy;
         this.visible = visible;
     }
-    move(x, y) {
-        this.x += x;
-        this.y += y;
+    move(directionX, directionY) {
+        if (directionY === 'top' && directionX === 'right') {
+            this.x += this.speed;
+            this.y -= this.speed;
+        }
+        else if (directionY === 'top' && directionX === 'left') {
+            this.x -= this.speed;
+            this.y -= this.speed;
+        }
+        else if (directionY === 'bottom' && directionX === 'right') {
+            this.x += this.speed;
+            this.y += this.speed;
+        }
+        else if (directionY === 'bottom' && directionX === 'left') {
+            this.x -= this.speed;
+            this.y += this.speed;
+        }
     }
 }
 class Bar {
@@ -74,3 +88,12 @@ const createBricks = (numberOfRows, numberOfColumns) => {
     return bricks;
 };
 const bricks = createBricks(5, 9);
+const drawBricks = () => {
+    bricks.forEach(brick => {
+        ctx.beginPath();
+        ctx.rect(brick.offsetX, brick.offsetY, brick.width, brick.height);
+        ctx.fillStyle = brick.visible ? '#0095dd' : 'transparent';
+        ctx.fill();
+        ctx.closePath();
+    });
+};
