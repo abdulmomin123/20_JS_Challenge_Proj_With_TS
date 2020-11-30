@@ -6,7 +6,6 @@ const elements = {
     canvas: document.getElementById('canvas'),
 };
 const ctx = elements.canvas.getContext('2d');
-ctx.fillStyle = '#0095dd';
 ctx.font = '20px Arial';
 let score = 0;
 class Ball {

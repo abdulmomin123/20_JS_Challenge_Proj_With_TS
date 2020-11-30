@@ -8,7 +8,6 @@ const elements = {
 
 // global variables
 const ctx = elements.canvas.getContext('2d') as CanvasRenderingContext2D;
-ctx.fillStyle = '#0095dd';
 ctx.font = '20px Arial';
 
 // score
