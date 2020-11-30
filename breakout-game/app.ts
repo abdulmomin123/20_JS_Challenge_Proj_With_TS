@@ -170,8 +170,6 @@ const moveBar = () => {
   }
 };
 
-const moveBall = () => {};
-
 const drawAll = () => {
   ctx.clearRect(0, 0, elements.canvas.width, elements.canvas.height);
 
@@ -183,7 +181,7 @@ const drawAll = () => {
 
 const updateCanvas = () => {
   // move the ball & bar
-  moveBall();
+  ball.move('right', 'top');
   moveBar();
 
   // draw everything

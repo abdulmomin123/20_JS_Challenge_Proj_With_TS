@@ -118,7 +118,6 @@ const moveBar = () => {
         bar.x = 0;
     }
 };
-const moveBall = () => { };
 const drawAll = () => {
     ctx.clearRect(0, 0, elements.canvas.width, elements.canvas.height);
     drawBricks();
@@ -127,7 +126,7 @@ const drawAll = () => {
     drawScore();
 };
 const updateCanvas = () => {
-    moveBall();
+    ball.move('right', 'top');
     moveBar();
     drawAll();
     requestAnimationFrame(updateCanvas);
