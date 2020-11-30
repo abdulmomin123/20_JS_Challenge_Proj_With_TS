@@ -40,8 +40,9 @@ class Bar {
         this.dx = dx;
         this.visible = visible;
     }
-    move(x, y) {
-        this.x = x;
+    move(x, y, direction) {
+        if (direction === 'left')
+            this.x = x;
         this.y = y;
     }
 }

@@ -47,8 +47,8 @@ class Bar {
   constructor(
     public x: number,
     public y: number,
-    public w: number,
-    public h: number,
+    public width: number,
+    public height: number,
     public speed: number,
     public dx: number,
     public visible: boolean
@@ -56,9 +56,9 @@ class Bar {
     //
   }
 
-  move(x: number, y: number) {
-    this.x = x;
-    this.y = y;
+  move(x: number, y: number, direction: 'left' | 'right') {
+    if (direction === 'left') this.x -= this.dx;
+    else this.x += this.dx;
   }
 }
 
